@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://canbcskskh8f2"]
+[gd_scene load_steps=5 format=3 uid="uid://canbcskskh8f2"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_iqsl2"]
 
 [sub_resource type="Gradient" id="Gradient_sb0fv"]
 offsets = PackedFloat32Array(0, 0.75974, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0.952941, 0, 0, 1, 1, 0, 0, 0)
+colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oitgg"]
 gradient = SubResource("Gradient_sb0fv")
@@ -17,6 +19,8 @@ radius = 5.0
 collision_layer = 2
 collision_mask = 12
 gravity_scale = 0.0
+script = ExtResource("1_iqsl2")
+player = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
