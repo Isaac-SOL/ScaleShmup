@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c71bepd0cdivk"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_cmjns"]
+[ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="2_cuvwt"]
+
+[sub_resource type="Gradient" id="Gradient_ce3te"]
+offsets = PackedFloat32Array(0, 0.75974, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.954545, 0.954545, 0.954545, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ocuqe"]
+gradient = SubResource("Gradient_ce3te")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_23aqy"]
+radius = 6.08276
+
+[node name="Player" type="Area2D"]
+collision_mask = 12
+script = ExtResource("1_cmjns")
+move_speed = 2.0
+projectile = ExtResource("2_cuvwt")
+projectile_speed = 250.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_ocuqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_23aqy")
