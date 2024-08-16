@@ -8,23 +8,31 @@ colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oitgg"]
 gradient = SubResource("Gradient_sb0fv")
+width = 8
+height = 8
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jurhr"]
-radius = 5.0
+radius = 3.0
 
 [node name="Projectile" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 12
 gravity_scale = 0.0
+linear_damp_mode = 1
 script = ExtResource("1_iqsl2")
 player = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
 texture = SubResource("GradientTexture2D_oitgg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jurhr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2.38419e-07, 2.38419e-07)
+scale = Vector2(0.4, 0.4)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
