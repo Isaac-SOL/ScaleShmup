@@ -21,6 +21,10 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/movie_file="A:/Pierre/Documents/GodotProjects/ScaleShmup/movies/movie.avi"
+
 [input]
 
 up={
@@ -59,7 +63,7 @@ shoot={
 2d_physics/layer_2="Player Projectile"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Enemy Projectile"
-2d_physics/layer_9="PlayerAmalgamElement"
+2d_physics/layer_9="PlayerPart"
 
 [rendering]
 
