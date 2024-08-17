@@ -2,12 +2,8 @@ class_name Element extends Area2D
 
 const ENEMY_LAYER = 1 << 2
 const ENEMY_MASK = 1 << 1 | 1 << 8
-const ENEMY_PROJECTILE_LAYER = 1 << 3
-const ENEMY_PROJECTILE_MASK = 1 << 1 | 1 << 8
 const PLAYER_LAYER = 1 << 8
 const PLAYER_MASK = 1 << 2 | 1 << 3
-const PLAYER_PROJECTILE_LAYER = 1 << 1
-const PLAYER_PROJECTILE_MASK = 1 << 2 | 1 << 3
 
 signal hp_changed(new_hp: int)
 signal destroyed(element: Element)
@@ -52,11 +48,13 @@ func set_mode(player_mode: bool):
 func shoot(dir: Vector2):
 	var new_projectile: Projectile = projectile.instantiate()
 	new_projectile.player = player_owned
+	get_parent().add_child(new_projectile)
 	new_projectile.global_position = global_position
 	new_projectile.apply_impulse(dir * shoot_strength)
 
 func destroy():
 	destroyed.emit(self)
+	await get_tree().process_frame
 	queue_free()
 
 func give_to_player():
@@ -88,7 +86,7 @@ func _on_element_body_entered(body: Node2D):
 
 func _on_area_entered(area: Area2D):
 	if player_owned:
-		if area is Enemy:
+		if area is Element and not area.player_owned:
 			area.destroy()
 			hp -= area.hp
 			if hp < 0: hp = 0
@@ -97,7 +95,6 @@ func _on_area_entered(area: Area2D):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	destroy()
-
 
 func _on_kill_timer_timeout():
 	if not $VisibleOnScreenNotifier2D.is_on_screen():

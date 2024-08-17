@@ -1,15 +1,20 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=23 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="3_xx5my"]
+[ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="4_jaagb"]
 [ext_resource type="Script" path="res://objects/kill_area.gd" id="5_axofq"]
+[ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="5_dyv2q"]
 [ext_resource type="Script" path="res://scripts/projectile_pool.gd" id="5_k6mut"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
+[ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="6_0r7if"]
 [ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="6_65764"]
+[ext_resource type="PackedScene" uid="uid://d4hs57jskg0wy" path="res://objects/elements/molecule_2.tscn" id="7_lu0qn"]
 [ext_resource type="Theme" uid="uid://dtqnw4yhbe0kk" path="res://assets/fonts/second_title_them.tres" id="7_skxey"]
 [ext_resource type="Theme" uid="uid://cbnl37hp5d4kk" path="res://assets/fonts/button_smaller.tres" id="8_0hcfq"]
+[ext_resource type="PackedScene" uid="uid://cfi1a2grotf78" path="res://objects/elements/molecule_3.tscn" id="8_0ippw"]
 [ext_resource type="StyleBox" uid="uid://cln15kpjcsiss" path="res://imports/style_box_normal.tres" id="9_00ovv"]
 [ext_resource type="StyleBox" uid="uid://ddmyelf7ggrso" path="res://imports/style_box_hover.tres" id="10_jty1g"]
 [ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="11_ic8d2"]
@@ -51,9 +56,11 @@ unique_name_in_owner = true
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("3_4mhxf")
-enemy = ExtResource("3_xx5my")
+enemies = Array[PackedScene]([ExtResource("3_xx5my"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw")])
+weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
+wait_time = 2.0
 autostart = true
 
 [node name="SpawnerPath" type="Path2D" parent="EnemySpawner"]
@@ -67,6 +74,8 @@ rotation = 1.5708
 
 [node name="Player" parent="." instance=ExtResource("1_3qqml")]
 unique_name_in_owner = true
+base_fire_rate = 1.0
+part_speed = 10.0
 
 [node name="KillArea" type="Area2D" parent="Player"]
 collision_layer = 16
@@ -93,11 +102,6 @@ rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_slu4l")
 
 [node name="ProjectilePoolPlayer" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("5_k6mut")
-projectile = ExtResource("6_65764")
-
-[node name="ProjectilePoolEnemy" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_k6mut")
 projectile = ExtResource("6_65764")

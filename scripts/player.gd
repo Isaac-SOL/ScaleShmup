@@ -54,8 +54,9 @@ func shoot():
 func set_radius(new_radius: int):
 	radius = new_radius
 	%CollisionShape2D.shape.radius = new_radius
-	Singletons.main.set_camera_zoom(log(radius) / log(2))
-	%Shadow.scale = Vector2.ONE * (log(radius) / log(2))
+	if radius > 1:
+		Singletons.main.set_camera_zoom(log(radius) / log(2))
+		%Shadow.scale = Vector2.ONE * (log(radius) / log(2))
 
 func add_atoms(amount: int):
 	internal_atoms += amount
@@ -101,7 +102,8 @@ func add_element(elem: Element):
 func count_atoms() -> int:
 	var total: int = internal_atoms
 	for elem: Element in elements:
-		total += elem.hp
+		if elem:
+			total += elem.hp
 	return total
 
 func increase_level():

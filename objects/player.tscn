@@ -40,3 +40,5 @@ hp = 1
 player_owned = true
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="destroyed" from="Elements/Atom" to="." method="_on_part_destroyed"]
+[connection signal="hp_changed" from="Elements/Atom" to="." method="_on_part_hp_changed"]

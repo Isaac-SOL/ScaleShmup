@@ -5,7 +5,6 @@ var pause = false
 func _ready():
 	Singletons.main = self
 	Singletons.player_projectile_pool = %ProjectilePoolPlayer
-	Singletons.enemy_projectile_pool = %ProjectilePoolEnemy
 	%PauseMenu.hide()
 	# Play game song
 	#NodeAudio.playAudio(NodeAudio.audioGame)
