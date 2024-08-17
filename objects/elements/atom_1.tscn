@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dk1iyi3vx4sgj"]
 
 [ext_resource type="Script" path="res://scripts/element.gd" id="1_8i05w"]
+[ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="2_ho7fk"]
 [ext_resource type="Texture2D" uid="uid://calqncgvrw1yb" path="res://assets/textures/elements/sprite_atome_1.png" id="2_o4gdr"]
-[ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="2_sow0l"]
 
 [sub_resource type="Gradient" id="Gradient_mc6tc"]
 offsets = PackedFloat32Array(0, 0.340249, 0.423237, 0.738589)
@@ -22,7 +22,7 @@ height = 43.9994
 collision_layer = 4
 collision_mask = 258
 script = ExtResource("1_8i05w")
-projectile = ExtResource("2_sow0l")
+projectile = ExtResource("2_ho7fk")
 shoot_strength = 100.0
 enemy_color = Color(1, 0.462745, 0, 1)
 player_color = Color(0, 0.694118, 1, 0)
@@ -41,6 +41,7 @@ rotation = 1.57584
 shape = SubResource("CapsuleShape2D_fdnrd")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-4.76837e-07, 0)
 scale = Vector2(2.6, 2.5)
 

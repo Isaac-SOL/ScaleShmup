@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="4_hylfv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_23aqy"]
+resource_local_to_scene = true
 
 [sub_resource type="Gradient" id="Gradient_qmmvy"]
 offsets = PackedFloat32Array(0, 0.207469, 0.738589)
@@ -38,7 +39,13 @@ unique_name_in_owner = true
 [node name="Atom" parent="Elements" instance=ExtResource("4_hylfv")]
 hp = 1
 player_owned = true
+shoot_strength = 175.0
+
+[node name="ShootTimer" parent="Elements/Atom" index="4"]
+wait_time = 2.205
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="destroyed" from="Elements/Atom" to="." method="_on_part_destroyed"]
 [connection signal="hp_changed" from="Elements/Atom" to="." method="_on_part_hp_changed"]
+
+[editable path="Elements/Atom"]

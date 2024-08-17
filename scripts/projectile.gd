@@ -37,6 +37,8 @@ func create(sca: float = 1):
 	visible = true
 
 func destroy():
+	queue_free()
+	return
 	%Sprite2D.scale = Vector2.ONE
 	%CollisionShape2D.shape.radius = 3
 	$VisibleOnScreenNotifier2D.scale = Vector2.ONE

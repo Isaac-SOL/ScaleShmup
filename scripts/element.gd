@@ -48,7 +48,7 @@ func set_mode(player_mode: bool):
 func shoot(dir: Vector2):
 	var new_projectile: Projectile = projectile.instantiate()
 	new_projectile.player = player_owned
-	get_parent().add_child(new_projectile)
+	Singletons.projectiles.add_child(new_projectile)
 	new_projectile.global_position = global_position
 	new_projectile.apply_impulse(dir * shoot_strength)
 
@@ -60,18 +60,24 @@ func destroy():
 func give_to_player():
 	set_mode(true)
 	hp = size
+	shoot_strength = floori(shoot_strength * 1.7)
+	$ShootTimer.wait_time *= 0.7
 	move_to_player = true
 
 func _on_shoot_timer_timeout():
 	if player_owned:
-		# Ask if shooting and shoot direction
-		pass
-	else:
+		if Input.is_action_pressed("shoot"):
+			var shoot_position: Vector2 = get_global_mouse_position()
+			var shoot_direction: Vector2 = (shoot_position - global_position).normalized()
+			shoot(shoot_direction)
+		if position.length() > Singletons.player.radius:
+			Singletons.player._on_area_exited(self)
+	elif %VisibleOnScreenNotifier2D.is_on_screen():
 		shoot((Singletons.player.global_position - global_position).normalized())
 
 func _on_element_body_entered(body: Node2D):
 	if player_owned:
-		if body is Projectile and not body.player:
+		if body is Projectile and not body.player and not move_to_player:
 			body.destroy()
 			hp -= body.damage_value
 			if hp < 0: hp = 0
@@ -97,5 +103,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	destroy()
 
 func _on_kill_timer_timeout():
-	if not $VisibleOnScreenNotifier2D.is_on_screen():
+	if not %VisibleOnScreenNotifier2D.is_on_screen():
 		destroy()

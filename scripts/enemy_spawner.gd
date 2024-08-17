@@ -2,8 +2,6 @@ class_name EnemySpawner extends Node2D
 
 @export var enemies: Array[PackedScene]
 @export var weights: Array[float]
-@export var min_radius: float = 100
-@export var max_radius: float = 200
 
 var sizes: Array[int] = []
 

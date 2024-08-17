@@ -36,10 +36,10 @@ func _process(delta: float):
 	
 	if next_fire > 0:
 		next_fire -= delta
-	if Input.is_action_pressed("shoot"):
-		while next_fire <= 0:
-			next_fire += fire_rate
-			shoot()
+	#if Input.is_action_pressed("shoot"):
+	#	while next_fire <= 0:
+	#		next_fire += fire_rate
+	#		shoot()
 
 func shoot():
 	var shoot_position: Vector2 = get_global_mouse_position()
@@ -53,7 +53,7 @@ func shoot():
 
 func set_radius(new_radius: int):
 	radius = new_radius
-	%CollisionShape2D.shape.radius = new_radius
+	%CollisionShape2D.shape.radius = radius * 1000
 	if radius > 1:
 		Singletons.main.set_camera_zoom(log(radius) / log(2))
 		%Shadow.scale = Vector2.ONE * (log(radius) / log(2))

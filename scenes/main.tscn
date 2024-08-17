@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=28 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
@@ -16,8 +16,13 @@
 [ext_resource type="Theme" uid="uid://cbnl37hp5d4kk" path="res://assets/fonts/button_smaller.tres" id="8_0hcfq"]
 [ext_resource type="PackedScene" uid="uid://cfi1a2grotf78" path="res://objects/elements/molecule_3.tscn" id="8_0ippw"]
 [ext_resource type="StyleBox" uid="uid://cln15kpjcsiss" path="res://imports/style_box_normal.tres" id="9_00ovv"]
+[ext_resource type="PackedScene" uid="uid://bjm3xkpcjhscq" path="res://objects/elements/molecule_4.tscn" id="9_7yamx"]
+[ext_resource type="PackedScene" uid="uid://q441khku8e4n" path="res://objects/elements/molecule_5.tscn" id="10_170lc"]
 [ext_resource type="StyleBox" uid="uid://ddmyelf7ggrso" path="res://imports/style_box_hover.tres" id="10_jty1g"]
+[ext_resource type="PackedScene" uid="uid://cyjlm451otxoi" path="res://objects/elements/molecule_6.tscn" id="11_6hf33"]
 [ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="11_ic8d2"]
+[ext_resource type="PackedScene" uid="uid://cl0m6gm6l8jxk" path="res://objects/elements/molecule_7.tscn" id="12_ivwwh"]
+[ext_resource type="PackedScene" uid="uid://dpyloqnlh7sqr" path="res://objects/elements/molecule_8.tscn" id="13_tyumn"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
@@ -34,7 +39,7 @@ func set_target_zoom(target: Vector2):
 
 [sub_resource type="Curve2D" id="Curve2D_aw4pu"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 379, -225, 0, 0, 0, 0, 379, 244, 0, 0, 0, 0, -410, 244, 0, 0, 0, 0, -387, -237, 0, 0, 0, 0, 379, -225)
+"points": PackedVector2Array(0, 0, 0, 0, 432, -300, 0, 0, 0, 0, 427, 327, 0, 0, 0, 0, -490, 307, 0, 0, 0, 0, -480, -301, 0, 0, 0, 0, 431, -299)
 }
 point_count = 5
 
@@ -56,11 +61,10 @@ unique_name_in_owner = true
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("3_4mhxf")
-enemies = Array[PackedScene]([ExtResource("3_xx5my"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw")])
-weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5])
+enemies = Array[PackedScene]([ExtResource("3_xx5my"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn")])
+weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5, 3.0, 3.0, 2.0, 2.0, 2.0])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
-wait_time = 2.0
 autostart = true
 
 [node name="SpawnerPath" type="Path2D" parent="EnemySpawner"]
@@ -69,13 +73,11 @@ curve = SubResource("Curve2D_aw4pu")
 
 [node name="SpawnerFollow" type="PathFollow2D" parent="EnemySpawner/SpawnerPath"]
 unique_name_in_owner = true
-position = Vector2(379, -225)
-rotation = 1.5708
+position = Vector2(432, -300)
+rotation = 1.57877
 
 [node name="Player" parent="." instance=ExtResource("1_3qqml")]
 unique_name_in_owner = true
-base_fire_rate = 1.0
-part_speed = 10.0
 
 [node name="KillArea" type="Area2D" parent="Player"]
 collision_layer = 16
@@ -105,6 +107,9 @@ shape = SubResource("WorldBoundaryShape2D_slu4l")
 unique_name_in_owner = true
 script = ExtResource("5_k6mut")
 projectile = ExtResource("6_65764")
+
+[node name="Projectiles" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
