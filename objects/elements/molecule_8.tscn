@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpyloqnlh7sqr"]
+
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_xj0lx"]
+[ext_resource type="Texture2D" uid="uid://doevxjsnrcjrm" path="res://assets/textures/elements/sprite_molecule_8.png" id="2_6wpun"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_38oa7"]
+radius = 21.3498
+height = 144.677
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejs5m"]
+radius = 31.2403
+height = 98.0809
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2nbnp"]
+radius = 17.8026
+height = 66.2515
+
+[node name="molecule_8" instance=ExtResource("1_xj0lx")]
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(6.1, 6.1)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_6wpun")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1, 8)
+rotation = 0.882775
+shape = SubResource("CapsuleShape2D_38oa7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-54, -13)
+rotation = 0.882775
+shape = SubResource("CapsuleShape2D_ejs5m")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(74, -2.38419e-06)
+rotation = 2.39917
+shape = SubResource("CapsuleShape2D_2nbnp")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
+scale = Vector2(13.67, 13.144)

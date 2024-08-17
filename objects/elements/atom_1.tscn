@@ -15,8 +15,8 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdnrd"]
-radius = 7.0
-height = 24.0
+radius = 16.0
+height = 43.9994
 
 [node name="Atom" type="Area2D"]
 collision_layer = 4
@@ -36,8 +36,8 @@ position = Vector2(-2, 0)
 texture = ExtResource("2_o4gdr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-rotation = 1.5708
+position = Vector2(-1, 1)
+rotation = 1.57584
 shape = SubResource("CapsuleShape2D_fdnrd")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
