@@ -15,10 +15,12 @@ var next_fire: float = 0
 var parts_level: int = 1
 var internal_atoms: int = 0
 var atom_threshold: int = 1
+var base_radius: float
 
 func _ready():
 	Singletons.player = self
 	$Elements/Atom.direction = Util.rand_on_circle(part_speed)
+	base_radius = %CollisionShape2D.shape.radius
 
 func _process(delta: float):
 	var move_vec := Vector2.ZERO

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4hs57jskg0wy"]
+
+[ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="1_4hv71"]
+[ext_resource type="Texture2D" uid="uid://bhsvn7l0jujj1" path="res://assets/textures/elements/sprite_molecule_5.png" id="2_sier2"]
+
+[node name="Molecule" instance=ExtResource("1_4hv71")]
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, 0)
+scale = Vector2(4.03125, 4.03125)
+texture = ExtResource("2_sier2")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D2" parent="." index="3"]
+position = Vector2(-19, 9)
+
+[node name="CollisionShape2D3" parent="." index="4"]
+position = Vector2(24, 8)
