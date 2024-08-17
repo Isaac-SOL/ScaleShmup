@@ -16,6 +16,8 @@ radius = 17.8026
 height = 66.2515
 
 [node name="molecule_8" instance=ExtResource("1_xj0lx")]
+size = 8
+hp = 64
 
 [node name="Shadow" parent="." index="0"]
 scale = Vector2(6.1, 6.1)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dht01k5do7ua8"]
+
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_maepl"]
+[ext_resource type="Texture2D" uid="uid://b38o2ky0qyjkc" path="res://assets/textures/cells/cellule_8.png" id="2_2mxmh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mglan"]
+radius = 203.002
+
+[node name="cell_10" instance=ExtResource("1_maepl")]
+size = 38
+hp = 275
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(12.41, 12.41)
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(2, 7)
+scale = Vector2(14.5, 14.5)
+texture = ExtResource("2_2mxmh")
+
+[node name="CollisionShape2D" parent="." index="2"]
+rotation = 1.59227
+shape = SubResource("CircleShape2D_mglan")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+scale = Vector2(26.235, 25.226)
