@@ -97,3 +97,8 @@ func _on_area_entered(area: Area2D):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	destroy()
+
+
+func _on_kill_timer_timeout():
+	if not $VisibleOnScreenNotifier2D.is_on_screen():
+		destroy()

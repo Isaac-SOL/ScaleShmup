@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="2_sow0l"]
 
 [sub_resource type="Gradient" id="Gradient_r2h22"]
-offsets = PackedFloat32Array(0, 0.423237, 0.738589)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.243137, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.340249, 0.423237, 0.738589)
+colors = PackedColorArray(1, 1, 1, 0.8, 1, 1, 1, 0.42549, 1, 1, 1, 0.243137, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_naak6"]
 gradient = SubResource("Gradient_r2h22")
@@ -48,7 +48,13 @@ scale = Vector2(2.6, 2.5)
 wait_time = 0.114
 autostart = true
 
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_element_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp8nk7i8awjel"]
+
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_6r1nl"]
+[ext_resource type="Texture2D" uid="uid://dree3ynd32awg" path="res://assets/textures/elements/sprite_atome_3.png" id="2_niqrs"]
+
+[node name="Atom" instance=ExtResource("1_6r1nl")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_niqrs")
