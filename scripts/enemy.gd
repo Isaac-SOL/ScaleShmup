@@ -14,8 +14,8 @@ func destroy():
 func _on_enemy_body_entered(body: Node2D):
 	if body is Projectile and body.player:
 		body.destroy()
-		hp -= 1
-		if hp == 0:
+		hp -= body.damage_value
+		if hp <= 0:
 			destroyed_by_player.emit(size)
 			destroy()
 

@@ -1,29 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dihk63qbf2qs2"]
+[gd_scene load_steps=4 format=3 uid="uid://dihk63qbf2qs2"]
 
 [ext_resource type="Script" path="res://scripts/player_part.gd" id="1_ousfw"]
-
-[sub_resource type="Gradient" id="Gradient_ce3te"]
-offsets = PackedFloat32Array(0, 0.75974, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.954545, 0.954545, 0.954545, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hm7pe"]
-gradient = SubResource("Gradient_ce3te")
-width = 16
-height = 16
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
+[ext_resource type="Texture2D" uid="uid://calqncgvrw1yb" path="res://assets/textures/elements/sprite_atome_1.png" id="2_nfbpc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7ivi"]
 radius = 6.08276
 
 [node name="PlayerPart" type="Area2D"]
 collision_layer = 256
-collision_mask = 256
+collision_mask = 12
 script = ExtResource("1_ousfw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_hm7pe")
+texture = ExtResource("2_nfbpc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v7ivi")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
