@@ -1,28 +1,38 @@
 class_name Main extends Node2D
 
-static var instance: Main
 var pause = false
 
 func _ready():
+	Singletons.main = self
+	Singletons.player_projectile_pool = %ProjectilePoolPlayer
+	Singletons.enemy_projectile_pool = %ProjectilePoolEnemy
 	%PauseMenu.hide()
-	instance = self
-
-func _process(delta):
-	
 	# Play game song
 	#NodeAudio.playAudio(NodeAudio.audioGame)
-	
+
+func _process(delta):
 	# Pause menus
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
 
-func set_player_size(size: int):
-	%Player.set_size(size)
-	%Camera2D.zoom = Vector2.ONE * (1 / (log(size) / log(2)))
-	%SizeLabel.text = str(size) + " atoms!"
+func set_camera_zoom(size: float):
+	%Camera2D.set_target_zoom(Vector2.ONE * (1 / size))
+	$Player/KillArea.set_kill_scale(size)
 
-func _on_enemy_killed(size: int):
-	set_player_size(%Player.size + size)
+func set_atom_count(count: int):
+	%SizeLabel.text = str(count) + " atoms!"
+
+func _on_enemy_killed(enemy: Element):
+	%Player.add_element(enemy)
+	enemy.give_to_player()
+
+func _on_player_killed():
+	%GameOverLayer.visible = true
+	get_tree().paused = true
+
+func _on_restart_button_pressed():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
 
 func pauseMenu():
 	if pause:
