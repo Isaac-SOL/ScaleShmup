@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgrxxeqw174li"]
+
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_0n1xk"]
+[ext_resource type="Texture2D" uid="uid://kyf01qx0or6r" path="res://assets/textures/cells/cellule_11.png" id="2_6wkm4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vjg5e"]
+radius = 138.94
+height = 432.197
+
+[node name="cell_11" instance=ExtResource("1_0n1xk")]
+size = 28
+hp = 225
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(13.675, 13.675)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(12.5, 12.5)
+texture = ExtResource("2_6wkm4")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(5, 7)
+rotation = 1.93659
+shape = SubResource("CapsuleShape2D_vjg5e")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+scale = Vector2(27.405, 26.351)
