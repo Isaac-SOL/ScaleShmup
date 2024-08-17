@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=7 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
 [ext_resource type="PackedScene" uid="uid://c7icemvf5wo7v" path="res://objects/enemy.tscn" id="2_jojpw"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
+[ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
@@ -12,7 +13,7 @@ func _process(_delta):
 	position = %Player.position
 "
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=["MainGroup"]]
 script = ExtResource("1_vyreg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -44,5 +45,10 @@ offset_right = 200.0
 grow_vertical = 0
 text = "1 atom!"
 vertical_alignment = 2
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("5_rev7c")]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="Player/EnemySpawner/Timer" to="Player/EnemySpawner" method="_on_timer_timeout"]
