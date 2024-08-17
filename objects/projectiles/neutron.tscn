@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://canbcskskh8f2"]
+[gd_scene load_steps=7 format=3 uid="uid://pxda5hpbxdf0"]
 
-[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_iqsl2"]
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_ic4e1"]
 
 [sub_resource type="Gradient" id="Gradient_r2h22"]
 offsets = PackedFloat32Array(0, 0.340249, 0.423237, 0.738589)
@@ -34,7 +34,7 @@ collision_layer = 2
 collision_mask = 12
 gravity_scale = 0.0
 linear_damp_mode = 1
-script = ExtResource("1_iqsl2")
+script = ExtResource("1_ic4e1")
 player = true
 player_color = Color(0, 1, 0.6, 1)
 enemy_color = Color(1, 0, 0.286275, 1)

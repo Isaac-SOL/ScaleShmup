@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl0m6gm6l8jxk"]
+[gd_scene load_steps=7 format=3 uid="uid://cl0m6gm6l8jxk"]
 
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_yj2yx"]
 [ext_resource type="Texture2D" uid="uid://ck7qy1p16chdi" path="res://assets/textures/elements/sprite_molecule_7.png" id="2_4iylu"]
+[ext_resource type="PackedScene" uid="uid://bteuruc6fwxr3" path="res://objects/projectiles/projectile_small_molecule.tscn" id="2_jos64"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1rc2r"]
 radius = 21.7901
@@ -16,8 +17,10 @@ radius = 20.608
 height = 64.1081
 
 [node name="molecule_7" instance=ExtResource("1_yj2yx")]
-size = 8
+size = 16
 hp = 64
+projectile = ExtResource("2_jos64")
+shoot_strength = 150.0
 
 [node name="Shadow" parent="." index="0"]
 scale = Vector2(5.62, 5.62)
