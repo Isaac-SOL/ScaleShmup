@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://btx4vmnuhkadk"]
+
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_vyhwe"]
+[ext_resource type="Texture2D" uid="uid://duy5fsmtkgulm" path="res://assets/textures/animals/humain_1.png" id="2_n0acp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dwo43"]
+radius = 495.798
+height = 2150.01
+
+[node name="human_1" instance=ExtResource("1_vyhwe")]
+size = 85
+hp = 700
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(53.525, 53.525)
+
+[node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(-55, 0)
+scale = Vector2(32, 32)
+texture = ExtResource("2_n0acp")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-8, 22)
+rotation = 3.14997
+shape = SubResource("CapsuleShape2D_dwo43")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+scale = Vector2(113.495, 109.129)
