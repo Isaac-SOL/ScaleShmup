@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_svt6e"]
 radius = 9.0
 
-[node name="Molecule" instance=ExtResource("1_3ho76")]
+[node name="Molecule2" instance=ExtResource("1_3ho76")]
 size = 3
 hp = 24
 projectile = ExtResource("2_urec5")

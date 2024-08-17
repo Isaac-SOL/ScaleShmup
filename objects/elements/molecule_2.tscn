@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="1_4hv71"]
 [ext_resource type="Texture2D" uid="uid://bhsvn7l0jujj1" path="res://assets/textures/elements/sprite_molecule_5.png" id="2_sier2"]
 
-[node name="Molecule" instance=ExtResource("1_4hv71")]
+[node name="Molecule2" instance=ExtResource("1_4hv71")]
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(0, 0)
@@ -12,6 +12,7 @@ texture = ExtResource("2_sier2")
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, -12)
+rotation = 1.5708
 
 [node name="CollisionShape2D2" parent="." index="3"]
 position = Vector2(-19, 9)

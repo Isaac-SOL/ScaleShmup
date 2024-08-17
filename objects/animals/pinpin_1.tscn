@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2rv2i4um7l80"]
+
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_7f6sh"]
+[ext_resource type="Texture2D" uid="uid://c2y1epa37fc5" path="res://assets/textures/animals/pinpin_3.png" id="2_s4cnx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kc03t"]
+radius = 244.078
+height = 780.184
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ob35r"]
+radius = 92.9333
+height = 258.005
+
+[node name="pinpin_1" instance=ExtResource("1_7f6sh")]
+size = 64
+hp = 500
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(21.15, 21.15)
+
+[node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(-2, -36)
+scale = Vector2(28, 28)
+texture = ExtResource("2_s4cnx")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-1, 35)
+rotation = 1.58279
+shape = SubResource("CapsuleShape2D_kc03t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-161, -259)
+rotation = 1.58279
+shape = SubResource("CapsuleShape2D_ob35r")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+scale = Vector2(44.245, 42.543)
