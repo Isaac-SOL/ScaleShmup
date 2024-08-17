@@ -23,11 +23,17 @@ signal destroyed_by_player(element: Element)
 @export var enemy_color: Color
 @export var player_color: Color
 
-var direction: Vector2 = Vector2.ZERO
+var direction := Vector2.ZERO
 var move_to_player: bool = false
 
-var wander_time: float = 0.0
-var wander_vec: Vector2i = Vector2i(0.0, 0.0)
+var wander_time : float = 0.0
+var wander_countdown : float = 0.0
+var speed : float = 20.0
+var current_angle : float = 0.0
+var old_wander := Vector2.ZERO
+var current_wander := Vector2.ZERO
+
+const wander_transition : float = 2.5
 
 func _ready():
 	set_mode(player_owned)
@@ -41,13 +47,22 @@ func _process(delta):
 		else:
 			position += direction * delta
 	else:
-		wander_time -= delta
-		if wander_time < 0.0:
-			wander_time = 5.0
-			var angle = randi() % 360
-			wander_vec.x = cos(angle) * 10
-			wander_vec.y = sin(angle) * 10
-		position += wander_vec * delta
+		wander_countdown -= delta
+		if wander_countdown < 0.0:
+			wander_time = randf_range(3.0, 8.0)
+			wander_countdown = wander_time
+			current_angle = current_angle + randf_range(-90.0, 90.0)
+			if current_angle <= -180.0:
+				current_angle += 360.0
+			if current_angle > 180.0:
+				current_angle -= 360.0
+			old_wander = current_wander
+			current_wander = Vector2(cos(deg_to_rad(current_angle)), sin(deg_to_rad(current_angle)))
+		var current_influence : float = 1.0 if wander_countdown < wander_time - 2.5 else (wander_time - wander_countdown) / 2.5
+		var old_influence : float = 0.0 if wander_countdown < wander_time - 2.5 else (wander_countdown - (wander_time - 2.5)) / 2.5
+		var desired_vel := current_wander * current_influence + old_wander * old_influence
+		var move : Vector2 = desired_vel.normalized() * speed
+		position += move * delta
 
 func set_mode(player_mode: bool):
 	player_owned = player_mode
