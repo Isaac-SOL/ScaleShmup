@@ -26,6 +26,9 @@ signal destroyed_by_player(element: Element)
 var direction: Vector2 = Vector2.ZERO
 var move_to_player: bool = false
 
+var wander_time: float = 0.0
+var wander_vec: Vector2i = Vector2i(0.0, 0.0)
+
 func _ready():
 	set_mode(player_owned)
 
@@ -37,6 +40,14 @@ func _process(delta):
 				move_to_player = false
 		else:
 			position += direction * delta
+	else:
+		wander_time -= delta
+		if wander_time < 0.0:
+			wander_time = 5.0
+			var angle = randi() % 360
+			wander_vec.x = cos(angle) * 10
+			wander_vec.y = sin(angle) * 10
+		position += wander_vec * delta
 
 func set_mode(player_mode: bool):
 	player_owned = player_mode
