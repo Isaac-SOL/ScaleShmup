@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c71bepd0cdivk"]
+[gd_scene load_steps=7 format=3 uid="uid://c71bepd0cdivk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cmjns"]
 [ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="2_cuvwt"]
-[ext_resource type="PackedScene" uid="uid://dihk63qbf2qs2" path="res://objects/player_part.tscn" id="3_brrby"]
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="4_hylfv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_23aqy"]
-radius = 6.08276
 
 [sub_resource type="Gradient" id="Gradient_qmmvy"]
 offsets = PackedFloat32Array(0, 0.207469, 0.738589)
@@ -34,12 +32,6 @@ unique_name_in_owner = true
 modulate = Color(0, 0.701961, 1, 1)
 texture = SubResource("GradientTexture2D_an5lo")
 
-[node name="Parts" type="Node2D" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[node name="PlayerPart" parent="Parts" instance=ExtResource("3_brrby")]
-
 [node name="Elements" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -48,5 +40,3 @@ hp = 1
 player_owned = true
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
-[connection signal="destroyed" from="Parts/PlayerPart" to="." method="_on_part_destroyed"]
-[connection signal="hp_changed" from="Parts/PlayerPart" to="." method="_on_part_hp_changed"]
