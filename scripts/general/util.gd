@@ -18,9 +18,9 @@ static func decayq(a: Quaternion, b: Quaternion, d: float) -> Quaternion:
 static func clamp_angle(angle: float, custom_center: float = 0) -> float:
 	angle -= custom_center
 	if angle > PI:
-		angle = fmod(angle + PI, 2 * PI) - PI
+		angle = fmod(angle + PI, TAU) - PI
 	elif angle < -PI:
-		angle = fmod(angle - PI, 2 * PI) + PI
+		angle = fmod(angle - PI, TAU) + PI
 	return angle + custom_center
 
 static func rand_on_circle(radius: float) -> Vector2:

@@ -1,19 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=18 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
-[ext_resource type="PackedScene" uid="uid://c7icemvf5wo7v" path="res://objects/enemy.tscn" id="2_jojpw"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="3_xx5my"]
+[ext_resource type="Script" path="res://objects/kill_area.gd" id="5_axofq"]
+[ext_resource type="Script" path="res://scripts/projectile_pool.gd" id="5_k6mut"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
+[ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="6_65764"]
+[ext_resource type="Theme" uid="uid://dtqnw4yhbe0kk" path="res://assets/fonts/second_title_them.tres" id="7_skxey"]
+[ext_resource type="Theme" uid="uid://cbnl37hp5d4kk" path="res://assets/fonts/button_smaller.tres" id="8_0hcfq"]
+[ext_resource type="StyleBox" uid="uid://cln15kpjcsiss" path="res://imports/style_box_normal.tres" id="9_00ovv"]
+[ext_resource type="StyleBox" uid="uid://ddmyelf7ggrso" path="res://imports/style_box_hover.tres" id="10_jty1g"]
+[ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="11_ic8d2"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
 
+var target_zoom: Vector2 = Vector2.ONE
+
 func _process(_delta):
 	position = %Player.position
+	zoom = Util.decayv2(zoom, target_zoom, 0.01)
+
+func set_target_zoom(target: Vector2):
+	target_zoom = target
 "
 
+[sub_resource type="Curve2D" id="Curve2D_aw4pu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 379, -225, 0, 0, 0, 0, 379, 244, 0, 0, 0, 0, -410, 244, 0, 0, 0, 0, -387, -237, 0, 0, 0, 0, 379, -225)
+}
+point_count = 5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_slu4l"]
+
+[sub_resource type="Theme" id="Theme_rx576"]
+default_font_size = 75
+
 [node name="Main" type="Node2D" groups=["MainGroup"]]
+texture_filter = 1
 script = ExtResource("1_vyreg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -23,15 +49,58 @@ script = SubResource("GDScript_1mht6")
 [node name="EnemiesLevel1" type="Node2D" parent="."]
 unique_name_in_owner = true
 
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("3_4mhxf")
+enemy = ExtResource("3_xx5my")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+autostart = true
+
+[node name="SpawnerPath" type="Path2D" parent="EnemySpawner"]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_aw4pu")
+
+[node name="SpawnerFollow" type="PathFollow2D" parent="EnemySpawner/SpawnerPath"]
+unique_name_in_owner = true
+position = Vector2(379, -225)
+rotation = 1.5708
+
 [node name="Player" parent="." instance=ExtResource("1_3qqml")]
 unique_name_in_owner = true
 
-[node name="EnemySpawner" type="Node2D" parent="Player"]
-script = ExtResource("3_4mhxf")
-enemy = ExtResource("2_jojpw")
+[node name="KillArea" type="Area2D" parent="Player"]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("5_axofq")
 
-[node name="Timer" type="Timer" parent="Player/EnemySpawner"]
-autostart = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/KillArea"]
+position = Vector2(0, 500)
+shape = SubResource("WorldBoundaryShape2D_slu4l")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/KillArea"]
+position = Vector2(0, -500)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_slu4l")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Player/KillArea"]
+position = Vector2(1000, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_slu4l")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Player/KillArea"]
+position = Vector2(-1000, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_slu4l")
+
+[node name="ProjectilePoolPlayer" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_k6mut")
+projectile = ExtResource("6_65764")
+
+[node name="ProjectilePoolEnemy" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_k6mut")
+projectile = ExtResource("6_65764")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -46,9 +115,93 @@ grow_vertical = 0
 text = "1 atom!"
 vertical_alignment = 2
 
+[node name="SizeLabel2" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0 active"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
+[node name="GameOver" type="Control" parent="GameOverLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameOverLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.254902, 0.254902, 0.678431)
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rx576")
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameOverLayer/GameOver/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverLayer/GameOver/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="GameOverLayer/GameOver/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_skxey")
+theme_override_colors/font_color = Color(0.329412, 0.584314, 0.470588, 1)
+theme_override_font_sizes/font_size = 72
+text = "Game Over!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverLayer/GameOver/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="GameOverLayer/GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_0hcfq")
+theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
+theme_override_styles/normal = ExtResource("9_00ovv")
+theme_override_styles/hover = ExtResource("10_jty1g")
+theme_override_styles/pressed = ExtResource("11_ic8d2")
+text = "Restart"
+
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="PauseLayer" instance=ExtResource("5_rev7c")]
 unique_name_in_owner = true
+visible = false
 
-[connection signal="timeout" from="Player/EnemySpawner/Timer" to="Player/EnemySpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
+[connection signal="killed" from="Player" to="." method="_on_player_killed"]
+[connection signal="area_entered" from="Player/KillArea" to="Player/KillArea" method="_on_area_entered"]
+[connection signal="body_entered" from="Player/KillArea" to="Player/KillArea" method="_on_body_entered"]
+[connection signal="pressed" from="GameOverLayer/GameOver/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
