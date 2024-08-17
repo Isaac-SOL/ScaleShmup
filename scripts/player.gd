@@ -8,19 +8,21 @@ signal killed
 @export var base_fire_rate: float = 1
 @export var part_speed: float = 10
 
-@onready var radius = %CollisionShape2D.shape.radius
+
 @onready var fire_rate = base_fire_rate
 @onready var elements: Array[Element] = [$Elements/Atom]
 var next_fire: float = 0
 var parts_level: int = 1
 var internal_atoms: int = 0
 var atom_threshold: int = 1
+var radius: float
 var base_radius: float
 
 func _ready():
 	Singletons.player = self
 	$Elements/Atom.direction = Util.rand_on_circle(part_speed)
-	base_radius = %CollisionShape2D.shape.radius
+	radius = %CollisionShape2D.shape.radius
+	base_radius = radius
 
 func _process(delta: float):
 	var move_vec := Vector2.ZERO
@@ -52,11 +54,13 @@ func shoot():
 		new_projectile.apply_impulse(shoot_direction * projectile_speed)
 
 func set_radius(new_radius: int):
-	radius = new_radius
-	%CollisionShape2D.shape.radius = radius * 1000
-	if radius > 1:
-		Singletons.main.set_camera_zoom(log(radius) / log(2))
-		%Shadow.scale = Vector2.ONE * (log(radius) / log(2))
+	radius = (log(new_radius) / log(2)) * base_radius
+	#var new_shape := CircleShape2D.new()
+	#new_shape.radius = radius
+	%CollisionShape2D.shape.set_radius(radius)
+	if new_radius > 1:
+		Singletons.main.set_camera_zoom(log(new_radius) / log(2))
+		%Shadow.scale = Vector2.ONE * (log(new_radius) / log(2))
 
 func add_atoms(amount: int):
 	internal_atoms += amount
@@ -131,7 +135,7 @@ func decrease_level():
 		internal_atoms -= atom_threshold
 
 func _on_area_exited(area: Area2D):
-	if area is Element:
+	if area is Element and area.player_owned:
 		var new_target := Util.rand_in_circle(0, radius)
 		area.direction = (new_target - area.position).normalized() * part_speed
 

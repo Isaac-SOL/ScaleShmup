@@ -4,9 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="2_cuvwt"]
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="4_hylfv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_23aqy"]
-resource_local_to_scene = true
-
 [sub_resource type="Gradient" id="Gradient_qmmvy"]
 offsets = PackedFloat32Array(0, 0.207469, 0.738589)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.243137, 1, 1, 1, 0)
@@ -17,6 +14,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tla15"]
+radius = 5.0
+
 [node name="Player" type="Area2D"]
 collision_mask = 268
 script = ExtResource("1_cmjns")
@@ -24,14 +24,15 @@ move_speed = 2.0
 projectile = ExtResource("2_cuvwt")
 projectile_speed = 250.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-unique_name_in_owner = true
-shape = SubResource("CircleShape2D_23aqy")
-
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0.701961, 1, 1)
 texture = SubResource("GradientTexture2D_an5lo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_tla15")
+debug_color = Color(1, 0, 0.701961, 0.419608)
 
 [node name="Elements" type="Node2D" parent="."]
 unique_name_in_owner = true
