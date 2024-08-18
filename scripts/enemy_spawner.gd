@@ -20,7 +20,7 @@ func pick_enemy_weighted(player_size: int) -> PackedScene:
 	var available_enemies: Array[PackedScene] = []
 	var available_weights: Array[float] = []
 	for i: int in range(len(sizes)):
-		if sizes[i] >= floori(player_size / 4) and sizes[i] <= player_size * 4:
+		if sizes[i] >= floori(player_size / 4) and sizes[i] <= player_size * 20:
 			available_enemies.append(enemies[i])
 			available_weights.append(weights[i])
 	if available_enemies.is_empty(): return null
@@ -41,7 +41,7 @@ func _on_timer_timeout():
 	var new_enemy_scene: PackedScene = pick_enemy_weighted(Singletons.player.count_atoms())
 	if new_enemy_scene:
 		var new_enemy: Element = new_enemy_scene.instantiate()
-		%EnemiesLevel1.add_child(new_enemy)
+		%Enemies.add_child(new_enemy)
 		new_enemy.set_mode(false)
 		new_enemy.global_position = %SpawnerFollow.global_position
 		new_enemy.destroyed_by_player.connect($"/root/Main"._on_enemy_killed)

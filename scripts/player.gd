@@ -2,11 +2,11 @@ class_name Player extends Area2D
 
 signal killed
 
-@export var move_speed: float = 1
+@export var base_move_speed: float = 2
 @export var projectile: PackedScene
 @export var projectile_speed: float = 1
 @export var base_fire_rate: float = 1
-@export var part_speed: float = 10
+@export var base_part_speed: float = 10
 
 
 @onready var fire_rate = base_fire_rate
@@ -17,9 +17,13 @@ var internal_atoms: int = 0
 var atom_threshold: int = 1
 var radius: float
 var base_radius: float
+var part_speed: float
+var move_speed: float
 
 func _ready():
 	Singletons.player = self
+	part_speed = base_part_speed
+	move_speed = base_move_speed
 	$Elements/Atom.direction = Util.rand_on_circle(part_speed)
 	radius = %CollisionShape2D.shape.radius
 	base_radius = radius
@@ -53,40 +57,16 @@ func shoot():
 		new_projectile.damage_value = atom_threshold
 		new_projectile.apply_impulse(shoot_direction * projectile_speed)
 
-func set_radius(new_radius: int):
-	radius = (log(new_radius) / log(2)) * base_radius
-	#var new_shape := CircleShape2D.new()
-	#new_shape.radius = radius
+func set_radius(atom_count: int):
+	var atom_surface: float = sqrt(atom_count)
+	radius = atom_surface * base_radius
 	%CollisionShape2D.shape.set_radius(radius)
-	if new_radius > 1:
-		Singletons.main.set_camera_zoom(log(new_radius) / log(2))
-		%Shadow.scale = Vector2.ONE * (log(new_radius) / log(2))
-
-func add_atoms(amount: int):
-	internal_atoms += amount
-	Singletons.main.set_atom_count(count_atoms())
-	fire_rate = base_fire_rate / elements.size()
-	set_radius(count_atoms())
-	while internal_atoms >= atom_threshold:
-		internal_atoms -= atom_threshold
-		add_part()
-	if elements.size() >= 96:
-		increase_level()
-
-func add_part():
-	var new_part: PlayerPart = null #part.instantiate()
-	await get_tree().process_frame
-	%Parts.add_child(new_part)
-	new_part.position = Util.rand_in_circle(0, radius)
-	new_part.direction = Util.rand_on_circle(part_speed)
-	new_part.hp_changed.connect(_on_part_hp_changed)
-	new_part.destroyed.connect(_on_part_destroyed)
-	new_part.set_level(parts_level, atom_threshold)
-	#parts.append(new_part)
-	
-	Singletons.main.set_atom_count(count_atoms())
-	fire_rate = base_fire_rate / elements.size()
-	set_radius(count_atoms())
+	Singletons.main.set_camera_zoom(atom_surface)
+	%Shadow.scale = Vector2.ONE * (atom_surface)
+	part_speed = base_part_speed * atom_surface
+	for elem: Element in elements:
+		elem.change_speed(part_speed)
+	move_speed = base_move_speed * atom_surface
 
 func add_element(elem: Element):
 	await get_tree().process_frame
@@ -99,9 +79,11 @@ func add_element(elem: Element):
 	elem.direction = Util.rand_on_circle(part_speed)
 	elements.append(elem)
 	
-	Singletons.main.set_atom_count(count_atoms())
+	var atoms: int = count_atoms()
+	Singletons.main.set_atom_count(atoms)
 	fire_rate = base_fire_rate / elements.size()
-	set_radius(count_atoms())
+	set_radius(atoms)
+	get_tree().call_group("Element", "destroy_threshold", atoms / 20)
 
 func count_atoms() -> int:
 	var total: int = internal_atoms
@@ -110,6 +92,7 @@ func count_atoms() -> int:
 			total += elem.hp
 	return total
 
+#unused
 func increase_level():
 	var fixed_count := count_atoms()
 	parts_level += 1
@@ -119,9 +102,10 @@ func increase_level():
 	atom_threshold *= 12
 	internal_atoms = fixed_count
 	while internal_atoms >= atom_threshold:
-		add_part()
+		#add_part()
 		internal_atoms -= atom_threshold
 
+#unused
 func decrease_level():
 	var fixed_count := count_atoms()
 	parts_level -= 1
@@ -131,7 +115,7 @@ func decrease_level():
 	atom_threshold /= 12
 	internal_atoms = fixed_count
 	while internal_atoms >= atom_threshold:
-		add_part()
+		#add_part()
 		internal_atoms -= atom_threshold
 
 func _on_area_exited(area: Area2D):

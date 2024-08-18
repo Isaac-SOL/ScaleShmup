@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://e0v8px0kmilg"]
+
+[ext_resource type="Script" path="res://scripts/hp_bar.gd" id="1_i2tka"]
+
+[sub_resource type="Gradient" id="Gradient_nitoa"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ai5qc"]
+gradient = SubResource("Gradient_nitoa")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_2c3ne"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.101961, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruqqd"]
+gradient = SubResource("Gradient_2c3ne")
+width = 1
+
+[node name="HPBar" type="Node2D"]
+script = ExtResource("1_i2tka")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(10, 2)
+texture = SubResource("GradientTexture1D_ai5qc")
+
+[node name="ForegroundScaler" type="Node2D" parent="."]
+scale = Vector2(9.8, 1.8)
+
+[node name="Foreground" type="Sprite2D" parent="ForegroundScaler"]
+unique_name_in_owner = true
+texture = SubResource("GradientTexture1D_ruqqd")

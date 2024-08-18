@@ -31,3 +31,14 @@ static func rand_in_circle(min_radius: float, max_radius: float) -> Vector2:
 	var angle: float = randf_range(0, TAU)
 	var distance: float = randf_range(min_radius, max_radius)
 	return Vector2(sin(angle), cos(angle)) * distance
+
+static func rand_on_sphere(radius: float) -> Vector3:
+	# Not uniform for now sorry
+	var base_vector := Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
+	return base_vector.normalized() * radius
+
+static func rand_in_sphere(min_radius: float, max_radius: float) -> Vector3:
+	# Not uniform for now sorry
+	var base_vector := Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
+	var radius := randf_range(min_radius, max_radius)
+	return base_vector.normalized() * radius

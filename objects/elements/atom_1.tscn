@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk1iyi3vx4sgj"]
+[gd_scene load_steps=8 format=3 uid="uid://dk1iyi3vx4sgj"]
 
 [ext_resource type="Script" path="res://scripts/element.gd" id="1_8i05w"]
 [ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="2_ho7fk"]
 [ext_resource type="Texture2D" uid="uid://calqncgvrw1yb" path="res://assets/textures/elements/sprite_atome_1.png" id="2_o4gdr"]
+[ext_resource type="PackedScene" uid="uid://e0v8px0kmilg" path="res://objects/hp_bar.tscn" id="4_3nwog"]
 
 [sub_resource type="Gradient" id="Gradient_mc6tc"]
 offsets = PackedFloat32Array(0, 0.340249, 0.423237, 0.738589)
@@ -18,7 +19,7 @@ fill_to = Vector2(0.5, 0)
 radius = 10.4399
 height = 46.1723
 
-[node name="Atom" type="Area2D"]
+[node name="Atom" type="Area2D" groups=["Element"]]
 collision_layer = 4
 collision_mask = 258
 script = ExtResource("1_8i05w")
@@ -40,6 +41,15 @@ texture = ExtResource("2_o4gdr")
 position = Vector2(-1, 1)
 rotation = 1.86584
 shape = SubResource("CapsuleShape2D_fdnrd")
+
+[node name="HPBarAnchor" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="HPBar" parent="HPBarAnchor" instance=ExtResource("4_3nwog")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -21)
+scale = Vector2(5.12, 2.6)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 unique_name_in_owner = true

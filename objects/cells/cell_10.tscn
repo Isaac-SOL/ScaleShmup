@@ -1,27 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dht01k5do7ua8"]
+[gd_scene load_steps=5 format=3 uid="uid://l2cuqn55hobe"]
 
-[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_maepl"]
-[ext_resource type="Texture2D" uid="uid://b38o2ky0qyjkc" path="res://assets/textures/cells/cellule_8.png" id="2_2mxmh"]
+[ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_ucpy8"]
+[ext_resource type="Texture2D" uid="uid://dn0lfbhhe5tdv" path="res://assets/textures/cells/cellule_2.png" id="2_uewl2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mglan"]
-radius = 203.002
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sq0ls"]
+radius = 114.0
+height = 436.0
 
-[node name="cell_10" instance=ExtResource("1_maepl")]
-size = 38
-hp = 275
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2g1b"]
+size = Vector2(205, 171.398)
 
-[node name="Shadow" parent="." index="0"]
-scale = Vector2(12.41, 12.41)
+[node name="cell_10" instance=ExtResource("1_ucpy8")]
+size = 288
+hp = 2304
+shoot_strength = 600.0
 
 [node name="Sprite2D" parent="." index="1"]
-texture_filter = 1
-position = Vector2(2, 7)
-scale = Vector2(14.5, 14.5)
-texture = ExtResource("2_2mxmh")
+texture = ExtResource("2_uewl2")
 
 [node name="CollisionShape2D" parent="." index="2"]
-rotation = 1.59227
-shape = SubResource("CircleShape2D_mglan")
+position = Vector2(12, 68)
+shape = SubResource("CapsuleShape2D_sq0ls")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-scale = Vector2(26.235, 25.226)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-49, -97)
+rotation = 1.42124
+shape = SubResource("RectangleShape2D_m2g1b")

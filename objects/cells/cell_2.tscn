@@ -1,29 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm5rnkt23gq5q"]
+[gd_scene load_steps=3 format=3 uid="uid://tib2bdwk55d6"]
 
-[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_hhk04"]
-[ext_resource type="Texture2D" uid="uid://t1wlfcl76bir" path="res://assets/textures/cells/cellule_10.png" id="2_uuy7m"]
+[ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_441qq"]
+[ext_resource type="Texture2D" uid="uid://t1wlfcl76bir" path="res://assets/textures/cells/cellule_10.png" id="2_3cg5j"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yvpp6"]
-radius = 63.9806
-height = 179.841
-
-[node name="cell_2" instance=ExtResource("1_hhk04")]
-texture_filter = 1
-size = 16
-hp = 128
-
-[node name="Shadow" parent="." index="0"]
-scale = Vector2(5.615, 5.615)
+[node name="cell_2" instance=ExtResource("1_441qq")]
 
 [node name="Sprite2D" parent="." index="1"]
-position = Vector2(-17, -6)
-scale = Vector2(8, 8)
-texture = ExtResource("2_uuy7m")
+texture = ExtResource("2_3cg5j")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-1, -4)
-rotation = 3.14767
-shape = SubResource("CapsuleShape2D_yvpp6")
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-scale = Vector2(12.69, 12.202)
+position = Vector2(37, 18)
+rotation = 0.0

@@ -1,29 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcyaj2alr50xe"]
+[gd_scene load_steps=3 format=3 uid="uid://bs6px4714q04x"]
 
-[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_l2eb7"]
+[ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="1_47sm7"]
 [ext_resource type="Texture2D" uid="uid://2gkam5scd5ou" path="res://assets/textures/animals/humain_2.png" id="2_qmx3p"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krhqh"]
-radius = 615.557
-height = 2662.95
-
-[node name="human_2" instance=ExtResource("1_l2eb7")]
-size = 85
-hp = 700
-
-[node name="Shadow" parent="." index="0"]
-scale = Vector2(66.49, 66.49)
+[node name="human_2" instance=ExtResource("1_47sm7")]
 
 [node name="Sprite2D" parent="." index="1"]
-texture_filter = 1
-position = Vector2(-73, 48)
-scale = Vector2(32, 32)
+scale = Vector2(52.1007, 52.1007)
 texture = ExtResource("2_qmx3p")
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-41, 14)
-rotation = 3.09539
-shape = SubResource("CapsuleShape2D_krhqh")
-
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-scale = Vector2(139.995, 134.611)
+visible = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,27 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://cexumcv7w5yur"]
+[gd_scene load_steps=5 format=3 uid="uid://cexumcv7w5yur"]
 
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_x15vk"]
 [ext_resource type="Texture2D" uid="uid://dxykijndfg3dv" path="res://assets/textures/cells/cellule_9.png" id="2_lu62j"]
+[ext_resource type="PackedScene" uid="uid://c3vl1uxluet38" path="res://objects/projectiles/projectile_big_molecule.tscn" id="2_p5ngk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrgdp"]
-radius = 55.959
-height = 208.038
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jxycq"]
+radius = 154.0
+height = 576.0
 
 [node name="cell_1" instance=ExtResource("1_x15vk")]
-texture_filter = 1
-size = 16
-hp = 128
+size = 144
+hp = 1152
+projectile = ExtResource("2_p5ngk")
+shoot_strength = 400.0
 
 [node name="Shadow" parent="." index="0"]
-scale = Vector2(6.225, 6.225)
+scale = Vector2(18.675, 18.675)
 
 [node name="Sprite2D" parent="." index="1"]
-scale = Vector2(8, 8)
+scale = Vector2(24, 24)
 texture = ExtResource("2_lu62j")
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-1, -1)
-shape = SubResource("CapsuleShape2D_wrgdp")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jxycq")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-scale = Vector2(14.16, 13.615)
+[node name="HPBar" parent="." index="3"]
+position = Vector2(0, -237)
+scale = Vector2(58.8932, 29.9067)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+scale = Vector2(42.48, 42.48)

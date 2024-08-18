@@ -20,7 +20,6 @@ radius = 5.0
 [node name="Player" type="Area2D"]
 collision_mask = 268
 script = ExtResource("1_cmjns")
-move_speed = 2.0
 projectile = ExtResource("2_cuvwt")
 projectile_speed = 250.0
 

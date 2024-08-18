@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3vl1uxluet38"]
+
+[ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="1_titqi"]
+[ext_resource type="Texture2D" uid="uid://doevxjsnrcjrm" path="res://assets/textures/elements/sprite_molecule_8.png" id="2_8n2l7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5j6bi"]
+radius = 52.0
+height = 186.0
+
+[node name="ProjectileBigMolecule" instance=ExtResource("1_titqi")]
+damage_value = 32
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(20.2574, 20.2574)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_8n2l7")
+
+[node name="CollisionShape2D" parent="." index="2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5j6bi")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+scale = Vector2(12.72, 12.72)
