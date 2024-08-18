@@ -40,7 +40,7 @@ func _process(delta: float):
 		move_vec.x -= move_speed
 	if Input.is_action_pressed("right"):
 		move_vec.x += move_speed
-	position += move_vec
+	position += move_vec * delta
 	
 	if immunity > 0:
 		immunity -= delta
