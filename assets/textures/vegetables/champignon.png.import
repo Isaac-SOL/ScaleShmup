@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxl2rn62ti6rw"
-path="res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"
+uid="uid://b8oxivjyxj00p"
+path="res://.godot/imported/champignon.png-95dbcbe11b3834a67aeda6f39772e7e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/planets/planete_8.png"
-dest_files=["res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"]
+source_file="res://assets/textures/vegetables/champignon.png"
+dest_files=["res://.godot/imported/champignon.png-95dbcbe11b3834a67aeda6f39772e7e7.ctex"]
 
 [params]
 

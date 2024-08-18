@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxl2rn62ti6rw"
-path="res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"
+uid="uid://na7aklh7icsv"
+path="res://.godot/imported/volcan.png-2df8ce2a1cd385a345bcf349527364a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/planets/planete_8.png"
-dest_files=["res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"]
+source_file="res://assets/textures/nature/volcan.png"
+dest_files=["res://.godot/imported/volcan.png-2df8ce2a1cd385a345bcf349527364a8.ctex"]
 
 [params]
 

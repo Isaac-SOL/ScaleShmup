@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxl2rn62ti6rw"
-path="res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"
+uid="uid://dg1fp2p8pbjxe"
+path="res://.godot/imported/montagne.png-1b297941e48ba3f8aeff90c761bb91b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/planets/planete_8.png"
-dest_files=["res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"]
+source_file="res://assets/textures/nature/montagne.png"
+dest_files=["res://.godot/imported/montagne.png-1b297941e48ba3f8aeff90c761bb91b5.ctex"]
 
 [params]
 

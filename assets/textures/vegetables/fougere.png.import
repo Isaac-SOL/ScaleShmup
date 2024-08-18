@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxl2rn62ti6rw"
-path="res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"
+uid="uid://dxtnedat26ebp"
+path="res://.godot/imported/fougere.png-0a3c760df64f1f15e1b39507d7738208.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/planets/planete_8.png"
-dest_files=["res://.godot/imported/planete_8.png-c2ea3a3fb0e00c99523564dedd58b009.ctex"]
+source_file="res://assets/textures/vegetables/fougere.png"
+dest_files=["res://.godot/imported/fougere.png-0a3c760df64f1f15e1b39507d7738208.ctex"]
 
 [params]
 

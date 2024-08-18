@@ -2,7 +2,7 @@ class_name Player extends Area2D
 
 signal killed
 
-@export var base_move_speed: float = 2
+@export var base_move_speed: float = 0.1
 @export var projectile: PackedScene
 @export var projectile_speed: float = 1
 @export var base_fire_rate: float = 1
