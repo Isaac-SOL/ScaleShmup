@@ -8,8 +8,8 @@ uniform float back_light_fact : hint_range( 0.1, 0.9 ) = 0.5;
 uniform float time_mult : hint_range( 0.1, 0.9 ) = 0.4;
 uniform	vec3 color_a : source_color = vec3( 0.047, 0.047, 0.322 );
 uniform	vec3 color_b : source_color = vec3( 0.129, 0.039, 0.122);
-uniform	vec3 color_c : source_color = vec3( 2.228, 1.149,0.710);
-uniform	vec3 color_d : source_color = vec3( 0.377, 1.527,1.897);
+uniform	vec3 param_c : source_color = vec3( 2.228, 1.149,0.710);
+uniform	vec3 param_d : source_color = vec3( 0.377, 1.527,1.897);
 	//vec3 b = vec3(0.258, 0.188, 0.000);
 	//vec3 c = vec3(2.228, 1.149,0.710);
 	//vec3 d = vec3(0.377, 1.527,1.897);
@@ -45,7 +45,7 @@ void fragment() {
 		
 		float local_dist = length(uv) * exp(-length(uv0));
 		
-		vec3 color = palette(length(uv0)+f*0.4+TIME*time_mult,color_a,color_b,color_c,color_d);
+		vec3 color = palette(length(uv0)+f*0.4+TIME*time_mult,color_a,color_b,param_c,param_d);
 		
 		local_dist = sin(local_dist*pattern_size+TIME)/pattern_size;
 		local_dist = abs(local_dist);
@@ -58,7 +58,7 @@ void fragment() {
 	
 	
 	
-    COLOR = vec4(final_color,1.0);
+    COLOR = vec4(final_color,1);
 }
 
 
