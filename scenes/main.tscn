@@ -1,16 +1,15 @@
-[gd_scene load_steps=39 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=41 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
+[ext_resource type="Script" path="res://scripts/shaker_2d.gd" id="2_gfya1"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="3_xx5my"]
 [ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="4_jaagb"]
 [ext_resource type="Script" path="res://objects/kill_area.gd" id="5_axofq"]
 [ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="5_dyv2q"]
-[ext_resource type="Script" path="res://scripts/projectile_pool.gd" id="5_k6mut"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
 [ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="6_0r7if"]
-[ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="6_65764"]
 [ext_resource type="PackedScene" uid="uid://d4hs57jskg0wy" path="res://objects/elements/molecule_2.tscn" id="7_lu0qn"]
 [ext_resource type="Theme" uid="uid://dtqnw4yhbe0kk" path="res://assets/fonts/second_title_them.tres" id="7_skxey"]
 [ext_resource type="Theme" uid="uid://cbnl37hp5d4kk" path="res://assets/fonts/button_smaller.tres" id="8_0hcfq"]
@@ -24,25 +23,27 @@
 [ext_resource type="PackedScene" uid="uid://cl0m6gm6l8jxk" path="res://objects/elements/molecule_7.tscn" id="12_ivwwh"]
 [ext_resource type="PackedScene" uid="uid://dpyloqnlh7sqr" path="res://objects/elements/molecule_8.tscn" id="13_tyumn"]
 [ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="14_t525q"]
-[ext_resource type="PackedScene" uid="uid://bm5rnkt23gq5q" path="res://objects/cells/cell_2.tscn" id="15_cf78x"]
-[ext_resource type="PackedScene" uid="uid://bak8eh7jscmsd" path="res://objects/cells/cell_3.tscn" id="16_k0rki"]
-[ext_resource type="PackedScene" uid="uid://6dwiaffkixg0" path="res://objects/cells/cell_4.tscn" id="17_hiiu3"]
-[ext_resource type="PackedScene" uid="uid://c044wjyytvawy" path="res://objects/cells/cell_5.tscn" id="18_yv12n"]
-[ext_resource type="PackedScene" uid="uid://dcq1dsfnl3aaj" path="res://objects/cells/cell_6.tscn" id="19_l6nx0"]
-[ext_resource type="PackedScene" uid="uid://xyb0n6bbr31e" path="res://objects/cells/cell_7.tscn" id="20_kyeo1"]
-[ext_resource type="PackedScene" uid="uid://bq8kredyq0xsk" path="res://objects/cells/cell_8.tscn" id="21_6vje1"]
-[ext_resource type="PackedScene" uid="uid://7c75qi6ihe64" path="res://objects/cells/cell_9.tscn" id="22_85rhn"]
-[ext_resource type="PackedScene" uid="uid://dht01k5do7ua8" path="res://objects/cells/cell_10.tscn" id="23_110pa"]
-[ext_resource type="PackedScene" uid="uid://dgrxxeqw174li" path="res://objects/cells/cell_11.tscn" id="24_lrwc0"]
+[ext_resource type="PackedScene" uid="uid://tib2bdwk55d6" path="res://objects/cells/cell_2.tscn" id="15_cf78x"]
+[ext_resource type="PackedScene" uid="uid://ccfbvyst2y517" path="res://objects/cells/cell_3.tscn" id="16_k0rki"]
+[ext_resource type="PackedScene" uid="uid://cj76ecev5r8n8" path="res://objects/cells/cell_4.tscn" id="17_hiiu3"]
+[ext_resource type="PackedScene" uid="uid://cfw32dsbkwx4s" path="res://objects/cells/cell_5.tscn" id="18_yv12n"]
+[ext_resource type="PackedScene" uid="uid://d3j2pxpaq8m3o" path="res://objects/cells/cell_6.tscn" id="19_l6nx0"]
+[ext_resource type="PackedScene" uid="uid://d2csh2xlyvl1p" path="res://objects/cells/cell_7.tscn" id="20_kyeo1"]
+[ext_resource type="PackedScene" uid="uid://xyefcntl01ys" path="res://objects/cells/cell_8.tscn" id="21_6vje1"]
+[ext_resource type="PackedScene" uid="uid://duvru0vnbfl8l" path="res://objects/cells/cell_9.tscn" id="22_85rhn"]
+[ext_resource type="PackedScene" uid="uid://l2cuqn55hobe" path="res://objects/cells/cell_10.tscn" id="23_110pa"]
+[ext_resource type="PackedScene" uid="uid://dwqnrvlniixjj" path="res://objects/cells/cell_11.tscn" id="24_lrwc0"]
+[ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="25_d1f3q"]
+[ext_resource type="PackedScene" uid="uid://bs6px4714q04x" path="res://objects/animals/human_2.tscn" id="26_6q63m"]
+[ext_resource type="PackedScene" uid="uid://c2rv2i4um7l80" path="res://objects/animals/pinpin_1.tscn" id="27_y577c"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
 
 var target_zoom: Vector2 = Vector2.ONE
 
-func _process(_delta):
-	position = %Player.position
-	zoom = Util.decayv2(zoom, target_zoom, 0.01)
+func _process(delta):
+	zoom = Util.decayv2(zoom, target_zoom, delta)
 
 func set_target_zoom(target: Vector2):
 	target_zoom = target
@@ -63,17 +64,24 @@ default_font_size = 75
 texture_filter = 1
 script = ExtResource("1_vyreg")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Shaker2D" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("2_gfya1")
+target_node = NodePath("../Player")
+
+[node name="Camera2D" type="Camera2D" parent="Shaker2D"]
 unique_name_in_owner = true
 script = SubResource("GDScript_1mht6")
 
-[node name="EnemiesLevel1" type="Node2D" parent="."]
+[node name="Projectiles" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("3_4mhxf")
-enemies = Array[PackedScene]([ExtResource("3_xx5my"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("14_t525q"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0")])
-weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+enemies = Array[PackedScene]([ExtResource("3_xx5my"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("14_t525q"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0"), ExtResource("25_d1f3q"), ExtResource("26_6q63m"), ExtResource("27_y577c")])
+weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.1, 1.0, 1.0, 1.0, 1.0])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true
@@ -91,6 +99,7 @@ rotation = 1.57877
 unique_name_in_owner = true
 
 [node name="KillArea" type="Area2D" parent="Player"]
+process_mode = 4
 collision_layer = 16
 collision_mask = 14
 script = ExtResource("5_axofq")
@@ -114,14 +123,6 @@ position = Vector2(-1000, 0)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_slu4l")
 
-[node name="ProjectilePoolPlayer" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("5_k6mut")
-projectile = ExtResource("6_65764")
-
-[node name="Projectiles" type="Node2D" parent="."]
-unique_name_in_owner = true
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="SizeLabel" type="Label" parent="UI"]
@@ -133,21 +134,6 @@ offset_top = -100.0
 offset_right = 200.0
 grow_vertical = 0
 text = "1 atom!"
-vertical_alignment = 2
-
-[node name="SizeLabel2" type="Label" parent="UI"]
-unique_name_in_owner = true
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -59.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "0 active"
-horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="GameOverLayer" type="CanvasLayer" parent="."]
@@ -221,6 +207,7 @@ unique_name_in_owner = true
 visible = false
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
+[connection signal="killed" from="Player" to="." method="_on_player_killed"]
 [connection signal="area_entered" from="Player/KillArea" to="Player/KillArea" method="_on_area_entered"]
 [connection signal="body_entered" from="Player/KillArea" to="Player/KillArea" method="_on_body_entered"]
 [connection signal="pressed" from="GameOverLayer/GameOver/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

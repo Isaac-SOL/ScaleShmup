@@ -1,38 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2rv2i4um7l80"]
+[gd_scene load_steps=6 format=3 uid="uid://c2rv2i4um7l80"]
 
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_7f6sh"]
+[ext_resource type="PackedScene" uid="uid://b3eym3ickph6w" path="res://objects/projectiles/projectile_carotte.tscn" id="2_238go"]
 [ext_resource type="Texture2D" uid="uid://c2y1epa37fc5" path="res://assets/textures/animals/pinpin_3.png" id="2_s4cnx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kc03t"]
-radius = 244.078
-height = 780.184
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0xnbd"]
+radius = 606.992
+height = 2057.2
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ob35r"]
-radius = 92.9333
-height = 258.005
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54gys"]
+radius = 253.778
+height = 761.801
 
 [node name="pinpin_1" instance=ExtResource("1_7f6sh")]
-size = 64
-hp = 500
+size = 1944
+hp = 15552
+projectile = ExtResource("2_238go")
+shoot_strength = 1200.0
 
 [node name="Shadow" parent="." index="0"]
-scale = Vector2(21.15, 21.15)
+scale = Vector2(63.45, 63.45)
 
 [node name="Sprite2D" parent="." index="1"]
 texture_filter = 1
 position = Vector2(-2, -36)
-scale = Vector2(28, 28)
+scale = Vector2(84, 84)
 texture = ExtResource("2_s4cnx")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-1, 35)
+position = Vector2(-157, 236)
 rotation = 1.58279
-shape = SubResource("CapsuleShape2D_kc03t")
+shape = SubResource("CapsuleShape2D_0xnbd")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(-161, -259)
+position = Vector2(-501, -612)
 rotation = 1.58279
-shape = SubResource("CapsuleShape2D_ob35r")
+shape = SubResource("CapsuleShape2D_54gys")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
-scale = Vector2(44.245, 42.543)
+[node name="HPBar" parent="." index="4"]
+position = Vector2(-113, -759)
+scale = Vector2(200.655, 101.895)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
+scale = Vector2(132.735, 127.629)

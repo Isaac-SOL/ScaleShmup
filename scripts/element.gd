@@ -21,6 +21,7 @@ signal destroyed_by_player(element: Element)
 
 var direction := Vector2.ZERO
 var move_to_player: bool = false
+var max_hp: int
 
 var wander_time : float = 0.0
 var wander_countdown : float = 0.0
@@ -28,16 +29,19 @@ var speed : float = 20.0
 var current_angle : float = 0.0
 var old_wander := Vector2.ZERO
 var current_wander := Vector2.ZERO
+var constant_rotation : float
 
 const wander_transition : float = 2.5
 
 func _ready():
 	set_mode(player_owned)
+	max_hp = hp
+	constant_rotation = randf_range(-PI / 2, PI / 2)
 
 func _process(delta):
 	if player_owned:
 		if move_to_player:
-			position = Util.decayv2(position, Vector2.ZERO, 0.1)
+			position = Util.decayv2(position, Vector2.ZERO, 8 * delta)
 			if position.length() < 10:
 				move_to_player = false
 		else:
@@ -59,6 +63,9 @@ func _process(delta):
 		var desired_vel := current_wander * current_influence + old_wander * old_influence
 		var move : Vector2 = desired_vel.normalized() * speed
 		position += move * delta
+	
+	rotation += constant_rotation * delta
+	%HPBarAnchor.global_rotation = 0
 
 func set_mode(player_mode: bool):
 	player_owned = player_mode
@@ -79,9 +86,20 @@ func shoot(dir: Vector2):
 	new_projectile.apply_impulse(dir * shoot_strength)
 
 func destroy():
+	Singletons.shaker.shake(1, 2 * size)
 	destroyed.emit(self)
-	await get_tree().process_frame
 	queue_free()
+
+func destroy_no_effects():
+	destroyed.emit(self)
+	queue_free()
+
+func destroy_threshold(threshold: int):
+	if size <= threshold:
+		destroy_no_effects()
+
+func change_speed(new_speed: float):
+	direction = direction.normalized() * new_speed
 
 func give_to_player():
 	set_mode(true)
@@ -89,14 +107,15 @@ func give_to_player():
 	shoot_strength = floori(shoot_strength * 1.7)
 	$ShootTimer.wait_time *= 0.7
 	move_to_player = true
+	%HPBar.visible = false
 
 func _on_shoot_timer_timeout():
 	if player_owned:
-		if Input.is_action_pressed("shoot"):
-			var shoot_position: Vector2 = get_global_mouse_position()
-			var shoot_direction: Vector2 = (shoot_position - global_position).normalized()
-			shoot(shoot_direction)
-		if position.length() > Singletons.player.radius:
+		#if Input.is_action_pressed("shoot"):
+		var shoot_position: Vector2 = get_global_mouse_position()
+		var shoot_direction: Vector2 = (shoot_position - global_position).normalized()
+		shoot(shoot_direction)
+		if position.length() > Singletons.player.radius * 2:
 			Singletons.player._on_area_exited(self)
 	elif %VisibleOnScreenNotifier2D.is_on_screen():
 		shoot((Singletons.player.global_position - global_position).normalized())
@@ -113,21 +132,31 @@ func _on_element_body_entered(body: Node2D):
 		if body is Projectile and body.player:
 			body.destroy()
 			hp -= body.damage_value
+			var hp_ratio := float(hp) / max_hp
+			%HPBar.set_ratio(hp_ratio)
+			if hp_ratio <= 0.9: %HPBar.visible = true
 			if hp <= 0:
 				destroyed_by_player.emit(self)
+				Singletons.shaker.shake(0.5, 2 * size)
 
 func _on_area_entered(area: Area2D):
 	if player_owned:
 		if area is Element and not area.player_owned:
-			area.destroy()
 			hp -= area.hp
 			if hp < 0: hp = 0
 			hp_changed.emit(hp)
 			if hp == 0: destroy()
+	else:
+		if area is Element and area.player_owned:
+			hp -= area.hp
+			var hp_ratio := float(hp) / max_hp
+			%HPBar.set_ratio(hp_ratio)
+			if hp_ratio <= 0.9: %HPBar.visible = true
+			if hp <= 0: destroy()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	destroy()
+	destroy_no_effects()
 
 func _on_kill_timer_timeout():
 	if not %VisibleOnScreenNotifier2D.is_on_screen():
-		destroy()
+		destroy_no_effects()

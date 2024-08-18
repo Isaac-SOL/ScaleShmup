@@ -4,7 +4,6 @@ var pause = false
 
 func _ready():
 	Singletons.main = self
-	Singletons.player_projectile_pool = %ProjectilePoolPlayer
 	Singletons.projectiles = %Projectiles
 	%PauseMenu.hide()
 	# Play game song

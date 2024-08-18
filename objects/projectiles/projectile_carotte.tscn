@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3eym3ickph6w"]
+
+[ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="1_old45"]
+[ext_resource type="Texture2D" uid="uid://dmjmonjlmg0nj" path="res://assets/textures/animals/sprite_carrotte.png" id="2_wat6w"]
+
+[node name="Projectile" instance=ExtResource("1_old45")]
+damage_value = 128
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(35.705, 62.425)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(20, 20)
+texture = ExtResource("2_wat6w")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(7.62939e-06, 22)
+scale = Vector2(22.4, 37.9)

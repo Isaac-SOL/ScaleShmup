@@ -1,28 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c044wjyytvawy"]
+[gd_scene load_steps=4 format=3 uid="uid://cfw32dsbkwx4s"]
 
-[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_ha0na"]
-[ext_resource type="Texture2D" uid="uid://n80gntx4ojwb" path="res://assets/textures/cells/cellule_3.png" id="2_lbncg"]
+[ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_45mms"]
+[ext_resource type="Texture2D" uid="uid://cuyle87gicq4s" path="res://assets/textures/cells/cellule_7.png" id="2_j6if6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqo3w"]
-radius = 116.978
-height = 307.996
+[sub_resource type="CircleShape2D" id="CircleShape2D_36cfi"]
+radius = 242.101
 
-[node name="cell_5" instance=ExtResource("1_ha0na")]
-size = 24
-hp = 200
-
-[node name="Shadow" parent="." index="0"]
-scale = Vector2(9.11, 9.11)
+[node name="cell_5" instance=ExtResource("1_45mms")]
 
 [node name="Sprite2D" parent="." index="1"]
-position = Vector2(-14, 0)
-scale = Vector2(12, 12)
-texture = ExtResource("2_lbncg")
+texture = ExtResource("2_j6if6")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-1, -6)
-rotation = 1.767
-shape = SubResource("CapsuleShape2D_lqo3w")
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-scale = Vector2(20.16, 19.385)
+shape = SubResource("CircleShape2D_36cfi")

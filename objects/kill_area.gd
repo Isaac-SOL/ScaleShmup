@@ -7,7 +7,7 @@ func set_kill_scale(sca: float):
 	$CollisionShape2D4.position.x = -1000 * sca
 
 func _on_area_entered(area):
-	area.destroy()
+	area.destroy_no_effects()
 
 func _on_body_entered(body):
 	body.destroy()
