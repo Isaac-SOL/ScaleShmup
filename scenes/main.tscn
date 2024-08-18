@@ -93,6 +93,7 @@ unique_name_in_owner = true
 script = SubResource("GDScript_1mht6")
 
 [node name="ShaderRect" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
 material = ExtResource("2_evyai")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
@@ -104,6 +105,7 @@ offset_right = 500.0
 offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(500, 500)
 
 [node name="Projectiles" type="Node2D" parent="."]
 unique_name_in_owner = true

@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform vec2 offset;
 uniform float mult_size : hint_range( 0.01, 100 ) = 1.0;
 uniform float fract_ampl : hint_range( 1.0, 10.0 ) = 1.0;
 uniform float pattern_size : hint_range( 1.0, 30.0 ) = 8.0;
@@ -32,6 +33,8 @@ void fragment() {
 	vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
 	uv.x *= screen_size.x/screen_size.y ;
 	uv *= mult_size;
+	uv += offset;
+	uv = mod(uv + vec2(1, 1), 2) - vec2(1, 1);
 	vec2 uv0 = uv;
 	
 	//Colors
