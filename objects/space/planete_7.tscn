@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjjtxlrtymbh8"]
+
+[ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="1_w77t5"]
+[ext_resource type="Texture2D" uid="uid://cpw2d80xh7oqe" path="res://assets/textures/space/planete_7.png" id="2_iwyh8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gpd0a"]
+radius = 31165.2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ok8yj"]
+radius = 4284.0
+height = 30698.0
+
+[node name="planete_7" instance=ExtResource("1_w77t5")]
+size = 2418647
+hp = 9674588
+shoot_strength = 32400.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_iwyh8")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-375, 11883)
+shape = SubResource("CircleShape2D_gpd0a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-11511, -26005)
+shape = SubResource("CapsuleShape2D_ok8yj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(14089, -21525)
+shape = SubResource("CapsuleShape2D_ok8yj")

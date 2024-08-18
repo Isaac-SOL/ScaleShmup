@@ -1,3 +1,4 @@
+# unused
 class_name PlayerPart extends Area2D
 
 signal hp_changed(new_hp: int)

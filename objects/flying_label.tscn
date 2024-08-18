@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c07yxt6fcwqsl"]
+
+[ext_resource type="FontFile" uid="uid://bttgrhv6x14xj" path="res://assets/fonts/arco/ARCO.ttf" id="1_ayjqc"]
+[ext_resource type="Script" path="res://scripts/flying_label.gd" id="1_objek"]
+
+[node name="FlyingLabel" type="Node2D"]
+script = ExtResource("1_objek")
+text = "12345"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -201.0
+offset_top = -19.0
+offset_right = 199.0
+offset_bottom = 26.0
+pivot_offset = Vector2(201, 19)
+theme_override_colors/font_color = Color(1, 0.818667, 0.68, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_ayjqc")
+theme_override_font_sizes/font_size = 32
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1

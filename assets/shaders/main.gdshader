@@ -47,11 +47,11 @@ void fragment() {
 		
 		vec3 color = palette(length(uv0)+f*0.4+TIME*time_mult,color_a,color_b,param_c,param_d);
 		
-		local_dist = sin(local_dist*pattern_size+TIME)/pattern_size;
+		local_dist = sin(local_dist*pattern_size+TIME*time_mult)/pattern_size;
 		local_dist = abs(local_dist);
 		local_dist = pow(light_beam_size / local_dist, back_light_fact);
 		
-		final_color += color * local_dist;
+		final_color += color * color * local_dist;
 	}
 
 	

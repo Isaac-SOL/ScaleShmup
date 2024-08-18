@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5rs78vb5up1u"]
+
+[ext_resource type="PackedScene" uid="uid://c2rv2i4um7l80" path="res://objects/animals/pinpin_1.tscn" id="1_enhwr"]
+[ext_resource type="Texture2D" uid="uid://ioj6flpfvaiv" path="res://assets/textures/animals/saumon.png" id="2_6rvhh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wcn8"]
+radius = 491.901
+height = 4367.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qe1p"]
+radius = 171.715
+height = 1815.41
+
+[node name="saumon_1" instance=ExtResource("1_enhwr")]
+size = 2916
+hp = 11664
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_6rvhh")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(101, 86)
+rotation = 1.6395
+shape = SubResource("CapsuleShape2D_1wcn8")
+
+[node name="CollisionShape2D2" parent="." index="3"]
+position = Vector2(-112, -564)
+rotation = 1.66172
+shape = SubResource("CapsuleShape2D_3qe1p")
+
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(-0.999985, -580)
+scale = Vector2(183.405, 93.1353)

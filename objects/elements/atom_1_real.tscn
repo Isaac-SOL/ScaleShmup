@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://5glcloy21yt"]
+
+[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_3lf6j"]
+[ext_resource type="Texture2D" uid="uid://c8722jq5tbco5" path="res://assets/textures/elements/sprite_atome_1_frames.png" id="2_vs15o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3eag"]
+atlas = ExtResource("2_vs15o")
+region = Rect2(0, 0, 53, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldjfa"]
+atlas = ExtResource("2_vs15o")
+region = Rect2(0, 38, 53, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjbsd"]
+atlas = ExtResource("2_vs15o")
+region = Rect2(0, 76, 53, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8p1bv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3eag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldjfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjbsd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Atom" instance=ExtResource("1_3lf6j")]
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+texture_filter = 1
+position = Vector2(-2, 0)
+sprite_frames = SubResource("SpriteFrames_8p1bv")
+autoplay = "default"
+frame_progress = 0.602415

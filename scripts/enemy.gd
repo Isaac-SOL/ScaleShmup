@@ -1,3 +1,4 @@
+# Unused
 class_name Enemy extends Area2D
 
 signal destroyed_by_player(size: int)

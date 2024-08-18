@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvrhraiw1sqn5"]
+
+[ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="1_pkntn"]
+[ext_resource type="Texture2D" uid="uid://v3j0eoscjosl" path="res://assets/textures/animals/humain_5.png" id="2_b0qhc"]
+
+[node name="human_5" instance=ExtResource("1_pkntn")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_b0qhc")

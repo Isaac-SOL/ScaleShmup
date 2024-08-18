@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://codeqiqk5l5c5"
-path="res://.godot/imported/galaxie_1.png-f111ad64b7b4d355424da2b6238a106c.ctex"
+uid="uid://vxrldco2t8a5"
+path="res://.godot/imported/sprite_atome_1_frame3.png-68611e23641c27c2acabf90974179829.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/galaxies/galaxie_1.png"
-dest_files=["res://.godot/imported/galaxie_1.png-f111ad64b7b4d355424da2b6238a106c.ctex"]
+source_file="res://assets/textures/elements/sprite_atome_1_frame3.png"
+dest_files=["res://.godot/imported/sprite_atome_1_frame3.png-68611e23641c27c2acabf90974179829.ctex"]
 
 [params]
 
