@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dk85d0p3sijsr"]
+
+[ext_resource type="Shader" path="res://assets/shaders/main.gdshader" id="1_2g05i"]
+
+[resource]
+shader = ExtResource("1_2g05i")
+shader_parameter/mult_size = 1.0
+shader_parameter/fract_ampl = 1.0
+shader_parameter/pattern_size = 8.0
+shader_parameter/light_beam_size = 0.01
+shader_parameter/back_light_fact = 0.5
+shader_parameter/time_mult = 0.4
+shader_parameter/color_a = Color(0.047, 0.047, 0.322, 1)
+shader_parameter/color_b = Color(0.129, 0.039, 0.122, 1)
+shader_parameter/color_c = Color(2.228, 1.149, 0.71, 1)
+shader_parameter/color_d = Color(0.377, 1.527, 1.897, 1)

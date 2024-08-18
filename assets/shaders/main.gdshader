@@ -1,13 +1,13 @@
 shader_type canvas_item;
 
-uniform float mult_size : hint_range( 0.01, 100 ) = 1;
-uniform float fract_ampl : hint_range( 1.0, 10.0 ) = 2.0;
+uniform float mult_size : hint_range( 0.01, 100 ) = 1.0;
+uniform float fract_ampl : hint_range( 1.0, 10.0 ) = 1.0;
 uniform float pattern_size : hint_range( 1.0, 30.0 ) = 8.0;
 uniform float light_beam_size : hint_range( 0.0001, 0.02 ) = 0.01;
 uniform float back_light_fact : hint_range( 0.1, 0.9 ) = 0.5;
 uniform float time_mult : hint_range( 0.1, 0.9 ) = 0.4;
-uniform	vec3 color_a : source_color = vec3( 0.1, 0.2, 0.5 );
-uniform	vec3 color_b : source_color = vec3( 0.258, 0.188, 0.000);
+uniform	vec3 color_a : source_color = vec3( 0.047, 0.047, 0.322 );
+uniform	vec3 color_b : source_color = vec3( 0.129, 0.039, 0.122);
 uniform	vec3 color_c : source_color = vec3( 2.228, 1.149,0.710);
 uniform	vec3 color_d : source_color = vec3( 0.377, 1.527,1.897);
 	//vec3 b = vec3(0.258, 0.188, 0.000);
