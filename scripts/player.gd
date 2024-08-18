@@ -40,6 +40,7 @@ func _process(delta: float):
 		while next_fire <= 0:
 			next_fire += fire_rate
 			shoot()
+			
 
 func shoot():
 	var shoot_position: Vector2 = get_global_mouse_position()

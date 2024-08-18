@@ -32,6 +32,7 @@ unique_name_in_owner = true
 texture = SubResource("GradientTexture2D_naak6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-2, 0)
 texture = ExtResource("2_o4gdr")
 

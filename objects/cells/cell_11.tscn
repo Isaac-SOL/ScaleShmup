@@ -15,6 +15,7 @@ hp = 225
 scale = Vector2(13.675, 13.675)
 
 [node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
 scale = Vector2(12.5, 12.5)
 texture = ExtResource("2_6wkm4")
 
