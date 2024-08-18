@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvsoknqb3kby5"]
+
+[ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="1_ftsp2"]
+[ext_resource type="Texture2D" uid="uid://cw5d2g554ll84" path="res://assets/textures/structures/batiment_1.png" id="2_3eryg"]
+[ext_resource type="PackedScene" uid="uid://i16royi2owce" path="res://objects/projectiles/projectile_humain.tscn" id="2_fl2up"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_do85h"]
+size = Vector2(6272, 16103)
+
+[node name="batiment_1" instance=ExtResource("1_ftsp2")]
+size = 46656
+hp = 186624
+projectile = ExtResource("2_fl2up")
+shoot_strength = 4500.0
+player_projectile_speed_factor = 1.0
+
+[node name="Shadow" parent="." index="0"]
+position = Vector2(-266.499, 642.001)
+scale = Vector2(128.516, 262.781)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(128, 128)
+texture = ExtResource("2_3eryg")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-374.899, 491)
+rotation = 0.0
+shape = SubResource("RectangleShape2D_do85h")
+
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(-229, -5813)
+scale = Vector2(794.726, 403.572)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(-185, 880.5)
+scale = Vector2(358.5, 733.65)

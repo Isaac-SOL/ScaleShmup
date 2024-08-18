@@ -14,6 +14,8 @@ signal destroyed_by_player(element: Element)
 @export var projectile: PackedScene
 @export var player_owned: bool = false
 @export var shoot_strength: float = 10
+@export var player_projectile_speed_factor: float = 1
+@export var flying_label: PackedScene
 
 @export_group("Colors")
 @export var enemy_color: Color
@@ -36,6 +38,7 @@ const wander_transition : float = 2.5
 func _ready():
 	set_mode(player_owned)
 	max_hp = hp
+	speed *= sqrt(size)
 	constant_rotation = randf_range(-PI / 2, PI / 2)
 
 func _process(delta):
@@ -83,10 +86,15 @@ func shoot(dir: Vector2):
 	new_projectile.player = player_owned
 	Singletons.projectiles.add_child(new_projectile)
 	new_projectile.global_position = global_position
-	new_projectile.apply_impulse(dir * shoot_strength)
+	var proj_speed: float
+	if player_owned:
+		proj_speed = Singletons.player.sqrt_size * player_projectile_speed_factor
+	else:
+		proj_speed = shoot_strength
+	new_projectile.apply_impulse(dir * proj_speed)
 
 func destroy():
-	Singletons.shaker.shake(1, 2 * size)
+	Singletons.shaker.shake(sqrt(size), 1)
 	destroyed.emit(self)
 	queue_free()
 
@@ -120,16 +128,26 @@ func _on_shoot_timer_timeout():
 	elif %VisibleOnScreenNotifier2D.is_on_screen():
 		shoot((Singletons.player.global_position - global_position).normalized())
 
+func instantiate_damage_label(pos: Vector2, damage: int):
+	var inst_pos: Vector2 = lerp(position, pos, 0.75)
+	var dmg_label: FlyingLabel = flying_label.instantiate()
+	dmg_label.text = str(damage)
+	Singletons.labels.add_child(dmg_label)
+	dmg_label.position = inst_pos
+	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
+
 func _on_element_body_entered(body: Node2D):
 	if player_owned:
 		if body is Projectile and not body.player and not move_to_player:
 			body.destroy()
-			hp -= body.damage_value
-			if hp < 0: hp = 0
-			hp_changed.emit(hp)
-			if hp == 0: destroy()
+			if Singletons.player.immunity <= 0:
+				hp -= body.damage_value
+				if hp < 0: hp = 0
+				hp_changed.emit(hp)
+				if hp == 0: destroy()
 	else:
 		if body is Projectile and body.player:
+			instantiate_damage_label(body.position, body.damage_value)
 			body.destroy()
 			hp -= body.damage_value
 			var hp_ratio := float(hp) / max_hp
@@ -137,17 +155,18 @@ func _on_element_body_entered(body: Node2D):
 			if hp_ratio <= 0.9: %HPBar.visible = true
 			if hp <= 0:
 				destroyed_by_player.emit(self)
-				Singletons.shaker.shake(0.5, 2 * size)
+				Singletons.shaker.shake(sqrt(size), 0.5)
 
 func _on_area_entered(area: Area2D):
 	if player_owned:
-		if area is Element and not area.player_owned:
+		if area is Element and not area.player_owned and Singletons.player.immunity <= 0:
 			hp -= area.hp
 			if hp < 0: hp = 0
 			hp_changed.emit(hp)
 			if hp == 0: destroy()
 	else:
 		if area is Element and area.player_owned:
+			instantiate_damage_label(area.position, area.hp)
 			hp -= area.hp
 			var hp_ratio := float(hp) / max_hp
 			%HPBar.set_ratio(hp_ratio)

@@ -1,10 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=60 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
 [ext_resource type="Script" path="res://scripts/shaker_2d.gd" id="2_gfya1"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
-[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="3_xx5my"]
+[ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="4_4ge4g"]
 [ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="4_jaagb"]
 [ext_resource type="Script" path="res://objects/kill_area.gd" id="5_axofq"]
 [ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="5_dyv2q"]
@@ -36,6 +36,25 @@
 [ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="25_d1f3q"]
 [ext_resource type="PackedScene" uid="uid://bs6px4714q04x" path="res://objects/animals/human_2.tscn" id="26_6q63m"]
 [ext_resource type="PackedScene" uid="uid://c2rv2i4um7l80" path="res://objects/animals/pinpin_1.tscn" id="27_y577c"]
+[ext_resource type="PackedScene" uid="uid://mqa1crc6dmom" path="res://objects/elements/molecule_9.tscn" id="29_twjg8"]
+[ext_resource type="PackedScene" uid="uid://c5rs78vb5up1u" path="res://objects/animals/saumon_1.tscn" id="30_3i33a"]
+[ext_resource type="PackedScene" uid="uid://86qtcth3i5lm" path="res://objects/animals/human_4.tscn" id="31_3qrwx"]
+[ext_resource type="PackedScene" uid="uid://bvrhraiw1sqn5" path="res://objects/animals/human_5.tscn" id="32_is5d3"]
+[ext_resource type="PackedScene" uid="uid://b3lc8rh2av8tg" path="res://objects/animals/human_6.tscn" id="33_iby7y"]
+[ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="34_enks2"]
+[ext_resource type="PackedScene" uid="uid://drxcuaatqngdl" path="res://objects/structures/batiment_2.tscn" id="35_tcq38"]
+[ext_resource type="PackedScene" uid="uid://bw7x4ovwd0gc2" path="res://objects/structures/batiment_3.tscn" id="36_86o4y"]
+[ext_resource type="PackedScene" uid="uid://csy4durf3ssu2" path="res://objects/structures/montagne_1.tscn" id="37_ibako"]
+[ext_resource type="PackedScene" uid="uid://cxgs4aoyn2aue" path="res://objects/structures/volcan_1.tscn" id="38_ixve3"]
+[ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="39_vsdmy"]
+[ext_resource type="PackedScene" uid="uid://dtl7dqdgqo7dh" path="res://objects/space/planete_2.tscn" id="40_bs7jt"]
+[ext_resource type="PackedScene" uid="uid://hmj5hri2jvfa" path="res://objects/space/planete_3.tscn" id="41_q3wkh"]
+[ext_resource type="PackedScene" uid="uid://du4askubide1k" path="res://objects/space/planete_4.tscn" id="42_ojy14"]
+[ext_resource type="PackedScene" uid="uid://dlb6rvwovxbx3" path="res://objects/space/planete_5.tscn" id="43_coca7"]
+[ext_resource type="PackedScene" uid="uid://c5vtoyxt3yx53" path="res://objects/space/planete_6.tscn" id="44_oauir"]
+[ext_resource type="PackedScene" uid="uid://cjjtxlrtymbh8" path="res://objects/space/planete_7.tscn" id="45_7j36w"]
+[ext_resource type="PackedScene" uid="uid://bulpixfoca577" path="res://objects/space/planete_8.tscn" id="46_3nnm2"]
+[ext_resource type="PackedScene" uid="uid://vp2coe7of34" path="res://objects/space/planete_9.tscn" id="47_vtadc"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
@@ -78,10 +97,13 @@ unique_name_in_owner = true
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
 
+[node name="Labels" type="Node2D" parent="."]
+unique_name_in_owner = true
+
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("3_4mhxf")
-enemies = Array[PackedScene]([ExtResource("3_xx5my"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("14_t525q"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0"), ExtResource("25_d1f3q"), ExtResource("26_6q63m"), ExtResource("27_y577c")])
-weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.1, 1.0, 1.0, 1.0, 1.0])
+enemies = Array[PackedScene]([ExtResource("4_4ge4g"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("14_t525q"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0"), ExtResource("25_d1f3q"), ExtResource("26_6q63m"), ExtResource("27_y577c"), ExtResource("29_twjg8"), ExtResource("30_3i33a"), ExtResource("31_3qrwx"), ExtResource("32_is5d3"), ExtResource("33_iby7y"), ExtResource("34_enks2"), ExtResource("35_tcq38"), ExtResource("36_86o4y"), ExtResource("37_ibako"), ExtResource("38_ixve3"), ExtResource("39_vsdmy"), ExtResource("40_bs7jt"), ExtResource("41_q3wkh"), ExtResource("42_ojy14"), ExtResource("43_coca7"), ExtResource("44_oauir"), ExtResource("45_7j36w"), ExtResource("46_3nnm2"), ExtResource("47_vtadc")])
+weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.1, 1.0, 1.0, 1.0, 1.0, 0.3, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.03, 0.2, 0.2])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true

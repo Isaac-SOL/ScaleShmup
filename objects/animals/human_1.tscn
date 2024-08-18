@@ -10,7 +10,7 @@ height = 4189.09
 
 [node name="human_1" instance=ExtResource("1_vyhwe")]
 size = 7776
-hp = 62208
+hp = 31104
 projectile = ExtResource("2_b5j8u")
 shoot_strength = 1500.0
 
@@ -18,7 +18,6 @@ shoot_strength = 1500.0
 scale = Vector2(53.685, 116.725)
 
 [node name="Sprite2D" parent="." index="1"]
-texture_filter = 1
 position = Vector2(-55, 0)
 scale = Vector2(64, 64)
 texture = ExtResource("2_n0acp")
@@ -28,9 +27,9 @@ position = Vector2(-8, 22)
 rotation = 3.14997
 shape = SubResource("CapsuleShape2D_dwo43")
 
-[node name="HPBar" parent="." index="3"]
-position = Vector2(0, -2186)
-scale = Vector2(163.536, 83.0456)
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(0, -1120)
+scale = Vector2(175.948, 89.3486)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]
 position = Vector2(0.000167847, -131.5)

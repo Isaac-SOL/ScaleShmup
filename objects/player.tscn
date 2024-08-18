@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cmjns"]
 [ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="2_cuvwt"]
-[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="4_hylfv"]
+[ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="3_p5l1b"]
 
 [sub_resource type="Gradient" id="Gradient_qmmvy"]
 offsets = PackedFloat32Array(0, 0.207469, 0.738589)
@@ -15,7 +15,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tla15"]
-radius = 5.0
+radius = 15.0
 
 [node name="Player" type="Area2D"]
 collision_mask = 268
@@ -36,12 +36,12 @@ debug_color = Color(1, 0, 0.701961, 0.419608)
 [node name="Elements" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Atom" parent="Elements" instance=ExtResource("4_hylfv")]
+[node name="Atom" parent="Elements" instance=ExtResource("3_p5l1b")]
 hp = 1
 player_owned = true
-shoot_strength = 175.0
+flying_label = null
 
-[node name="ShootTimer" parent="Elements/Atom" index="4"]
+[node name="ShootTimer" parent="Elements/Atom" index="6"]
 wait_time = 2.205
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

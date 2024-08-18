@@ -19,3 +19,6 @@ position = Vector2(-19, 9)
 
 [node name="CollisionShape2D3" parent="." index="4"]
 position = Vector2(24, 8)
+
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(0, -26)

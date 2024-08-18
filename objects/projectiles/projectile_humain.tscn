@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://i16royi2owce"]
+
+[ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="1_kw44b"]
+[ext_resource type="Texture2D" uid="uid://duy5fsmtkgulm" path="res://assets/textures/animals/humain_1.png" id="2_jj6gv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5nh5"]
+radius = 729.0
+height = 3954.0
+
+[node name="ProjectileHumain" instance=ExtResource("1_kw44b")]
+damage_value = 3150
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(267.68, 490.593)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(64, 64)
+texture = ExtResource("2_jj6gv")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(44, 18)
+shape = SubResource("CapsuleShape2D_l5nh5")

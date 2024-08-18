@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://du4askubide1k"]
+
+[ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="1_4gi4c"]
+[ext_resource type="Texture2D" uid="uid://djbuntlfqocbn" path="res://assets/textures/space/planete_4.png" id="2_rqjn5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pk0bh"]
+radius = 86621.9
+
+[node name="planete_4" instance=ExtResource("1_4gi4c")]
+size = 13436928
+hp = 53747712
+shoot_strength = 81000.0
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(5453.86, 5453.86)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_rqjn5")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1929, 6379)
+shape = SubResource("CircleShape2D_pk0bh")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+scale = Vector2(13443.9, 13443.9)

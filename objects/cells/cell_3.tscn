@@ -20,5 +20,5 @@ position = Vector2(11, 23)
 rotation = 2.02148
 shape = SubResource("CapsuleShape2D_5fk4v")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
 scale = Vector2(55, 55)

@@ -34,9 +34,8 @@ position = Vector2(-1, 0)
 rotation = 0.00239396
 shape = SubResource("CapsuleShape2D_6qct1")
 
-[node name="HPBar" parent="." index="4"]
-position = Vector2(0, -29)
-scale = Vector2(7.16383, 3.63789)
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(0, -26)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="5"]
 position = Vector2(2.84217e-14, 3)
