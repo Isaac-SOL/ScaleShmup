@@ -31,5 +31,8 @@ position = Vector2(0, 21)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_svt6e")
 
-[node name="ShootTimer" parent="." index="7"]
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(0, -29)
+
+[node name="ShootTimer" parent="." index="8"]
 wait_time = 1.114

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw7x4ovwd0gc2"]
+
+[ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="1_yjfjs"]
+[ext_resource type="Texture2D" uid="uid://d141s8fhhlu86" path="res://assets/textures/structures/batiment_3.png" id="2_dcc1b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k146o"]
+radius = 3130.9
+height = 15949.5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muv4j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s16ju"]
+radius = 3143.3
+height = 16101.4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6321b"]
+radius = 4082.0
+height = 14286.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwfn1"]
+radius = 1471.0
+height = 17640.0
+
+[node name="batiment_3" instance=ExtResource("1_yjfjs")]
+size = 373248
+hp = 1492992
+shoot_strength = 18000.0
+
+[node name="Shadow" parent="." index="0"]
+position = Vector2(983.5, 4351.5)
+scale = Vector2(462.391, 895.266)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(512, 512)
+texture = ExtResource("2_dcc1b")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-5121, 14662)
+rotation = 0.596146
+shape = SubResource("CapsuleShape2D_k146o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-5556, 14815)
+rotation = 0.571302
+shape = SubResource("CapsuleShape2D_muv4j")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(7702, 14917)
+rotation = -0.6012
+shape = SubResource("CapsuleShape2D_s16ju")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(1251, 7755)
+shape = SubResource("CapsuleShape2D_6321b")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="." index="6"]
+position = Vector2(1150, -7484)
+shape = SubResource("CapsuleShape2D_nwfn1")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="8"]
+position = Vector2(891.499, 1042)
+scale = Vector2(1574.75, 2461.2)

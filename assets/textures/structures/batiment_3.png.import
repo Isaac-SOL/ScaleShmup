@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0flwlrmtxhli"
-path="res://.godot/imported/galaxie_2.png-d21a2764f67f589a26db0fa5046fda79.ctex"
+uid="uid://d141s8fhhlu86"
+path="res://.godot/imported/batiment_3.png-5e792012b79183c50ec0d5cfc40107ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/galaxies/galaxie_2.png"
-dest_files=["res://.godot/imported/galaxie_2.png-d21a2764f67f589a26db0fa5046fda79.ctex"]
+source_file="res://assets/textures/structures/batiment_3.png"
+dest_files=["res://.godot/imported/batiment_3.png-5e792012b79183c50ec0d5cfc40107ad.ctex"]
 
 [params]
 

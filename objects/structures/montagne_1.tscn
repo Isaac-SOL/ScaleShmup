@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://csy4durf3ssu2"]
+
+[ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="1_awnp8"]
+[ext_resource type="Texture2D" uid="uid://7v1dqqjdgn8t" path="res://assets/textures/structures/montagne.png" id="2_lu1oh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jj01j"]
+radius = 4266.0
+height = 46974.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcq1c"]
+radius = 6622.0
+height = 32474.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cus31"]
+radius = 6562.0
+height = 13124.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_644ks"]
+radius = 2333.0
+height = 7952.0
+
+[node name="batiment_1" instance=ExtResource("1_awnp8")]
+size = 746496
+hp = 2985984
+shoot_strength = 18000.0
+
+[node name="Shadow" parent="." index="0"]
+position = Vector2(-554, 3300)
+scale = Vector2(1093.84, 659.236)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(512, 512)
+texture = ExtResource("2_lu1oh")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-1945, 9491)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jj01j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-435, 5746)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qcq1c")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(-3273, -4101)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cus31")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(4460, -1684)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_644ks")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
+position = Vector2(-939, 3395.25)
+scale = Vector2(2818.95, 1689.07)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk1iyi3vx4sgj"]
+[gd_scene load_steps=9 format=3 uid="uid://dk1iyi3vx4sgj"]
 
 [ext_resource type="Script" path="res://scripts/element.gd" id="1_8i05w"]
 [ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="2_ho7fk"]
 [ext_resource type="Texture2D" uid="uid://calqncgvrw1yb" path="res://assets/textures/elements/sprite_atome_1.png" id="2_o4gdr"]
+[ext_resource type="PackedScene" uid="uid://c07yxt6fcwqsl" path="res://objects/flying_label.tscn" id="3_sxo3m"]
 [ext_resource type="PackedScene" uid="uid://e0v8px0kmilg" path="res://objects/hp_bar.tscn" id="4_3nwog"]
 
 [sub_resource type="Gradient" id="Gradient_mc6tc"]
@@ -25,6 +26,8 @@ collision_mask = 258
 script = ExtResource("1_8i05w")
 projectile = ExtResource("2_ho7fk")
 shoot_strength = 100.0
+player_projectile_speed_factor = 150.0
+flying_label = ExtResource("3_sxo3m")
 enemy_color = Color(1, 0.462745, 0, 1)
 player_color = Color(0, 0.694118, 1, 0)
 

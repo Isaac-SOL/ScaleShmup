@@ -33,5 +33,5 @@ func shake(amount: float, duration: float):
 	current_radius = amount
 	if shake_tween:
 		shake_tween.kill()
-	shake_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	shake_tween = get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	shake_tween.tween_property(self, "current_radius", 0, duration).from_current()

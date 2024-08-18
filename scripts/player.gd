@@ -2,16 +2,15 @@ class_name Player extends Area2D
 
 signal killed
 
-@export var base_move_speed: float = 2
+@export var base_move_speed: float = 0.1
 @export var projectile: PackedScene
 @export var projectile_speed: float = 1
 @export var base_fire_rate: float = 1
 @export var base_part_speed: float = 10
+@export var immunity_length: float = 1
 
 
-@onready var fire_rate = base_fire_rate
 @onready var elements: Array[Element] = [$Elements/Atom]
-var next_fire: float = 0
 var parts_level: int = 1
 var internal_atoms: int = 0
 var atom_threshold: int = 1
@@ -19,6 +18,9 @@ var radius: float
 var base_radius: float
 var part_speed: float
 var move_speed: float
+var immunity: float = 0
+var size: int = 1
+var sqrt_size: float = 1
 
 func _ready():
 	Singletons.player = self
@@ -40,24 +42,13 @@ func _process(delta: float):
 		move_vec.x += move_speed
 	position += move_vec
 	
-	if next_fire > 0:
-		next_fire -= delta
-	#if Input.is_action_pressed("shoot"):
-	#	while next_fire <= 0:
-	#		next_fire += fire_rate
-	#		shoot()
+	if immunity > 0:
+		immunity -= delta
 
-func shoot():
-	var shoot_position: Vector2 = get_global_mouse_position()
-	var shoot_direction: Vector2 = (shoot_position - global_position).normalized()
-	
-	var rand_elem = elements[randi_range(0, elements.size() - 1)]
-	var new_projectile: RigidBody2D = Singletons.player_projectile_pool.create_projectile(rand_elem.global_position, atom_threshold)
-	if new_projectile:
-		new_projectile.damage_value = atom_threshold
-		new_projectile.apply_impulse(shoot_direction * projectile_speed)
-
-func set_radius(atom_count: int):
+func update_size(atom_count: int):
+	size = atom_count
+	sqrt_size = sqrt(atom_count)
+	Singletons.main.set_atom_count(size)
 	var atom_surface: float = sqrt(atom_count)
 	radius = atom_surface * base_radius
 	%CollisionShape2D.shape.set_radius(radius)
@@ -79,11 +70,8 @@ func add_element(elem: Element):
 	elem.direction = Util.rand_on_circle(part_speed)
 	elements.append(elem)
 	
-	var atoms: int = count_atoms()
-	Singletons.main.set_atom_count(atoms)
-	fire_rate = base_fire_rate / elements.size()
-	set_radius(atoms)
-	get_tree().call_group("Element", "destroy_threshold", atoms / 20)
+	update_size(count_atoms())
+	get_tree().call_group("Element", "destroy_threshold", size / 100)
 
 func count_atoms() -> int:
 	var total: int = internal_atoms
@@ -124,16 +112,13 @@ func _on_area_exited(area: Area2D):
 		area.direction = (new_target - area.position).normalized() * part_speed
 
 func _on_part_hp_changed(_new_hp: int):
-	Singletons.main.set_atom_count(count_atoms())
-	fire_rate = base_fire_rate / elements.size()
-	set_radius(count_atoms())
+	update_size(count_atoms())
 
 func _on_part_destroyed(elem: Element):
-	Singletons.main.set_atom_count(count_atoms())
 	elements.erase(elem)
-	fire_rate = base_fire_rate / elements.size()
-	set_radius(count_atoms())
-	if count_atoms() == 0:
+	update_size(count_atoms())
+	immunity = immunity_length
+	if size == 0:
 		killed.emit()
 	if elements.size() < 4 and parts_level > 1:
 		decrease_level()

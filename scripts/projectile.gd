@@ -1,9 +1,9 @@
 class_name Projectile extends RigidBody2D
 
 const ENEMY_PROJECTILE_LAYER = 1 << 3
-const ENEMY_PROJECTILE_MASK = 1 << 1 | 1 << 8
+const ENEMY_PROJECTILE_MASK = 1 << 8
 const PLAYER_PROJECTILE_LAYER = 1 << 1
-const PLAYER_PROJECTILE_MASK = 1 << 2 | 1 << 3
+const PLAYER_PROJECTILE_MASK = 1 << 2
 
 @export var player: bool = false
 @export var damage_value: int = 1

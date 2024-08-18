@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://vp2coe7of34"]
+
+[ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="1_fp763"]
+[ext_resource type="Texture2D" uid="uid://b1wyh0kmenkkk" path="res://assets/textures/space/planete_9.png" id="2_4eqkx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sr7k3"]
+radius = 52156.0
+
+[node name="planete_9" instance=ExtResource("1_fp763")]
+size = 8129341
+hp = 32517366
+shoot_strength = 59400.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_4eqkx")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-375, 2283)
+shape = SubResource("CircleShape2D_sr7k3")

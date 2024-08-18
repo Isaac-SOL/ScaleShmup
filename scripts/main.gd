@@ -5,6 +5,8 @@ var pause = false
 func _ready():
 	Singletons.main = self
 	Singletons.projectiles = %Projectiles
+	Singletons.camera = %Camera2D
+	Singletons.labels = %Labels
 	%PauseMenu.hide()
 	# Play game song
 	#NodeAudio.playAudio(NodeAudio.audioGame)
@@ -19,7 +21,10 @@ func set_camera_zoom(size: float):
 	$Player/KillArea.set_kill_scale(size)
 
 func set_atom_count(count: int):
-	%SizeLabel.text = str(count) + " atoms!"
+	var fake_count: int = count
+	if count > 150:
+		fake_count = 150 + ((count - 150) ** 2)
+	%SizeLabel.text = str(fake_count) + " atoms!"
 
 func _on_enemy_killed(enemy: Element):
 	%Player.add_element(enemy)

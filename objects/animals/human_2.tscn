@@ -8,8 +8,3 @@
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(52.1007, 52.1007)
 texture = ExtResource("2_qmx3p")
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-visible = true
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
