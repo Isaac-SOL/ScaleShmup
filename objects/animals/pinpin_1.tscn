@@ -22,7 +22,6 @@ shoot_strength = 1200.0
 scale = Vector2(63.45, 63.45)
 
 [node name="Sprite2D" parent="." index="1"]
-texture_filter = 1
 position = Vector2(-2, -36)
 scale = Vector2(84, 84)
 texture = ExtResource("2_s4cnx")

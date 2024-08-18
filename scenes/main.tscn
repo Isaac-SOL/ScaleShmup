@@ -4,8 +4,6 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
 [ext_resource type="Script" path="res://scripts/shaker_2d.gd" id="2_gfya1"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
-[ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="3_xx5my"]
-[ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="4_jaagb"]
 [ext_resource type="Script" path="res://objects/kill_area.gd" id="5_axofq"]
 [ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="5_dyv2q"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
@@ -13,12 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://d4hs57jskg0wy" path="res://objects/elements/molecule_2.tscn" id="7_lu0qn"]
 [ext_resource type="Theme" uid="uid://dtqnw4yhbe0kk" path="res://assets/fonts/second_title_them.tres" id="7_skxey"]
 [ext_resource type="Theme" uid="uid://cbnl37hp5d4kk" path="res://assets/fonts/button_smaller.tres" id="8_0hcfq"]
-[ext_resource type="PackedScene" uid="uid://cfi1a2grotf78" path="res://objects/elements/molecule_3.tscn" id="8_0ippw"]
 [ext_resource type="StyleBox" uid="uid://cln15kpjcsiss" path="res://imports/style_box_normal.tres" id="9_00ovv"]
-[ext_resource type="PackedScene" uid="uid://bjm3xkpcjhscq" path="res://objects/elements/molecule_4.tscn" id="9_7yamx"]
-[ext_resource type="PackedScene" uid="uid://q441khku8e4n" path="res://objects/elements/molecule_5.tscn" id="10_170lc"]
 [ext_resource type="StyleBox" uid="uid://ddmyelf7ggrso" path="res://imports/style_box_hover.tres" id="10_jty1g"]
-[ext_resource type="PackedScene" uid="uid://cyjlm451otxoi" path="res://objects/elements/molecule_6.tscn" id="11_6hf33"]
 [ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="11_ic8d2"]
 [ext_resource type="PackedScene" uid="uid://cl0m6gm6l8jxk" path="res://objects/elements/molecule_7.tscn" id="12_ivwwh"]
 [ext_resource type="PackedScene" uid="uid://dpyloqnlh7sqr" path="res://objects/elements/molecule_8.tscn" id="13_tyumn"]
@@ -48,6 +42,19 @@ func _process(delta):
 func set_target_zoom(target: Vector2):
 	target_zoom = target
 "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxxb4"]
+shader = ExtResource("7_o7sog")
+shader_parameter/mult_size = 1.0
+shader_parameter/fract_ampl = 2.0
+shader_parameter/pattern_size = 8.0
+shader_parameter/light_beam_size = 0.01
+shader_parameter/back_light_fact = 0.5
+shader_parameter/time_mult = 0.4
+shader_parameter/color_a = Color(0, 0.054902, 0.129412, 1)
+shader_parameter/color_b = Color(0.152941, 0.00392157, 0, 1)
+shader_parameter/color_c = Color(2.228, 1.149, 0.71, 1)
+shader_parameter/color_d = Color(0.377, 1.527, 1.897, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_aw4pu"]
 _data = {
