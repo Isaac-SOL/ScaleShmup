@@ -107,10 +107,8 @@ theme_override_colors/font_unselected_color = Color(0.619608, 0.937255, 0.768627
 theme_override_styles/tab_selected = ExtResource("4_s66lb")
 theme_override_styles/tab_hovered = ExtResource("3_eultm")
 theme_override_styles/tab_unselected = ExtResource("2_aoko6")
-current_tab = 2
 
 [node name="Game" type="TabBar" parent="MarginContainer/VBoxContainer3/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer3/TabContainer/Game"]
@@ -267,6 +265,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Sound" type="TabBar" parent="MarginContainer/VBoxContainer3/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer3/TabContainer/Sound"]
