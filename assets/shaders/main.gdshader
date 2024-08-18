@@ -10,9 +10,7 @@ uniform	vec3 color_a : source_color = vec3( 0.047, 0.047, 0.322 );
 uniform	vec3 color_b : source_color = vec3( 0.129, 0.039, 0.122);
 uniform	vec3 param_c : source_color = vec3( 2.228, 1.149,0.710);
 uniform	vec3 param_d : source_color = vec3( 0.377, 1.527,1.897);
-	//vec3 b = vec3(0.258, 0.188, 0.000);
-	//vec3 c = vec3(2.228, 1.149,0.710);
-	//vec3 d = vec3(0.377, 1.527,1.897);
+
 
 
 
