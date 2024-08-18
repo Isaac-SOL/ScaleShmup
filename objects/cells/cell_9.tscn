@@ -7,6 +7,7 @@
 radius = 184.003
 
 [node name="cell_9" instance=ExtResource("1_t1uao")]
+texture_filter = 1
 size = 38
 hp = 275
 

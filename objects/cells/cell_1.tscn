@@ -8,6 +8,7 @@ radius = 55.959
 height = 208.038
 
 [node name="cell_1" instance=ExtResource("1_x15vk")]
+texture_filter = 1
 size = 16
 hp = 128
 

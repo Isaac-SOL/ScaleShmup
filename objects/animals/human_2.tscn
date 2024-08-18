@@ -15,6 +15,7 @@ hp = 700
 scale = Vector2(66.49, 66.49)
 
 [node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
 position = Vector2(-73, 48)
 scale = Vector2(32, 32)
 texture = ExtResource("2_qmx3p")

@@ -8,10 +8,11 @@ radius = 68.9437
 height = 241.997
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t48t6"]
-radius = 53.0332
+radius = 53.033
 height = 106.066
 
 [node name="cell_4" instance=ExtResource("1_dmi53")]
+texture_filter = 1
 size = 24
 hp = 200
 
