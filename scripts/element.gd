@@ -82,6 +82,7 @@ func set_mode(player_mode: bool):
 		%Shadow.modulate = enemy_color
 
 func shoot(dir: Vector2):
+	play_audio_scaled(%AudioShoot, -20)
 	var new_projectile: Projectile = projectile.instantiate()
 	new_projectile.player = player_owned
 	Singletons.projectiles.add_child(new_projectile)
@@ -94,6 +95,7 @@ func shoot(dir: Vector2):
 	new_projectile.apply_impulse(dir * proj_speed)
 
 func destroy():
+	play_audio_scaled(%AudioDestroy, -6)
 	Singletons.shaker.shake(sqrt(size), 1)
 	destroyed.emit(self)
 	queue_free()
@@ -110,6 +112,8 @@ func change_speed(new_speed: float):
 	direction = direction.normalized() * new_speed
 
 func give_to_player():
+	play_audio_scaled(%AudioDestroy, -12)
+	play_audio_scaled(%AudioWin, -16)
 	set_mode(true)
 	hp = size
 	shoot_strength = floori(shoot_strength * 1.7)
@@ -136,17 +140,23 @@ func instantiate_damage_label(pos: Vector2, damage: int):
 	dmg_label.position = inst_pos
 	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
 
+func play_audio_scaled(source: AudioStreamPlayer, base_db: float):
+	source.volume_db = base_db
+	source.play()
+
 func _on_element_body_entered(body: Node2D):
 	if player_owned:
 		if body is Projectile and not body.player and not move_to_player:
 			body.destroy()
 			if Singletons.player.immunity <= 0:
+				play_audio_scaled(%AudioHit, 0)
 				hp -= body.damage_value
 				if hp < 0: hp = 0
 				hp_changed.emit(hp)
 				if hp == 0: destroy()
 	else:
 		if body is Projectile and body.player:
+			play_audio_scaled(%AudioHit, 0)
 			instantiate_damage_label(body.position, body.damage_value)
 			body.destroy()
 			hp -= body.damage_value
@@ -160,12 +170,14 @@ func _on_element_body_entered(body: Node2D):
 func _on_area_entered(area: Area2D):
 	if player_owned:
 		if area is Element and not area.player_owned and Singletons.player.immunity <= 0:
+			play_audio_scaled(%AudioHit, 0)
 			hp -= area.hp
 			if hp < 0: hp = 0
 			hp_changed.emit(hp)
 			if hp == 0: destroy()
 	else:
 		if area is Element and area.player_owned:
+			play_audio_scaled(%AudioHit, 0)
 			instantiate_damage_label(area.position, area.hp)
 			hp -= area.hp
 			var hp_ratio := float(hp) / max_hp
