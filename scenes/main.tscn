@@ -1,15 +1,14 @@
-[gd_scene load_steps=66 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=65 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
 [ext_resource type="Material" uid="uid://dk85d0p3sijsr" path="res://assets/shaders/shader_material_background.tres" id="2_evyai"]
 [ext_resource type="Script" path="res://scripts/shaker_2d.gd" id="2_gfya1"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
-[ext_resource type="PackedScene" path="res://objects/elements/atom_1_real.tscn" id="4_4ge4g"]
+[ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="4_4ge4g"]
 [ext_resource type="Material" uid="uid://brv642opwryh3" path="res://assets/shaders/shader_material_trip.tres" id="4_idq7l"]
 [ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="4_jaagb"]
 [ext_resource type="Shader" path="res://assets/shaders/main_cells.gdshader" id="4_r4o50"]
-[ext_resource type="Script" path="res://objects/kill_area.gd" id="5_axofq"]
 [ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="5_dyv2q"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
 [ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="6_0r7if"]
@@ -39,7 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://l2cuqn55hobe" path="res://objects/cells/cell_10.tscn" id="23_110pa"]
 [ext_resource type="PackedScene" uid="uid://dwqnrvlniixjj" path="res://objects/cells/cell_11.tscn" id="24_lrwc0"]
 [ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="25_d1f3q"]
-[ext_resource type="PackedScene" uid="uid://dcyaj2alr50xe" path="res://objects/animals/human_2.tscn" id="26_6q63m"]
+[ext_resource type="PackedScene" uid="uid://bs6px4714q04x" path="res://objects/animals/human_2.tscn" id="26_6q63m"]
 [ext_resource type="PackedScene" uid="uid://c2rv2i4um7l80" path="res://objects/animals/pinpin_1.tscn" id="27_y577c"]
 [ext_resource type="PackedScene" uid="uid://mqa1crc6dmom" path="res://objects/elements/molecule_9.tscn" id="29_twjg8"]
 [ext_resource type="PackedScene" uid="uid://c5rs78vb5up1u" path="res://objects/animals/saumon_1.tscn" id="30_3i33a"]
@@ -109,6 +108,7 @@ script = SubResource("GDScript_1mht6")
 
 [node name="ShaderRect_geometry" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
+visible = false
 material = ExtResource("2_evyai")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15

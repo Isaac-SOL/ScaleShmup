@@ -14,54 +14,6 @@ uniform	vec3 color_b : source_color = vec3( 0.129, 0.039, 0.122);
 uniform	vec3 param_c : source_color = vec3( 2.228, 0.0,0.0);
 uniform	vec3 param_d : source_color = vec3( 0.377, 1.527,1.897);
 
-uniform float PaletteRGBSize = 4.;// number of values possible for each R, G, B.
-uniform float ResolutionDivisor = 2.;
-uniform vec4 date;
-#define USE_BAYER4x4
-//#define USE_BAYER8x8
-//#define USE_NOISE
-//#define USE_ANIM_NOISE
-
-float quantize(float inp, float period)
-{
-    return floor((inp+period/2.)/period)*period;
-}
-
-
-float bayer4x4(vec2 uvScreenSpace)
-{
-	vec2 bayerCoord = floor(uvScreenSpace/ResolutionDivisor);
-    bayerCoord = mod(bayerCoord, 4.);
-    const mat4 bayerMat = mat4(
-    vec4(1,9,3,11),
-    vec4(13,5,15,7),
-    vec4(4,12,2,10),
-    vec4(16,8,14,6)) / 16.;
-    int bayerIndex = int(bayerCoord.x + bayerCoord.y * 4.);
-    if(bayerIndex == 0) return bayerMat[0][0];
-    if(bayerIndex == 1) return bayerMat[0][1];
-    if(bayerIndex == 2) return bayerMat[0][2];
-    if(bayerIndex == 3) return bayerMat[0][3];
-    if(bayerIndex == 4) return bayerMat[1][0];
-    if(bayerIndex == 5) return bayerMat[1][1];
-    if(bayerIndex == 6) return bayerMat[1][2];
-    if(bayerIndex == 7) return bayerMat[1][3];
-    if(bayerIndex == 8) return bayerMat[2][0];
-    if(bayerIndex == 9) return bayerMat[2][1];
-    if(bayerIndex == 10) return bayerMat[2][2];
-    if(bayerIndex == 11) return bayerMat[2][3];
-    if(bayerIndex == 12) return bayerMat[3][0];
-    if(bayerIndex == 13) return bayerMat[3][1];
-    if(bayerIndex == 14) return bayerMat[3][2];
-    if(bayerIndex == 15) return bayerMat[3][3];
-
-    return 10.;// impossible
-}
-
-float bayer8x8(vec2 uvScreenSpace)
-{
-    return texture(text_img, uvScreenSpace/(ResolutionDivisor*8.)).r;
-}
 
 vec3 getSceneColor(vec2 uv)
 {
@@ -112,52 +64,9 @@ void fragment() {
 		
 		final_color += color * color * local_dist;
 	}
-
-	
-		//Quantize
-	// space between values of the dest palette
-    vec3 quantizationPeriod = vec3(1./(PaletteRGBSize-1.));
-    
-	vec2 uvPixellated = floor(FRAGCOORD.xy / ResolutionDivisor)*ResolutionDivisor;
-    
-    // original color panel---------------------
-    vec3 originalCol = getSceneColor(uv);
-    
-    // dithered panel---------------------
-    //vec3 dc = getSceneColor(uvPixellated / screen_size.xy);
-	vec3 dc = final_color;
-	
-    // apply bayer matrix, perturbing the original color values.
-#ifdef USE_BAYER4x4
-    dc += (bayer4x4(FRAGCOORD.xy)-.5)*(quantizationPeriod);
-#endif
-#ifdef USE_BAYER8x8
-	dc += (bayer8x8(FRAGCOORD.xy)-.5)*(quantizationPeriod);
-#endif
-#ifdef USE_NOISE
-	dc += (rand(uvPixellated)-.5)*(quantizationPeriod);
-#endif
-#ifdef USE_ANIM_NOISE
-	dc += (rand(vec2(rand(uvPixellated),date.w))-.5)*(quantizationPeriod);
-#endif
-    // quantize color to palette
-    dc = vec3(
-        quantize(dc.r, quantizationPeriod.r),
-        quantize(dc.g, quantizationPeriod.g),
-        quantize(dc.b, quantizationPeriod.b)
-            );
-   
-    //quantize to palette (raw quantization panel)---------------------
-    //vec3 qc = getSceneColor(uvPixellated / screen_size.xy);
-	//vec3 qc = final_color;
-    //qc = vec3(
-        //quantize(qc.r, quantizationPeriod.r),
-        //quantize(qc.g, quantizationPeriod.g),
-        //quantize(qc.b, quantizationPeriod.b)
-            //);
 	
 	
-    COLOR = vec4(dc,alpha);
+    COLOR = vec4(final_color,alpha);
 }
 
 

@@ -42,7 +42,7 @@ hp = 1
 player_owned = true
 shoot_strength = 175.0
 
-[node name="ShootTimer" parent="Elements/Atom" index="5"]
+[node name="ShootTimer" parent="Elements/Atom" index="6"]
 wait_time = 2.205
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
