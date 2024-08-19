@@ -1,12 +1,17 @@
-[gd_scene load_steps=61 format=3 uid="uid://cnl7nvedtiim8"]
+[gd_scene load_steps=71 format=3 uid="uid://cnl7nvedtiim8"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6ytji"]
 [ext_resource type="Script" path="res://scripts/shaker_2d.gd" id="2_hm5jh"]
 [ext_resource type="Material" uid="uid://dk85d0p3sijsr" path="res://assets/shaders/shader_material_background.tres" id="3_8cv3r"]
+[ext_resource type="Shader" path="res://assets/shaders/main_cells.gdshader" id="4_2objl"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="4_ggheu"]
 [ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="5_3n0il"]
+[ext_resource type="Material" uid="uid://brv642opwryh3" path="res://assets/shaders/shader_material_trip.tres" id="5_i4dl5"]
+[ext_resource type="Shader" path="res://assets/shaders/main.gdshader" id="5_oapi1"]
 [ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="6_axo6u"]
+[ext_resource type="Material" uid="uid://jccoiulhpafp" path="res://assets/shaders/shader_material_stars.tres" id="6_fh5cr"]
 [ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="7_atmel"]
+[ext_resource type="Material" uid="uid://bosmbu8knq70j" path="res://assets/shaders/shader_material_shockwave.tres" id="7_p2lik"]
 [ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="8_15cq6"]
 [ext_resource type="PackedScene" uid="uid://d4hs57jskg0wy" path="res://objects/elements/molecule_2.tscn" id="9_k1eeh"]
 [ext_resource type="PackedScene" uid="uid://cfi1a2grotf78" path="res://objects/elements/molecule_3.tscn" id="10_ibe4u"]
@@ -38,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="36_5us0t"]
 [ext_resource type="PackedScene" uid="uid://drxcuaatqngdl" path="res://objects/structures/batiment_2.tscn" id="37_him7l"]
 [ext_resource type="PackedScene" uid="uid://bw7x4ovwd0gc2" path="res://objects/structures/batiment_3.tscn" id="38_ew51n"]
+[ext_resource type="Script" path="res://scripts/element.gd" id="38_kl5rc"]
 [ext_resource type="PackedScene" uid="uid://csy4durf3ssu2" path="res://objects/structures/montagne_1.tscn" id="39_fh2hf"]
 [ext_resource type="PackedScene" uid="uid://cxgs4aoyn2aue" path="res://objects/structures/volcan_1.tscn" id="40_6j8wg"]
 [ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="41_k2whu"]
@@ -56,6 +62,7 @@
 [ext_resource type="StyleBox" uid="uid://ddmyelf7ggrso" path="res://imports/style_box_hover.tres" id="54_d5g0l"]
 [ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="55_2u0di"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="56_yf0if"]
+[ext_resource type="PackedScene" uid="uid://ji8uccvwr6yq" path="res://objects/atom_label.tscn" id="57_r7g2o"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
@@ -68,6 +75,45 @@ func _process(delta):
 func set_target_zoom(target: Vector2):
 	target_zoom = target
 "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfsr8"]
+shader = ExtResource("4_2objl")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/alpha = 1.0
+shader_parameter/mult_size = 1.0
+shader_parameter/time_speed = 0.1
+shader_parameter/color_cell_a = Color(0, 0.403922, 0.447059, 1)
+shader_parameter/color_cell_b = Color(0.0784314, 0.207843, 0.380392, 1)
+shader_parameter/param_cell_c = Color(-0.052, 0.388, 0.218, 1)
+shader_parameter/param_cell_d = Color(0.138, -2.422, -1.972, 1)
+shader_parameter/pixel_size = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bs6bh"]
+shader = ExtResource("5_oapi1")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/alpha = 1.0
+shader_parameter/mult_size = 1.0
+shader_parameter/fract_ampl = 2.0
+shader_parameter/pattern_size = 16.0
+shader_parameter/light_beam_size = 0.01
+shader_parameter/back_light_fact = 0.1
+shader_parameter/time_mult = 0.1
+shader_parameter/color_a = Color(0, 0.279, 0.31, 1)
+shader_parameter/color_b = Color(0.0784314, 0.207843, 0.380392, 1)
+shader_parameter/param_c = Color(-0.052, 0.388, 0.218, 1)
+shader_parameter/param_d = Color(0.377, 1.527, 1.897, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uig8r"]
+shader = ExtResource("4_2objl")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/alpha = 1.0
+shader_parameter/mult_size = 5.555
+shader_parameter/time_speed = 0.1
+shader_parameter/color_cell_a = Color(0, 0, 0, 1)
+shader_parameter/color_cell_b = Color(1, 1, 1, 1)
+shader_parameter/param_cell_c = Color(0.65, 0.65, 0.65, 1)
+shader_parameter/param_cell_d = Color(1, 1, 1, 1)
+shader_parameter/pixel_size = 1
 
 [sub_resource type="GDScript" id="GDScript_7myx6"]
 script/source = "extends Node2D
@@ -98,9 +144,103 @@ target_node = NodePath("../Player")
 unique_name_in_owner = true
 script = SubResource("GDScript_1mht6")
 
-[node name="ShaderRect" type="ColorRect" parent="Shaker2D/Camera2D"]
+[node name="ShaderRect_geometry" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
 material = ExtResource("3_8cv3r")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_cell" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_wfsr8")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_geometry_2" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_bs6bh")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_cell_2" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_uig8r")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1000.0
+offset_top = -1000.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_trip" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = ExtResource("5_i4dl5")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_stars" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = ExtResource("6_fh5cr")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_shockwave" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = ExtResource("7_p2lik")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
 anchor_right = 1.0
@@ -267,6 +407,7 @@ enemy_ai = false
 
 [node name="saumon_1" parent="Enemies" instance=ExtResource("29_i7bjo")]
 position = Vector2(12815, 458)
+script = ExtResource("38_kl5rc")
 hp = 1
 enemy_ai = false
 
@@ -331,16 +472,8 @@ unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="SizeLabel" type="Label" parent="UI"]
+[node name="AtomLabel" parent="UI" instance=ExtResource("57_r7g2o")]
 unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -100.0
-offset_right = 200.0
-grow_vertical = 0
-text = "1 atom!"
-vertical_alignment = 2
 
 [node name="GameOverLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

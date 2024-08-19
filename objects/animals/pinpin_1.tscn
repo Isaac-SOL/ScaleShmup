@@ -1,18 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2rv2i4um7l80"]
+[gd_scene load_steps=7 format=3 uid="uid://c2rv2i4um7l80"]
 
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_7f6sh"]
 [ext_resource type="PackedScene" uid="uid://b3eym3ickph6w" path="res://objects/projectiles/projectile_carotte.tscn" id="2_238go"]
+[ext_resource type="Script" path="res://scripts/patterns/element_multiple.gd" id="2_of27i"]
 [ext_resource type="Texture2D" uid="uid://c2y1epa37fc5" path="res://assets/textures/animals/pinpin_3.png" id="2_s4cnx"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0xnbd"]
-radius = 606.992
-height = 2057.2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54gys"]
 radius = 253.778
 height = 761.801
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0xnbd"]
+radius = 606.992
+height = 2057.2
+
 [node name="pinpin_1" instance=ExtResource("1_7f6sh")]
+script = ExtResource("2_of27i")
+amount = 3
+angle = 10.0
 size = 1944
 hp = 7776
 projectile = ExtResource("2_238go")
@@ -26,19 +30,19 @@ position = Vector2(-2, -36)
 scale = Vector2(84, 84)
 texture = ExtResource("2_s4cnx")
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-157, 236)
-rotation = 1.58279
-shape = SubResource("CapsuleShape2D_0xnbd")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(-501, -612)
 rotation = 1.58279
 shape = SubResource("CapsuleShape2D_54gys")
 
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(-157, 236)
+rotation = 1.58279
+shape = SubResource("CapsuleShape2D_0xnbd")
+
 [node name="HPBar" parent="HPBarAnchor" index="0"]
 position = Vector2(-176, -580)
 scale = Vector2(118.821, 60.339)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
 scale = Vector2(132.735, 127.629)

@@ -90,6 +90,8 @@ func shoot_single_projectile(proj: PackedScene, dir: Vector2,
 							 strength_player: float = player_projectile_speed_factor) -> Projectile:
 	var new_projectile: Projectile = proj.instantiate()
 	new_projectile.player = player_owned
+	if size < Singletons.player.size / 80:
+		new_projectile.damage_value *= Singletons.player.size / (80 * size)
 	Singletons.projectiles.add_child(new_projectile)
 	new_projectile.global_position = %ShootOrigin.global_position
 	new_projectile.global_rotation = dir.angle() - PI / 2
@@ -131,15 +133,15 @@ func destroy_no_effects():
 	queue_free()
 
 func destroy_threshold(threshold: int):
-	if size <= threshold:
+	if (size <= threshold and not player_owned) or size <= threshold / 10:
 		destroy_no_effects()
 
 func change_speed(new_speed: float):
 	direction = direction.normalized() * new_speed
 
 func give_to_player():
-	play_audio_scaled(%AudioDestroy, -12)
-	play_audio_scaled(%AudioWin, -16)
+	play_audio_scaled(%AudioDestroy, -18)
+	play_audio_scaled(%AudioWin, -24)
 	set_mode(true)
 	hp = size
 	shoot_strength = floori(shoot_strength * 1.7)
@@ -162,6 +164,7 @@ func _on_shoot_timer_timeout():
 			shoot((Singletons.player.global_position - %ShootOrigin.global_position).normalized())
 
 func instantiate_damage_label(pos: Vector2, damage: int):
+	if damage < Singletons.player.size / 200: return
 	var inst_pos: Vector2 = lerp(position, pos, 0.75)
 	var dmg_label: FlyingLabel = flying_label.instantiate()
 	dmg_label.text = str(damage)
@@ -170,6 +173,7 @@ func instantiate_damage_label(pos: Vector2, damage: int):
 	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
 
 func play_audio_scaled(source: AudioStreamPlayer, base_db: float):
+	if size < Singletons.player.size / 100: return
 	source.volume_db = base_db
 	source.play()
 
@@ -178,14 +182,16 @@ func _on_element_body_entered(body: Node2D):
 		if body is Projectile and not body.player and not move_to_player:
 			body.destroy()
 			if Singletons.player.immunity <= 0:
-				play_audio_scaled(%AudioHit, 0)
-				hp -= ceili(body.damage_value / 4)
+				if body.damage_value < Singletons.player.size / 20:
+					body.damage_value /= 10
+				play_audio_scaled(%AudioHit, -10)
+				hp -= ceili(body.damage_value / 8.0)
 				if hp < 0: hp = 0
 				hp_changed.emit(hp)
 				if hp == 0: destroy()
 	else:
 		if body is Projectile and body.player:
-			play_audio_scaled(%AudioHit, 0)
+			play_audio_scaled(%AudioHit, -10)
 			instantiate_damage_label(body.position, body.damage_value)
 			body.destroy()
 			hp -= body.damage_value
@@ -199,14 +205,14 @@ func _on_element_body_entered(body: Node2D):
 func _on_area_entered(area: Area2D):
 	if player_owned:
 		if area is Element and not area.player_owned and Singletons.player.immunity <= 0:
-			play_audio_scaled(%AudioHit, 0)
+			play_audio_scaled(%AudioHit, -10)
 			hp -= area.hp
 			if hp < 0: hp = 0
 			hp_changed.emit(hp)
 			if hp == 0: destroy()
 	else:
 		if area is Element and area.player_owned:
-			play_audio_scaled(%AudioHit, 0)
+			play_audio_scaled(%AudioHit, -10)
 			instantiate_damage_label(area.position, area.hp)
 			hp -= area.hp
 			var hp_ratio := float(hp) / max_hp

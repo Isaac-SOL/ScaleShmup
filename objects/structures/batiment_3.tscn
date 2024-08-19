@@ -61,25 +61,17 @@ position = Vector2(1150, -7484)
 shape = SubResource("CapsuleShape2D_nwfn1")
 
 [node name="CollisionShape2D" parent="." index="7"]
-unique_name_in_owner = false
 position = Vector2(-5121, 14662)
 rotation = 0.596146
 shape = SubResource("CapsuleShape2D_k146o")
-
-[node name="HPBarAnchor" parent="." index="8"]
-position = Vector2(0, 0)
-scale = Vector2(1, 1)
 
 [node name="HPBar" parent="HPBarAnchor" index="0"]
 position = Vector2(754, -22640)
 scale = Vector2(2542.56, 1291.14)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="9"]
-visible = true
 position = Vector2(891.499, 1042)
 scale = Vector2(1574.75, 2461.2)
 
 [node name="ShootTimer" parent="." index="10"]
 wait_time = 0.7
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

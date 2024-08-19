@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://diuwqpw6tmj5h"]
+
+[ext_resource type="Script" path="res://scripts/flying_label.gd" id="1_ggb18"]
+[ext_resource type="FontFile" uid="uid://c3o7p4o51tcg3" path="res://assets/fonts/ortland/Ortland.otf" id="2_5fuhu"]
+
+[node name="FlyingLabel" type="Node2D"]
+script = ExtResource("1_ggb18")
+text = "12345"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -201.0
+offset_top = -19.0
+offset_right = 199.0
+offset_bottom = 26.0
+pivot_offset = Vector2(201, 19)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_5fuhu")
+theme_override_font_sizes/font_size = 32
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1

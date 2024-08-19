@@ -48,4 +48,4 @@ position = Vector2(192, 2091.5)
 scale = Vector2(654.5, 1328.35)
 
 [node name="ShootTimer" parent="." index="8"]
-wait_time = 0.5
+wait_time = 1.23
