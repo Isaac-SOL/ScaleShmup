@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform float alpha = 1.0;
 uniform float mult_size : hint_range( 0.01, 100 ) = 1.0;
 uniform float fract_ampl : hint_range( 1.0, 10.0 ) = 1.0;
 uniform float pattern_size : hint_range( 1.0, 30.0 ) = 8.0;
@@ -56,7 +57,7 @@ void fragment() {
 	
 	
 	
-    COLOR = vec4(final_color,1);
+    COLOR = vec4(final_color,alpha);
 }
 
 

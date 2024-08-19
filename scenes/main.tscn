@@ -72,14 +72,15 @@ func set_target_zoom(target: Vector2):
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nk8ll"]
 shader = ExtResource("4_r4o50")
-shader_parameter/resolution = Vector2(1000, 1000)
+shader_parameter/offset = null
 shader_parameter/alpha = 1.0
-shader_parameter/zoom = 5.0
+shader_parameter/zoom = 2.0
 shader_parameter/time_speed = 0.5
-shader_parameter/color_cell_a = Color(0.184314, 0.364706, 0.729412, 1)
-shader_parameter/color_cell_b = Color(0, 0.282353, 0.25098, 1)
-shader_parameter/param_cell_c = Color(0.803922, 0.352941, 0.823529, 1)
-shader_parameter/param_cell_d = Color(0.377, 1.527, 1.897, 1)
+shader_parameter/color_cell_a = Color(0.184, 0.055, 0.729, 1)
+shader_parameter/color_cell_b = Color(0, 0.282, 0.251, 1)
+shader_parameter/param_cell_c = Color(0.804, 0.353, 0.867, 1)
+shader_parameter/param_cell_d = Color(0.377, 1.875, 1.897, 1)
+shader_parameter/pixel_size = 1
 
 [sub_resource type="Curve2D" id="Curve2D_aw4pu"]
 _data = {
@@ -104,7 +105,7 @@ target_node = NodePath("../Player")
 unique_name_in_owner = true
 script = SubResource("GDScript_1mht6")
 
-[node name="ShaderRect" type="ColorRect" parent="Shaker2D/Camera2D"]
+[node name="ShaderRect_geometry" type="ColorRect" parent="Shaker2D/Camera2D"]
 visible = false
 material = ExtResource("2_evyai")
 custom_minimum_size = Vector2(1000, 1000)
@@ -118,7 +119,7 @@ offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShaderRect2" type="ColorRect" parent="Shaker2D/Camera2D"]
+[node name="ShaderRect_cell" type="ColorRect" parent="Shaker2D/Camera2D"]
 material = SubResource("ShaderMaterial_nk8ll")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
