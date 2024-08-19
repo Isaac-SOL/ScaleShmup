@@ -1,6 +1,7 @@
 class_name Main extends Node2D
 
 var pause = false
+@onready var shader_rect = %ShaderRect_geometry
 
 func _ready():
 	Singletons.main = self
@@ -15,9 +16,9 @@ func _process(delta):
 	# Pause menus
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
-	%ShaderRect_geometry.scale = Vector2.ONE / %Camera2D.zoom
-	%ShaderRect_geometry.material.set_shader_parameter("mult_size", 0.5 / %Camera2D.zoom.x)
-	%ShaderRect_geometry.material.set_shader_parameter("offset", %Player.position / 400)
+	shader_rect.scale = Vector2.ONE / %Camera2D.zoom
+	shader_rect.material.set_shader_parameter("mult_size", 0.5 / %Camera2D.zoom.x)
+	shader_rect.material.set_shader_parameter("offset", %Player.position / 400)
 
 func set_camera_zoom(size: float):
 	%Camera2D.set_target_zoom(Vector2.ONE * (1 / size))

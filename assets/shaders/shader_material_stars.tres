@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://jccoiulhpafp"]
+
+[ext_resource type="Shader" path="res://assets/shaders/main_stars.gdshader" id="1_m55hd"]
+
+[resource]
+shader = ExtResource("1_m55hd")
+shader_parameter/mult_size = 1.0
+shader_parameter/offset = null
+shader_parameter/time_mult = 0.5
+shader_parameter/color_cell_a = Color(0, 0.749, 0.486, 1)
+shader_parameter/color_cell_b = Color(0.22, 0.039, 0.357, 1)
+shader_parameter/param_cell_c = Color(0, 0, 0.09, 1)
+shader_parameter/param_cell_d = Color(96, 478, 0, 1)

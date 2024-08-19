@@ -29,6 +29,7 @@ void fragment() {
 	vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
 	uv.x *= screen_size.x/screen_size.y ;
 	uv *= zoom;
+	//uv = mod(uv + vec2(1, 1), 2) - vec2(1, 1);
 	
 	float min_dist = 100.0;
 	vec2 grid_coords = floor(uv);
