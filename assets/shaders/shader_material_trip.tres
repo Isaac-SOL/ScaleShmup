@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://brv642opwryh3"]
+
+[ext_resource type="Shader" path="res://assets/shaders/main_trip.gdshader" id="1_jpe8j"]
+
+[resource]
+shader = ExtResource("1_jpe8j")
+shader_parameter/mult = 500.0
+shader_parameter/offset = 1.0
+shader_parameter/time_mult = 0.5
+shader_parameter/line_strenght = 0.5
+shader_parameter/color_cell_a = Color(0.184, 0.055, 0.729, 1)
+shader_parameter/color_cell_b = Color(0, 0.282, 0.251, 1)
+shader_parameter/param_cell_c = Color(0.804, 0.353, 0.867, 1)
+shader_parameter/param_cell_d = Color(0.377, 1.875, 1.897, 1)

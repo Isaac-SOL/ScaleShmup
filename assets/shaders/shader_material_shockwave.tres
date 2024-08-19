@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bosmbu8knq70j"]
+
+[ext_resource type="Shader" path="res://assets/shaders/main_shockwave.gdshader" id="1_cgvwg"]
+[ext_resource type="Texture2D" uid="uid://duy5fsmtkgulm" path="res://assets/textures/animals/humain_1.png" id="2_31m2m"]
+
+[resource]
+shader = ExtResource("1_cgvwg")
+shader_parameter/text_img = ExtResource("2_31m2m")
