@@ -4,8 +4,10 @@
 
 [resource]
 shader = ExtResource("1_2g05i")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/alpha = 1.0
 shader_parameter/mult_size = 1.0
-shader_parameter/fract_ampl = 1.0
+shader_parameter/fract_ampl = 2.0
 shader_parameter/pattern_size = 8.0
 shader_parameter/light_beam_size = 0.01
 shader_parameter/back_light_fact = 0.5
