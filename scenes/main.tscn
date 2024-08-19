@@ -107,7 +107,6 @@ script = SubResource("GDScript_1mht6")
 
 [node name="ShaderRect_geometry" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
-visible = false
 material = ExtResource("2_evyai")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
@@ -122,6 +121,8 @@ grow_vertical = 2
 pivot_offset = Vector2(500, 500)
 
 [node name="ShaderRect_cell" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_nk8ll")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
