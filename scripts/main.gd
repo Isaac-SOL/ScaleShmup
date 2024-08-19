@@ -3,6 +3,10 @@ class_name Main extends Node2D
 var pause = false
 @onready var shader_rect = %ShaderRect_geometry
 
+var previous_count: int = 1
+var mult_size_factor: float = 1
+var offset_factor: float = 1
+
 func _ready():
 	Singletons.main = self
 	Singletons.projectiles = %Projectiles
@@ -17,22 +21,45 @@ func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
 	shader_rect.scale = Vector2.ONE / %Camera2D.zoom
-	shader_rect.material.set_shader_parameter("mult_size", 0.5 / %Camera2D.zoom.x)
-	shader_rect.material.set_shader_parameter("offset", %Camera2D.global_position / 1000)
+	shader_rect.material.set_shader_parameter("mult_size", (0.5 * mult_size_factor) / %Camera2D.zoom.x)
+	shader_rect.material.set_shader_parameter("offset", %Camera2D.global_position / (1000 * offset_factor))
 
 func set_camera_zoom(size: float):
-	if size > 46656: size = 46656 + (size - 46656) / 2
+	print(size)
+	if size > 150: size = 150 + (size - 150) / 2
+	print(size)
 	%Camera2D.set_target_zoom(Vector2.ONE * (1 / size))
 
 func set_atom_count(count: int):
 	var fake_count: int = count
-	if count > 15:
+	if count > 15 and previous_count <= 15:
 		$EnemySpawner/Timer.wait_time = 0.66
 	else:
 		$EnemySpawner/Timer.wait_time = 1
+	if count > 150 and shader_rect != %ShaderRect_cell:
+		shader_rect.visible = false
+		mult_size_factor = 0.4
+		offset_factor = 2
+		shader_rect = %ShaderRect_cell
+		shader_rect.visible = true
+	if count > 2000 and shader_rect != %ShaderRect_geometry_2:
+		shader_rect.visible = false
+		mult_size_factor = 0.025
+		offset_factor = 35
+		shader_rect = %ShaderRect_geometry_2
+		shader_rect.visible = true
+	if count > 5000000 and shader_rect != %ShaderRect_cell_2:
+		shader_rect.visible = false
+		mult_size_factor = 0.01
+		offset_factor = 100
+		shader_rect = %ShaderRect_cell_2
+		shader_rect.visible = true
 	if count > 150:
 		fake_count = 150 + ((count - 150) ** 2)
-	%SizeLabel.text = str(fake_count) + " atoms!"
+	%AtomLabel.set_amount(fake_count)
+	if abs(count - previous_count) >= floori(count / 1.5):
+		%AtomLabel.animate(count > previous_count)
+	previous_count = count
 
 func _on_enemy_killed(enemy: Element):
 	%Player.add_element(enemy)

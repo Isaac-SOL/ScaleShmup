@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=69 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/main_cells.gdshader" id="4_r4o50"]
 [ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="5_dyv2q"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
+[ext_resource type="Shader" path="res://assets/shaders/main.gdshader" id="5_ueesb"]
 [ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="6_0r7if"]
 [ext_resource type="Material" uid="uid://jccoiulhpafp" path="res://assets/shaders/shader_material_stars.tres" id="6_6xqta"]
 [ext_resource type="PackedScene" uid="uid://d4hs57jskg0wy" path="res://objects/elements/molecule_2.tscn" id="7_lu0qn"]
@@ -60,6 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjtxlrtymbh8" path="res://objects/space/planete_7.tscn" id="45_7j36w"]
 [ext_resource type="PackedScene" uid="uid://bulpixfoca577" path="res://objects/space/planete_8.tscn" id="46_3nnm2"]
 [ext_resource type="PackedScene" uid="uid://vp2coe7of34" path="res://objects/space/planete_9.tscn" id="47_vtadc"]
+[ext_resource type="PackedScene" uid="uid://ji8uccvwr6yq" path="res://objects/atom_label.tscn" id="56_kd3dx"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
@@ -75,14 +77,41 @@ func set_target_zoom(target: Vector2):
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nk8ll"]
 shader = ExtResource("4_r4o50")
-shader_parameter/offset = null
+shader_parameter/offset = Vector2(0, 0)
 shader_parameter/alpha = 1.0
-shader_parameter/zoom = 2.0
-shader_parameter/time_speed = 0.5
-shader_parameter/color_cell_a = Color(0.184, 0.055, 0.729, 1)
-shader_parameter/color_cell_b = Color(0, 0.282, 0.251, 1)
-shader_parameter/param_cell_c = Color(0.804, 0.353, 0.867, 1)
-shader_parameter/param_cell_d = Color(0.377, 1.875, 1.897, 1)
+shader_parameter/mult_size = 1.0
+shader_parameter/time_speed = 0.1
+shader_parameter/color_cell_a = Color(0, 0.403922, 0.447059, 1)
+shader_parameter/color_cell_b = Color(0.0784314, 0.207843, 0.380392, 1)
+shader_parameter/param_cell_c = Color(-0.052, 0.388, 0.218, 1)
+shader_parameter/param_cell_d = Color(0.138, -2.422, -1.972, 1)
+shader_parameter/pixel_size = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cui6p"]
+shader = ExtResource("5_ueesb")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/alpha = 1.0
+shader_parameter/mult_size = 1.0
+shader_parameter/fract_ampl = 2.0
+shader_parameter/pattern_size = 16.0
+shader_parameter/light_beam_size = 0.01
+shader_parameter/back_light_fact = 0.1
+shader_parameter/time_mult = 0.1
+shader_parameter/color_a = Color(0, 0.279, 0.31, 1)
+shader_parameter/color_b = Color(0.0784314, 0.207843, 0.380392, 1)
+shader_parameter/param_c = Color(-0.052, 0.388, 0.218, 1)
+shader_parameter/param_d = Color(0.377, 1.527, 1.897, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uig8r"]
+shader = ExtResource("4_r4o50")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/alpha = 1.0
+shader_parameter/mult_size = 5.555
+shader_parameter/time_speed = 0.1
+shader_parameter/color_cell_a = Color(0, 0, 0, 1)
+shader_parameter/color_cell_b = Color(1, 1, 1, 1)
+shader_parameter/param_cell_c = Color(0.65, 0.65, 0.65, 1)
+shader_parameter/param_cell_d = Color(1, 1, 1, 1)
 shader_parameter/pixel_size = 1
 
 [sub_resource type="Curve2D" id="Curve2D_aw4pu"]
@@ -108,24 +137,7 @@ script = SubResource("GDScript_1mht6")
 
 [node name="ShaderRect_geometry" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
-visible = false
 material = ExtResource("2_evyai")
-custom_minimum_size = Vector2(1000, 1000)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 500.0
-offset_bottom = 500.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(500, 500)
-
-[node name="ShaderRect_trip" type="ColorRect" parent="Shaker2D/Camera2D"]
-unique_name_in_owner = true
-visible = false
-material = ExtResource("4_idq7l")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,6 +164,53 @@ offset_right = 500.0
 offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_geometry_2" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_cui6p")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_cell_2" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_uig8r")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1000.0
+offset_top = -1000.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_trip" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+visible = false
+material = ExtResource("4_idq7l")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
 
 [node name="ShaderRect_stars" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
@@ -167,6 +226,7 @@ offset_right = 500.0
 offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0, 500)
 
 [node name="ShaderRect_shockwave" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
@@ -182,6 +242,7 @@ offset_right = 500.0
 offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0, 500)
 
 [node name="Projectiles" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -214,16 +275,8 @@ unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="SizeLabel" type="Label" parent="UI"]
+[node name="AtomLabel" parent="UI" instance=ExtResource("56_kd3dx")]
 unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -100.0
-offset_right = 200.0
-grow_vertical = 0
-text = "1 atom!"
-vertical_alignment = 2
 
 [node name="GameOverLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

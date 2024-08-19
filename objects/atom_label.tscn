@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://ji8uccvwr6yq"]
+
+[ext_resource type="FontFile" uid="uid://c3o7p4o51tcg3" path="res://assets/fonts/ortland/Ortland.otf" id="1_4byjt"]
+[ext_resource type="PackedScene" uid="uid://diuwqpw6tmj5h" path="res://objects/flying_label_atoms.tscn" id="1_v1pyu"]
+
+[sub_resource type="GDScript" id="GDScript_hvjl5"]
+script/source = "extends VBoxContainer
+
+@export var positive_color: Color = Color.GREEN
+@export var negative_color: Color = Color.RED
+@export var flying_label: PackedScene
+
+var previous_amount: int = 1
+
+func str_separated(amount: int) -> String:
+	var amount_txt: String = str(amount)
+	var amount_separated: String = \"\"
+	var idx: int = 0
+	for c: String in amount_txt.reverse():
+		if idx % 3 == 0 and idx != 0:
+			amount_separated = \" \" + amount_separated
+		amount_separated = c + amount_separated
+		idx += 1
+	return amount_separated
+
+func set_amount(amount: int):
+	%LabelAtoms.text = str_separated(amount)
+	
+	var amount_diff := amount - previous_amount
+	if abs(amount_diff) > floori(amount / 10.0):
+		var diff_txt := str_separated(amount_diff)
+		if amount_diff > 0:
+			diff_txt = \"+\" + diff_txt
+		var new_label = flying_label.instantiate()
+		new_label.text = diff_txt
+		add_child(new_label)
+		new_label.position = Vector2(size.x / 2, 0)
+	
+	previous_amount = amount
+
+func animate(positive: bool):
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART)
+	tween.tween_property(self, \"modulate\", positive_color if positive else negative_color, 0.5).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(self, \"scale\", Vector2.ONE * 1.5, 0.5).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, \"modulate\", Color.WHITE, 0.5).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(self, \"scale\", Vector2.ONE, 0.5).set_ease(Tween.EASE_IN)
+	
+"
+
+[node name="AtomLabel" type="VBoxContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_right = 50.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 52)
+script = SubResource("GDScript_hvjl5")
+flying_label = ExtResource("1_v1pyu")
+
+[node name="LabelAtoms" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_4byjt")
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_4byjt")
+text = "Atoms"
+horizontal_alignment = 1
