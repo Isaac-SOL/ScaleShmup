@@ -57,13 +57,14 @@ float map(vec3 p, vec3 cPos) {
 
 void fragment() {
 	
-	vec2 uv = (SCREEN_UV * 2.0)-1.0;
+	vec2 uv = (UV * 2.0)-1.0;
 	vec2 uv0 = UV;
-	vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
+	//vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
+	vec2 screen_size = vec2(1920,1920);
 	uv.x *= screen_size.x/screen_size.y ;
 	uv *= mult_size;
 	uv += offset;
-	uv = mod(uv + vec2(1, 1), 2) - vec2(1, 1);
+	//uv = mod(uv + vec2(1, 1), 2) - vec2(1, 1);
 	vec4 fragCoord = FRAGCOORD;
 	
 	//vec2 p = (fragCoord.xy * 2.0 - screen_size.xy) / min(screen_size.x, screen_size.y);
