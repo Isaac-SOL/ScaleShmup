@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1hhf8iebvdp8"]
+
+[ext_resource type="PackedScene" uid="uid://b3eym3ickph6w" path="res://objects/projectiles/projectile_carotte.tscn" id="1_tcgnm"]
+[ext_resource type="Texture2D" uid="uid://eiqo1g7u0gng" path="res://assets/textures/animals/sprite_bubulle.png" id="2_32ahy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbc2j"]
+radius = 149.003
+
+[node name="ProjectileBubulle" instance=ExtResource("1_tcgnm")]
+damage_value = 1000
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(47.6796, 47.6796)
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(5, 70)
+texture = ExtResource("2_32ahy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" index="0"]
+position = Vector2(4.35, -4.5)
+scale = Vector2(1, 1)
+texture = ExtResource("2_32ahy")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D" index="1"]
+position = Vector2(-3.4, -7.7)
+scale = Vector2(1, 1)
+texture = ExtResource("2_32ahy")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(3, -6)
+shape = SubResource("CircleShape2D_dbc2j")

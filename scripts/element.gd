@@ -16,6 +16,8 @@ signal destroyed_by_player(element: Element)
 @export var shoot_strength: float = 10
 @export var player_projectile_speed_factor: float = 1
 @export var flying_label: PackedScene
+@export var shooting_anim: bool = true
+@export var enemy_ai: bool = true
 
 @export_group("Colors")
 @export var enemy_color: Color
@@ -24,6 +26,7 @@ signal destroyed_by_player(element: Element)
 var direction := Vector2.ZERO
 var move_to_player: bool = false
 var max_hp: int
+var anim_base_scale: Vector2
 
 var wander_time : float = 0.0
 var wander_countdown : float = 0.0
@@ -40,6 +43,7 @@ func _ready():
 	max_hp = hp
 	speed *= sqrt(size)
 	constant_rotation = randf_range(-PI / 2, PI / 2)
+	anim_base_scale = %Sprite2D.scale
 
 func _process(delta):
 	if player_owned:
@@ -49,7 +53,7 @@ func _process(delta):
 				move_to_player = false
 		else:
 			position += direction * delta
-	else:
+	elif enemy_ai:
 		wander_countdown -= delta
 		if wander_countdown < 0.0:
 			wander_time = randf_range(3.0, 8.0)
@@ -81,24 +85,46 @@ func set_mode(player_mode: bool):
 		set_deferred("collision_mask", ENEMY_MASK)
 		%Shadow.modulate = enemy_color
 
-func shoot(dir: Vector2):
-	play_audio_scaled(%AudioShoot, -20)
-	var new_projectile: Projectile = projectile.instantiate()
+func shoot_single_projectile(proj: PackedScene, dir: Vector2,
+							 strength_enemy: float = shoot_strength,
+							 strength_player: float = player_projectile_speed_factor) -> Projectile:
+	var new_projectile: Projectile = proj.instantiate()
 	new_projectile.player = player_owned
 	Singletons.projectiles.add_child(new_projectile)
-	new_projectile.global_position = global_position
+	new_projectile.global_position = %ShootOrigin.global_position
+	new_projectile.global_rotation = dir.angle() - PI / 2
 	var proj_speed: float
 	if player_owned:
-		proj_speed = Singletons.player.sqrt_size * player_projectile_speed_factor
+		proj_speed = Singletons.player.sqrt_size * strength_player
 	else:
-		proj_speed = shoot_strength
+		proj_speed = strength_enemy
 	new_projectile.apply_impulse(dir * proj_speed)
+	return new_projectile
+
+func shoot(dir: Vector2):
+	play_audio_scaled(%AudioShoot, -20)
+	shoot_single_projectile(projectile, dir)
+
+func shoot_anim():
+	if shooting_anim:
+		var tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+		tween.tween_property(%Sprite2D, "scale", anim_base_scale * Vector2(0.9, 1.1), 0.25)
+		tween.tween_property(%Sprite2D, "scale", anim_base_scale * Vector2(1.1, 0.9), 0.25)
+		tween.tween_property(%Sprite2D, "scale", anim_base_scale, 0.25)
 
 func destroy():
 	play_audio_scaled(%AudioDestroy, -6)
 	Singletons.shaker.shake(sqrt(size), 1)
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	direction = Vector2.ZERO
+	var tween = get_tree().create_tween().set_parallel()
+	tween.tween_property(%Sprite2D, "scale", %Sprite2D.scale * 1.3, 0.5)
+	tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5)
+	tween.tween_property(%Shadow, "scale", %Shadow.scale * 1.3, 0.5)
+	tween.tween_property(%Shadow, "modulate", Color.TRANSPARENT, 0.5)
+	tween.chain().tween_callback(func(): queue_free())
 	destroyed.emit(self)
-	queue_free()
 
 func destroy_no_effects():
 	destroyed.emit(self)
@@ -125,12 +151,15 @@ func _on_shoot_timer_timeout():
 	if player_owned:
 		#if Input.is_action_pressed("shoot"):
 		var shoot_position: Vector2 = get_global_mouse_position()
-		var shoot_direction: Vector2 = (shoot_position - global_position).normalized()
+		var shoot_direction: Vector2 = (shoot_position - %ShootOrigin.global_position).normalized()
+		shoot_anim()
 		shoot(shoot_direction)
 		if position.length() > Singletons.player.radius * 2:
 			Singletons.player._on_area_exited(self)
 	elif %VisibleOnScreenNotifier2D.is_on_screen():
-		shoot((Singletons.player.global_position - global_position).normalized())
+		if enemy_ai or Singletons.player.size > size / 10:
+			shoot_anim()
+			shoot((Singletons.player.global_position - %ShootOrigin.global_position).normalized())
 
 func instantiate_damage_label(pos: Vector2, damage: int):
 	var inst_pos: Vector2 = lerp(position, pos, 0.75)
@@ -150,7 +179,7 @@ func _on_element_body_entered(body: Node2D):
 			body.destroy()
 			if Singletons.player.immunity <= 0:
 				play_audio_scaled(%AudioHit, 0)
-				hp -= body.damage_value
+				hp -= ceili(body.damage_value / 4)
 				if hp < 0: hp = 0
 				hp_changed.emit(hp)
 				if hp == 0: destroy()
@@ -186,8 +215,9 @@ func _on_area_entered(area: Area2D):
 			if hp <= 0: destroy()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	destroy_no_effects()
+	if enemy_ai:
+		destroy_no_effects()
 
 func _on_kill_timer_timeout():
-	if not %VisibleOnScreenNotifier2D.is_on_screen():
+	if not %VisibleOnScreenNotifier2D.is_on_screen() and enemy_ai:
 		destroy_no_effects()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk7v8y3xs0bym"]
+
+[ext_resource type="PackedScene" uid="uid://kapfnc6giyif" path="res://objects/projectiles/projectile_caillou.tscn" id="1_8ein0"]
+[ext_resource type="Texture2D" uid="uid://cbimmxn2k411g" path="res://assets/textures/structures/sprite_caillou_2.png" id="2_m4lr5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2tevb"]
+radius = 1164.47
+
+[node name="ProjectileCaillouFeu" instance=ExtResource("1_8ein0")]
+linear_damp = 0.0
+damage_value = 48000
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_m4lr5")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_2tevb")

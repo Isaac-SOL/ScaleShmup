@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwqnrvlniixjj"]
+[gd_scene load_steps=6 format=3 uid="uid://dwqnrvlniixjj"]
 
 [ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_pkdpn"]
 [ext_resource type="Texture2D" uid="uid://bdo2mc0i7hreu" path="res://assets/textures/cells/cellule_1.png" id="2_kx6np"]
+[ext_resource type="Script" path="res://scripts/patterns/element_omni.gd" id="2_mib4y"]
+[ext_resource type="PackedScene" uid="uid://c7lotmyor5f3c" path="res://objects/projectiles/projectile_mid_molecule.tscn" id="3_jhn3e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ieif5"]
 radius = 263.03
 
 [node name="cell_11" instance=ExtResource("1_pkdpn")]
+script = ExtResource("2_mib4y")
+projectile = ExtResource("3_jhn3e")
+shoot_strength = 400.0
+player_projectile_speed_factor = 100.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_kx6np")
@@ -14,3 +20,6 @@ texture = ExtResource("2_kx6np")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(32, 24)
 shape = SubResource("CircleShape2D_ieif5")
+
+[node name="ShootTimer" parent="." index="5"]
+wait_time = 5.65

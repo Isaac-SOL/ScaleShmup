@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs6px4714q04x"]
+[gd_scene load_steps=5 format=3 uid="uid://bs6px4714q04x"]
 
 [ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="1_47sm7"]
+[ext_resource type="Script" path="res://scripts/patterns/element_multiple.gd" id="2_8qiap"]
+[ext_resource type="PackedScene" uid="uid://b3eym3ickph6w" path="res://objects/projectiles/projectile_carotte.tscn" id="2_pttkx"]
 [ext_resource type="Texture2D" uid="uid://2gkam5scd5ou" path="res://assets/textures/animals/humain_2.png" id="2_qmx3p"]
 
 [node name="human_2" instance=ExtResource("1_47sm7")]
+script = ExtResource("2_8qiap")
+amount = 6
+angle = 50.0
+projectile = ExtResource("2_pttkx")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(52.1007, 52.1007)

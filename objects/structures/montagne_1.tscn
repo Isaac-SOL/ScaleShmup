@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://csy4durf3ssu2"]
+[gd_scene load_steps=9 format=3 uid="uid://csy4durf3ssu2"]
 
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="1_awnp8"]
 [ext_resource type="Texture2D" uid="uid://7v1dqqjdgn8t" path="res://assets/textures/structures/montagne.png" id="2_lu1oh"]
+[ext_resource type="Script" path="res://scripts/patterns/element_full_random.gd" id="2_xql1j"]
+[ext_resource type="PackedScene" uid="uid://kapfnc6giyif" path="res://objects/projectiles/projectile_caillou.tscn" id="3_dswxw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jj01j"]
 radius = 4266.0
@@ -20,9 +22,12 @@ radius = 2333.0
 height = 7952.0
 
 [node name="batiment_1" instance=ExtResource("1_awnp8")]
+script = ExtResource("2_xql1j")
 size = 746496
-hp = 2985984
-shoot_strength = 18000.0
+hp = 447898
+projectile = ExtResource("3_dswxw")
+shoot_strength = 40000.0
+player_projectile_speed_factor = 100.0
 
 [node name="Shadow" parent="." index="0"]
 position = Vector2(-554, 3300)
@@ -52,6 +57,13 @@ position = Vector2(4460, -1684)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_644ks")
 
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(-58, -12562)
+scale = Vector2(2978.33, 1512.43)
+
 [node name="VisibleOnScreenNotifier2D" parent="." index="7"]
 position = Vector2(-939, 3395.25)
 scale = Vector2(2818.95, 1689.07)
+
+[node name="ShootTimer" parent="." index="8"]
+wait_time = 0.35

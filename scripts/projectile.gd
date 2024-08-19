@@ -37,15 +37,19 @@ func create(sca: float = 1):
 	visible = true
 
 func destroy():
-	queue_free()
-	return
-	%Sprite2D.scale = Vector2.ONE
-	%CollisionShape2D.shape.radius = 3
-	$VisibleOnScreenNotifier2D.scale = Vector2.ONE
-	if player:
-		Singletons.player_projectile_pool.destroy_projectile(self)
-	else:
-		queue_free()
+	# Faire une petite anim ici
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	set_deferred("freeze", true)
+	var tween = get_tree().create_tween().set_parallel()
+	tween.tween_property(%Sprite2D, "scale", %Sprite2D.scale * 1.3, 0.5)
+	tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5)
+	tween.tween_property(%Shadow, "scale", %Shadow.scale * 1.3, 0.5)
+	tween.tween_property(%Shadow, "modulate", Color.TRANSPARENT, 0.5)
+	tween.chain().tween_callback(func(): queue_free())
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	destroy()
+
+func _on_kill_timer_timeout():
 	destroy()

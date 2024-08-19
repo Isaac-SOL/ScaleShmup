@@ -13,7 +13,8 @@ size = Vector2(205, 171.398)
 [node name="cell_10" instance=ExtResource("1_ucpy8")]
 size = 288
 hp = 2304
-shoot_strength = 600.0
+shoot_strength = 800.0
+player_projectile_speed_factor = 200.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_uewl2")
@@ -26,3 +27,6 @@ shape = SubResource("CapsuleShape2D_sq0ls")
 position = Vector2(-49, -97)
 rotation = 1.42124
 shape = SubResource("RectangleShape2D_m2g1b")
+
+[node name="ShootTimer" parent="." index="6"]
+wait_time = 1.9

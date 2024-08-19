@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://hucawvxp2i04"]
+
+[ext_resource type="PackedScene" uid="uid://kapfnc6giyif" path="res://objects/projectiles/projectile_caillou.tscn" id="1_vdkq0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tcsux"]
+radius = 8189.91
+
+[node name="ProjectileCaillouGros" instance=ExtResource("1_vdkq0")]
+linear_damp = 0.0
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(2339.3, 2339.3)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1440, 1440)
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1199, 882)
+shape = SubResource("CircleShape2D_tcsux")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+scale = Vector2(1787.4, 1626.3)

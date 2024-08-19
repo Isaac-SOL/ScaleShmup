@@ -12,7 +12,7 @@ height = 576.0
 size = 144
 hp = 1152
 projectile = ExtResource("2_p5ngk")
-shoot_strength = 400.0
+shoot_strength = 550.0
 
 [node name="Shadow" parent="." index="0"]
 scale = Vector2(18.675, 18.675)

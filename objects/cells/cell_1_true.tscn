@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://crpvbkcslfnbg"]
+
+[ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_0fgjh"]
+[ext_resource type="Script" path="res://scripts/patterns/element_slight_random.gd" id="2_odrna"]
+[ext_resource type="PackedScene" uid="uid://c7lotmyor5f3c" path="res://objects/projectiles/projectile_mid_molecule.tscn" id="3_hagfe"]
+
+[node name="cell_1_true" instance=ExtResource("1_0fgjh")]
+script = ExtResource("2_odrna")
+spread_angle = 30.0
+projectile = ExtResource("3_hagfe")
+
+[node name="ShootTimer" parent="." index="5"]
+wait_time = 0.55

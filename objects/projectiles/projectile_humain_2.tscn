@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjkenwylwadtf"]
+
+[ext_resource type="PackedScene" uid="uid://i16royi2owce" path="res://objects/projectiles/projectile_humain.tscn" id="1_fujca"]
+[ext_resource type="Texture2D" uid="uid://cbmqsrpjhyvip" path="res://assets/textures/animals/humain_6.png" id="2_vvkvk"]
+
+[node name="ProjectileHumain2" instance=ExtResource("1_fujca")]
+damage_value = 6300
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_vvkvk")

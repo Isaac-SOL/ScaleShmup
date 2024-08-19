@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5qveao6r23yv"]
+[gd_scene load_steps=5 format=3 uid="uid://c5qveao6r23yv"]
 
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="1_li1me"]
 [ext_resource type="Texture2D" uid="uid://dl5acpmtxy4il" path="res://assets/textures/space/planete_1.png" id="2_23lh7"]
+[ext_resource type="PackedScene" uid="uid://hucawvxp2i04" path="res://objects/projectiles/projectile_caillou_gros.tscn" id="2_dhm4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6c44g"]
 radius = 50363.9
 
 [node name="planete_1" instance=ExtResource("1_li1me")]
 size = 6718464
-hp = 26873856
-shoot_strength = 54000.0
+hp = 6718464
+projectile = ExtResource("2_dhm4t")
+shoot_strength = 200000.0
+shooting_anim = false
 
 [node name="Shadow" parent="." index="0"]
 scale = Vector2(2956.29, 2956.29)
@@ -22,7 +25,7 @@ texture = ExtResource("2_23lh7")
 shape = SubResource("CircleShape2D_6c44g")
 
 [node name="HPBar" parent="HPBarAnchor" index="0"]
-position = Vector2(-101, -36533)
+position = Vector2(-101, -49333)
 scale = Vector2(9321.96, 4733.81)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]

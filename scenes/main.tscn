@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=60 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
 [ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="4_4ge4g"]
 [ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="4_jaagb"]
-[ext_resource type="Script" path="res://objects/kill_area.gd" id="5_axofq"]
 [ext_resource type="PackedScene" uid="uid://bp8nk7i8awjel" path="res://objects/elements/atom_3.tscn" id="5_dyv2q"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="5_rev7c"]
 [ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="6_0r7if"]
@@ -23,9 +22,9 @@
 [ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="11_ic8d2"]
 [ext_resource type="PackedScene" uid="uid://cl0m6gm6l8jxk" path="res://objects/elements/molecule_7.tscn" id="12_ivwwh"]
 [ext_resource type="PackedScene" uid="uid://dpyloqnlh7sqr" path="res://objects/elements/molecule_8.tscn" id="13_tyumn"]
-[ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="14_t525q"]
 [ext_resource type="PackedScene" uid="uid://tib2bdwk55d6" path="res://objects/cells/cell_2.tscn" id="15_cf78x"]
 [ext_resource type="PackedScene" uid="uid://ccfbvyst2y517" path="res://objects/cells/cell_3.tscn" id="16_k0rki"]
+[ext_resource type="PackedScene" uid="uid://crpvbkcslfnbg" path="res://objects/cells/cell_1_true.tscn" id="17_33twd"]
 [ext_resource type="PackedScene" uid="uid://cj76ecev5r8n8" path="res://objects/cells/cell_4.tscn" id="17_hiiu3"]
 [ext_resource type="PackedScene" uid="uid://cfw32dsbkwx4s" path="res://objects/cells/cell_5.tscn" id="18_yv12n"]
 [ext_resource type="PackedScene" uid="uid://d3j2pxpaq8m3o" path="res://objects/cells/cell_6.tscn" id="19_l6nx0"]
@@ -41,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://c5rs78vb5up1u" path="res://objects/animals/saumon_1.tscn" id="30_3i33a"]
 [ext_resource type="PackedScene" uid="uid://86qtcth3i5lm" path="res://objects/animals/human_4.tscn" id="31_3qrwx"]
 [ext_resource type="PackedScene" uid="uid://bvrhraiw1sqn5" path="res://objects/animals/human_5.tscn" id="32_is5d3"]
+[ext_resource type="PackedScene" uid="uid://cxex1s1m0r7ml" path="res://objects/animals/human_3.tscn" id="32_tvour"]
 [ext_resource type="PackedScene" uid="uid://b3lc8rh2av8tg" path="res://objects/animals/human_6.tscn" id="33_iby7y"]
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="34_enks2"]
 [ext_resource type="PackedScene" uid="uid://drxcuaatqngdl" path="res://objects/structures/batiment_2.tscn" id="35_tcq38"]
@@ -74,8 +74,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 432, -300, 0, 0, 0, 0, 427, 327, 0, 0, 0, 0, -490, 307, 0, 0, 0, 0, -480, -301, 0, 0, 0, 0, 431, -299)
 }
 point_count = 5
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_slu4l"]
 
 [sub_resource type="Theme" id="Theme_rx576"]
 default_font_size = 75
@@ -118,8 +116,8 @@ unique_name_in_owner = true
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("3_4mhxf")
-enemies = Array[PackedScene]([ExtResource("4_4ge4g"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("14_t525q"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0"), ExtResource("25_d1f3q"), ExtResource("26_6q63m"), ExtResource("27_y577c"), ExtResource("29_twjg8"), ExtResource("30_3i33a"), ExtResource("31_3qrwx"), ExtResource("32_is5d3"), ExtResource("33_iby7y"), ExtResource("34_enks2"), ExtResource("35_tcq38"), ExtResource("36_86o4y"), ExtResource("37_ibako"), ExtResource("38_ixve3"), ExtResource("39_vsdmy"), ExtResource("40_bs7jt"), ExtResource("41_q3wkh"), ExtResource("42_ojy14"), ExtResource("43_coca7"), ExtResource("44_oauir"), ExtResource("45_7j36w"), ExtResource("46_3nnm2"), ExtResource("47_vtadc")])
-weights = Array[float]([10.0, 10.0, 1.0, 3.5, 3.5, 3.5, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.1, 1.0, 1.0, 1.0, 1.0, 0.3, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.03, 0.2, 0.2])
+enemies = Array[PackedScene]([ExtResource("4_4ge4g"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("29_twjg8"), ExtResource("17_33twd"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0"), ExtResource("27_y577c"), ExtResource("30_3i33a"), ExtResource("25_d1f3q"), ExtResource("26_6q63m"), ExtResource("32_tvour"), ExtResource("31_3qrwx"), ExtResource("32_is5d3"), ExtResource("33_iby7y"), ExtResource("34_enks2"), ExtResource("35_tcq38"), ExtResource("36_86o4y"), ExtResource("37_ibako"), ExtResource("38_ixve3"), ExtResource("39_vsdmy"), ExtResource("40_bs7jt"), ExtResource("41_q3wkh"), ExtResource("42_ojy14"), ExtResource("43_coca7"), ExtResource("44_oauir"), ExtResource("45_7j36w"), ExtResource("46_3nnm2"), ExtResource("47_vtadc")])
+weights = Array[float]([400.0, 400.0, 40.0, 43.8, 43.8, 43.8, 37.5, 37.5, 25.0, 25.0, 25.0, 2.5, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 1.0, 9.09, 6.0, 6.0, 2.5, 0.2, 2.5, 2.5, 2.5, 2.5, 1.0, 1.0, 1.0, 1.0, 1.0, 0.111, 0.111, 0.111, 0.111, 0.111, 0.01, 0.111, 0.111, 0.111])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true
@@ -135,31 +133,6 @@ rotation = 1.57877
 
 [node name="Player" parent="." instance=ExtResource("1_3qqml")]
 unique_name_in_owner = true
-
-[node name="KillArea" type="Area2D" parent="Player"]
-process_mode = 4
-collision_layer = 16
-collision_mask = 14
-script = ExtResource("5_axofq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/KillArea"]
-position = Vector2(0, 500)
-shape = SubResource("WorldBoundaryShape2D_slu4l")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/KillArea"]
-position = Vector2(0, -500)
-rotation = 3.14159
-shape = SubResource("WorldBoundaryShape2D_slu4l")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Player/KillArea"]
-position = Vector2(1000, 0)
-rotation = -1.5708
-shape = SubResource("WorldBoundaryShape2D_slu4l")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Player/KillArea"]
-position = Vector2(-1000, 0)
-rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_slu4l")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -246,6 +219,4 @@ visible = false
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="killed" from="Player" to="." method="_on_player_killed"]
-[connection signal="area_entered" from="Player/KillArea" to="Player/KillArea" method="_on_area_entered"]
-[connection signal="body_entered" from="Player/KillArea" to="Player/KillArea" method="_on_body_entered"]
 [connection signal="pressed" from="GameOverLayer/GameOver/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

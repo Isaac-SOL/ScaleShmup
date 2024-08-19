@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj76ecev5r8n8"]
+[gd_scene load_steps=5 format=3 uid="uid://cj76ecev5r8n8"]
 
 [ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_1tlks"]
 [ext_resource type="Texture2D" uid="uid://b38o2ky0qyjkc" path="res://assets/textures/cells/cellule_8.png" id="2_4sw37"]
+[ext_resource type="Script" path="res://scripts/patterns/element_alternate_cardinal.gd" id="2_w1tkr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fejtv"]
 radius = 252.01
 
 [node name="cell_4" instance=ExtResource("1_1tlks")]
+script = ExtResource("2_w1tkr")
+shoot_strength = 450.0
+player_projectile_speed_factor = 125.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_4sw37")
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CircleShape2D_fejtv")
+
+[node name="ShootTimer" parent="." index="5"]
+wait_time = 1.55

@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxgs4aoyn2aue"]
+[gd_scene load_steps=9 format=3 uid="uid://cxgs4aoyn2aue"]
 
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="1_egy0j"]
+[ext_resource type="Script" path="res://scripts/patterns/element_slight_random_burst.gd" id="2_ax1qj"]
 [ext_resource type="Texture2D" uid="uid://cyqf5do60fbu2" path="res://assets/textures/structures/volcan.png" id="2_y50l3"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upbth"]
-radius = 3176.0
-height = 54170.0
+[ext_resource type="PackedScene" uid="uid://dk7v8y3xs0bym" path="res://objects/projectiles/projectile_caillou_feu.tscn" id="3_dfxx5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_14hks"]
 radius = 6622.0
@@ -19,10 +17,20 @@ height = 12678.0
 radius = 4826.0
 height = 16978.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upbth"]
+radius = 3176.0
+height = 54170.0
+
 [node name="batiment_1" instance=ExtResource("1_egy0j")]
+script = ExtResource("2_ax1qj")
+amount = 10
+spread_angle = 35.0
+spread_strength = 0.5
+shoot_up = true
 size = 746496
-hp = 2985984
-shoot_strength = 36000.0
+hp = 597197
+projectile = ExtResource("3_dfxx5")
+shoot_strength = 22000.0
 
 [node name="Shadow" parent="." index="0"]
 position = Vector2(-778, 3202)
@@ -32,10 +40,8 @@ scale = Vector2(1174.59, 789.781)
 scale = Vector2(512, 512)
 texture = ExtResource("2_y50l3")
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-1099, 10458)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_upbth")
+[node name="ShootOrigin" parent="." index="2"]
+position = Vector2(-2263, -6698)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(-1643, 5746)
@@ -52,6 +58,23 @@ position = Vector2(3374, -3132)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qv5bt")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
+[node name="CollisionShape2D" parent="." index="6"]
+unique_name_in_owner = false
+position = Vector2(-1099, 10458)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_upbth")
+
+[node name="HPBarAnchor" parent="." index="7"]
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(-229, -17353)
+scale = Vector2(3281.19, 1666.23)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="8"]
+visible = true
 position = Vector2(-441.5, 2162)
 scale = Vector2(3186.25, 1929.7)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

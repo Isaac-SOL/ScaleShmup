@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyjlm451otxoi"]
+[gd_scene load_steps=8 format=3 uid="uid://cyjlm451otxoi"]
 
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_xl7cn"]
+[ext_resource type="Script" path="res://scripts/patterns/element_staggered.gd" id="2_0tww6"]
 [ext_resource type="PackedScene" uid="uid://bteuruc6fwxr3" path="res://objects/projectiles/projectile_small_molecule.tscn" id="2_a0in4"]
 [ext_resource type="Texture2D" uid="uid://cscm8eqp15uht" path="res://assets/textures/elements/sprite_molecule_6.png" id="2_onijy"]
 
@@ -17,6 +18,9 @@ radius = 20.5108
 height = 123.253
 
 [node name="molecule_6" instance=ExtResource("1_xl7cn")]
+script = ExtResource("2_0tww6")
+stagger_amount = 3
+stagger_interval = 0.35
 size = 16
 hp = 64
 projectile = ExtResource("2_a0in4")
@@ -50,3 +54,6 @@ scale = Vector2(14.6359, 7.43228)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="6"]
 scale = Vector2(14.705, 14.14)
+
+[node name="ShootTimer" parent="." index="7"]
+wait_time = 8.15

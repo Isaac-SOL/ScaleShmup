@@ -8,7 +8,7 @@ radius = 86621.9
 
 [node name="planete_4" instance=ExtResource("1_4gi4c")]
 size = 13436928
-hp = 53747712
+hp = 13436928
 shoot_strength = 81000.0
 
 [node name="Shadow" parent="." index="0"]

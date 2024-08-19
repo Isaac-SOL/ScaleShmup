@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://btx4vmnuhkadk"]
 
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="1_vyhwe"]
-[ext_resource type="PackedScene" uid="uid://b3eym3ickph6w" path="res://objects/projectiles/projectile_carotte.tscn" id="2_b5j8u"]
+[ext_resource type="PackedScene" uid="uid://f3wvc01wtyco" path="res://objects/projectiles/projectile_champi.tscn" id="2_euiot"]
 [ext_resource type="Texture2D" uid="uid://duy5fsmtkgulm" path="res://assets/textures/animals/humain_1.png" id="2_n0acp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dwo43"]
@@ -9,10 +9,10 @@ radius = 837.289
 height = 4189.09
 
 [node name="human_1" instance=ExtResource("1_vyhwe")]
-size = 7776
-hp = 31104
-projectile = ExtResource("2_b5j8u")
-shoot_strength = 1500.0
+size = 9331
+hp = 21773
+projectile = ExtResource("2_euiot")
+shoot_strength = 2000.0
 
 [node name="Shadow" parent="." index="0"]
 scale = Vector2(53.685, 116.725)

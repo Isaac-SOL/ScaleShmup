@@ -17,14 +17,18 @@ func _process(delta):
 		pauseMenu()
 	%ShaderRect.scale = Vector2.ONE / %Camera2D.zoom
 	%ShaderRect.material.set_shader_parameter("mult_size", 0.5 / %Camera2D.zoom.x)
-	%ShaderRect.material.set_shader_parameter("offset", %Player.position / 400)
+	%ShaderRect.material.set_shader_parameter("offset", %Camera2D.global_position / 1000)
 
 func set_camera_zoom(size: float):
+	if size > 46656: size = 46656 + (size - 46656) / 2
 	%Camera2D.set_target_zoom(Vector2.ONE * (1 / size))
-	$Player/KillArea.set_kill_scale(size)
 
 func set_atom_count(count: int):
 	var fake_count: int = count
+	if count > 15:
+		$EnemySpawner/Timer.wait_time = 0.66
+	else:
+		$EnemySpawner/Timer.wait_time = 1
 	if count > 150:
 		fake_count = 150 + ((count - 150) ** 2)
 	%SizeLabel.text = str(fake_count) + " atoms!"

@@ -9,10 +9,9 @@ size = Vector2(6272, 16103)
 
 [node name="batiment_1" instance=ExtResource("1_ftsp2")]
 size = 46656
-hp = 186624
+hp = 46656
 projectile = ExtResource("2_fl2up")
-shoot_strength = 4500.0
-player_projectile_speed_factor = 1.0
+shoot_strength = 6000.0
 
 [node name="Shadow" parent="." index="0"]
 position = Vector2(-266.499, 642.001)

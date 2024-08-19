@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cch1s7mx0rr5r"
-path="res://.godot/imported/galaxie_3.png-439dbdc876635eea1136a4973bd6261b.ctex"
+uid="uid://dvy7w3j5le136"
+path="res://.godot/imported/sprite_caillou_1.png-4cf5aad8bffe05e45a39c484854104c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/galaxies/galaxie_3.png"
-dest_files=["res://.godot/imported/galaxie_3.png-439dbdc876635eea1136a4973bd6261b.ctex"]
+source_file="res://assets/textures/structures/sprite_caillou_1.png"
+dest_files=["res://.godot/imported/sprite_caillou_1.png-4cf5aad8bffe05e45a39c484854104c5.ctex"]
 
 [params]
 

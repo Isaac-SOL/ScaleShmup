@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://tib2bdwk55d6"]
+[gd_scene load_steps=5 format=3 uid="uid://tib2bdwk55d6"]
 
 [ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_441qq"]
 [ext_resource type="Texture2D" uid="uid://t1wlfcl76bir" path="res://assets/textures/cells/cellule_10.png" id="2_3cg5j"]
+[ext_resource type="Script" path="res://scripts/patterns/element_slight_random.gd" id="2_t2ull"]
+[ext_resource type="PackedScene" uid="uid://c7lotmyor5f3c" path="res://objects/projectiles/projectile_mid_molecule.tscn" id="3_yiju4"]
 
 [node name="cell_2" instance=ExtResource("1_441qq")]
+script = ExtResource("2_t2ull")
+spread_angle = 30.0
+projectile = ExtResource("3_yiju4")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_3cg5j")
@@ -11,3 +16,6 @@ texture = ExtResource("2_3cg5j")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(37, 18)
 rotation = 0.0
+
+[node name="ShootTimer" parent="." index="5"]
+wait_time = 0.55

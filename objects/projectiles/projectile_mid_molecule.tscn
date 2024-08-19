@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7lotmyor5f3c"]
+
+[ext_resource type="PackedScene" uid="uid://bteuruc6fwxr3" path="res://objects/projectiles/projectile_small_molecule.tscn" id="1_44cb4"]
+[ext_resource type="Texture2D" uid="uid://c1kkhxriqogbl" path="res://assets/textures/elements/sprite_molecule_4.png" id="2_pugcx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cgl3n"]
+radius = 12.0
+height = 46.0
+
+[node name="ProjectileMidMolecule" instance=ExtResource("1_44cb4")]
+damage_value = 24
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, 0)
+rotation = 0.0
+texture = ExtResource("2_pugcx")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-2, -3)
+shape = SubResource("CapsuleShape2D_cgl3n")
