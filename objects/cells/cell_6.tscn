@@ -1,13 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3j2pxpaq8m3o"]
+[gd_scene load_steps=5 format=3 uid="uid://d3j2pxpaq8m3o"]
 
 [ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_r3adh"]
 [ext_resource type="Texture2D" uid="uid://cq2yn64hthkpc" path="res://assets/textures/cells/cellule_6.png" id="2_6ksea"]
+[ext_resource type="Script" path="res://scripts/patterns/element_multiple.gd" id="2_e4lex"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ycjck"]
 radius = 160.486
 height = 576.0
 
 [node name="cell_6" instance=ExtResource("1_r3adh")]
+script = ExtResource("2_e4lex")
+amount = 2
+angle = 35.0
+size = 216
+shoot_strength = 450.0
+player_projectile_speed_factor = 125.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_6ksea")
@@ -15,3 +22,6 @@ texture = ExtResource("2_6ksea")
 [node name="CollisionShape2D" parent="." index="2"]
 rotation = -0.118664
 shape = SubResource("CapsuleShape2D_ycjck")
+
+[node name="ShootTimer" parent="." index="5"]
+wait_time = 2.95

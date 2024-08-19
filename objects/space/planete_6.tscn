@@ -8,7 +8,7 @@ radius = 62396.1
 
 [node name="planete_6" instance=ExtResource("1_426nd")]
 size = 10077696
-hp = 40310784
+hp = 10077696
 shoot_strength = 64800.0
 
 [node name="Sprite2D" parent="." index="1"]

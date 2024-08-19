@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bw7x4ovwd0gc2"]
+[gd_scene load_steps=10 format=3 uid="uid://bw7x4ovwd0gc2"]
 
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="1_yjfjs"]
 [ext_resource type="Texture2D" uid="uid://d141s8fhhlu86" path="res://assets/textures/structures/batiment_3.png" id="2_dcc1b"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k146o"]
-radius = 3130.9
-height = 15949.5
+[ext_resource type="PackedScene" uid="uid://djfplpmtcbff6" path="res://objects/projectiles/projectile_humain_3.tscn" id="2_iu0ta"]
+[ext_resource type="Script" path="res://scripts/patterns/element_up.gd" id="2_sk6ac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muv4j"]
 
@@ -21,10 +19,17 @@ height = 14286.0
 radius = 1471.0
 height = 17640.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k146o"]
+radius = 3130.9
+height = 15949.5
+
 [node name="batiment_3" instance=ExtResource("1_yjfjs")]
+script = ExtResource("2_sk6ac")
 size = 373248
-hp = 1492992
-shoot_strength = 18000.0
+hp = 298598
+projectile = ExtResource("2_iu0ta")
+shoot_strength = 22000.0
+player_projectile_speed_factor = 200.0
 
 [node name="Shadow" parent="." index="0"]
 position = Vector2(983.5, 4351.5)
@@ -34,10 +39,8 @@ scale = Vector2(462.391, 895.266)
 scale = Vector2(512, 512)
 texture = ExtResource("2_dcc1b")
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-5121, 14662)
-rotation = 0.596146
-shape = SubResource("CapsuleShape2D_k146o")
+[node name="ShootOrigin" parent="." index="2"]
+position = Vector2(1149, -11997)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(-5556, 14815)
@@ -57,6 +60,26 @@ shape = SubResource("CapsuleShape2D_6321b")
 position = Vector2(1150, -7484)
 shape = SubResource("CapsuleShape2D_nwfn1")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="8"]
+[node name="CollisionShape2D" parent="." index="7"]
+unique_name_in_owner = false
+position = Vector2(-5121, 14662)
+rotation = 0.596146
+shape = SubResource("CapsuleShape2D_k146o")
+
+[node name="HPBarAnchor" parent="." index="8"]
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+
+[node name="HPBar" parent="HPBarAnchor" index="0"]
+position = Vector2(754, -22640)
+scale = Vector2(2542.56, 1291.14)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="9"]
+visible = true
 position = Vector2(891.499, 1042)
 scale = Vector2(1574.75, 2461.2)
+
+[node name="ShootTimer" parent="." index="10"]
+wait_time = 0.7
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

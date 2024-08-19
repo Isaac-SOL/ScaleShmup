@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cantvle8ks55o"]
+
+[ext_resource type="PackedScene" uid="uid://b3eym3ickph6w" path="res://objects/projectiles/projectile_carotte.tscn" id="1_fmvyh"]
+
+[node name="Projectile" instance=ExtResource("1_fmvyh")]
+damage_value = 500
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(52.3308, 91.4929)
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.156, 0.156, 0.6, 1)
+scale = Vector2(30.5122, 30.5122)
+
+[node name="KillTimer" parent="." index="4"]
+wait_time = 0.5

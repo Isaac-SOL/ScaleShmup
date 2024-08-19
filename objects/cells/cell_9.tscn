@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://duvru0vnbfl8l"]
+[gd_scene load_steps=5 format=3 uid="uid://duvru0vnbfl8l"]
 
 [ext_resource type="PackedScene" uid="uid://cexumcv7w5yur" path="res://objects/cells/cell_1.tscn" id="1_mi2bl"]
 [ext_resource type="Texture2D" uid="uid://n80gntx4ojwb" path="res://assets/textures/cells/cellule_3.png" id="2_0bdjq"]
+[ext_resource type="PackedScene" uid="uid://c7lotmyor5f3c" path="res://objects/projectiles/projectile_mid_molecule.tscn" id="2_owtdx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avp2n"]
 radius = 198.0
 height = 576.0
 
 [node name="cell_9" instance=ExtResource("1_mi2bl")]
+size = 418
+projectile = ExtResource("2_owtdx")
+shoot_strength = 400.0
+player_projectile_speed_factor = 115.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_0bdjq")
@@ -15,3 +20,6 @@ texture = ExtResource("2_0bdjq")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(15, -10)
 shape = SubResource("CapsuleShape2D_avp2n")
+
+[node name="ShootTimer" parent="." index="5"]
+wait_time = 0.85

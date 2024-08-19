@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://duy5fsmtkgulm" path="res://assets/textures/animals/humain_1.png" id="2_jj6gv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5nh5"]
-radius = 729.0
-height = 3954.0
+radius = 552.0
+height = 3474.0
 
 [node name="ProjectileHumain" instance=ExtResource("1_kw44b")]
 damage_value = 3150
@@ -14,9 +14,10 @@ damage_value = 3150
 scale = Vector2(267.68, 490.593)
 
 [node name="Sprite2D" parent="." index="1"]
+rotation = 3.14159
 scale = Vector2(64, 64)
 texture = ExtResource("2_jj6gv")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(44, 18)
+position = Vector2(-77, 24)
 shape = SubResource("CapsuleShape2D_l5nh5")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://kapfnc6giyif"]
+
+[ext_resource type="PackedScene" uid="uid://f3wvc01wtyco" path="res://objects/projectiles/projectile_champi.tscn" id="1_fn78h"]
+[ext_resource type="Texture2D" uid="uid://dvy7w3j5le136" path="res://assets/textures/structures/sprite_caillou_1.png" id="2_1o1v6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfdrw"]
+radius = 1374.25
+
+[node name="ProjectileCaillou" instance=ExtResource("1_fn78h")]
+linear_damp = 1.0
+damage_value = 24000
+
+[node name="Shadow" parent="." index="0"]
+scale = Vector2(389.883, 389.883)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(240, 240)
+texture = ExtResource("2_1o1v6")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(183, 171)
+shape = SubResource("CircleShape2D_gfdrw")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(-3.05176e-05, 3.5)
+scale = Vector2(297.9, 271.05)

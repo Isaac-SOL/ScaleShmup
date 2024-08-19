@@ -16,6 +16,3 @@ shader_parameter/color_a = Color(0.047, 0.047, 0.322, 1)
 shader_parameter/color_b = Color(0.129, 0.039, 0.122, 1)
 shader_parameter/param_c = Color(2.228, 0, 0, 1)
 shader_parameter/param_d = Color(0.377, 1.527, 1.897, 1)
-shader_parameter/PaletteRGBSize = 4.0
-shader_parameter/ResolutionDivisor = 2.0
-shader_parameter/date = null

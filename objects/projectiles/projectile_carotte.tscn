@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dmjmonjlmg0nj" path="res://assets/textures/animals/sprite_carrotte.png" id="2_wat6w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s60m5"]
-radius = 90.0
-height = 514.0
+radius = 65.0
+height = 434.0
 
 [node name="Projectile" instance=ExtResource("1_old45")]
 damage_value = 350

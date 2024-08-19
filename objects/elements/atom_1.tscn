@@ -40,9 +40,13 @@ unique_name_in_owner = true
 texture = SubResource("GradientTexture2D_naak6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(-2, 0)
 texture = ExtResource("2_o4gdr")
+
+[node name="ShootOrigin" type="Marker2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)

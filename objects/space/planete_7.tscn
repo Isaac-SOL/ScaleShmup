@@ -12,7 +12,7 @@ height = 30698.0
 
 [node name="planete_7" instance=ExtResource("1_w77t5")]
 size = 2418647
-hp = 9674588
+hp = 2418647
 shoot_strength = 32400.0
 
 [node name="Sprite2D" parent="." index="1"]

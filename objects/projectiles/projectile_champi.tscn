@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://f3wvc01wtyco"]
+
+[ext_resource type="PackedScene" uid="uid://b3eym3ickph6w" path="res://objects/projectiles/projectile_carotte.tscn" id="1_8axp7"]
+[ext_resource type="Texture2D" uid="uid://n84dxq5vbkqk" path="res://assets/textures/animals/sprite_champignon.png" id="2_ydyw1"]
+
+[sub_resource type="GDScript" id="GDScript_dlxcx"]
+script/source = "extends Projectile
+
+@export var rotation_speed: float = TAU
+
+func _process(delta):
+	%Sprite2D.rotation += rotation_speed * delta
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ege8"]
+radius = 179.627
+
+[node name="ProjectileChampi" instance=ExtResource("1_8axp7")]
+script = SubResource("GDScript_dlxcx")
+rotation_speed = 6.28319
+damage_value = 750
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ydyw1")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_4ege8")

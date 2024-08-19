@@ -8,7 +8,7 @@ radius = 36712.2
 
 [node name="planete_3" instance=ExtResource("1_jlafm")]
 size = 3292047
-hp = 13168189
+hp = 3292047
 shoot_strength = 37800.0
 
 [node name="Sprite2D" parent="." index="1"]
