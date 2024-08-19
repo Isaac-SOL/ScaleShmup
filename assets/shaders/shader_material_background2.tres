@@ -1,13 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dk85d0p3sijsr"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b68xh1c7wy0lk"]
 
-[ext_resource type="Shader" path="res://assets/shaders/main.gdshader" id="1_2g05i"]
+[ext_resource type="Shader" path="res://assets/shaders/main.gdshader" id="1_tjs8w"]
 
 [resource]
-shader = ExtResource("1_2g05i")
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/alpha = 1.0
+shader = ExtResource("1_tjs8w")
 shader_parameter/mult_size = 1.0
-shader_parameter/fract_ampl = 2.0
+shader_parameter/fract_ampl = 1.0
 shader_parameter/pattern_size = 8.0
 shader_parameter/light_beam_size = 0.01
 shader_parameter/back_light_fact = 0.5
