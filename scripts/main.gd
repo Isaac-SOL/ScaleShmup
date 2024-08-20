@@ -8,6 +8,8 @@ var pause = false
 var previous_count: int = 1
 var mult_size_factor: float = 1
 var offset_factor: float = 1
+var chain: int = 0
+var chain_timer: float = 0.0
 
 func _ready():
 	Singletons.main = self
@@ -17,7 +19,6 @@ func _ready():
 	%PauseMenu.hide()
 	# Play game song
 	#NodeAudio.playAudio(NodeAudio.audioGame)
-	anim_player.queue("geometry_on")
 
 func _process(delta):
 	# Pause menus
@@ -34,11 +35,14 @@ func _process(delta):
 		else:
 			print("Dir != 0 > dir = "+str(dir))
 		shader_rect.material.set_shader_parameter("speed_vec", dir)
+	
+	if chain_timer > 0.0:
+		chain_timer -= delta
+		if chain_timer <= 0.0:
+			chain = 0
 
 func set_camera_zoom(size: float):
-	print(size)
 	if size > 150: size = 150 + (size - 150) / 2
-	print(size)
 	%Camera2D.set_target_zoom(Vector2.ONE * (1 / size))
 
 func set_atom_count(count: int):
@@ -47,26 +51,26 @@ func set_atom_count(count: int):
 		$EnemySpawner/Timer.wait_time = 0.66
 	else:
 		$EnemySpawner/Timer.wait_time = 1
-	if count > 150 and shader_rect != %ShaderRect_cell:
+	if count > 150 and count < 1500 and shader_rect != %ShaderRect_cell:
 		#shader_rect.visible = false
 		mult_size_factor = 0.4
 		offset_factor = 2
 		shader_rect = %ShaderRect_cell
 		anim_player.queue("cells_on")
 		#shader_rect.visible = true
-	if count > 2000 and shader_rect != %ShaderRect_trip:
+	if count > 2000 and count < 650000 and shader_rect != %ShaderRect_trip:
 		#shader_rect.visible = false
 		mult_size_factor = 0.025
 		offset_factor = 35
 		shader_rect = %ShaderRect_trip
 		anim_player.queue("trip_on")
 		#shader_rect.visible = true
-	if count > 5000000 and shader_rect != %ShaderRect_volcano:
+	if count > 750000 and count < 3000000 and shader_rect != %ShaderRect_volcano:
 		mult_size_factor = 0.01
 		offset_factor = 100
 		shader_rect = %ShaderRect_volcano
 		anim_player.queue("volcano_on")
-	if count > 5000000000 and shader_rect != %ShaderRect_stars2:
+	if count > 5000000 and shader_rect != %ShaderRect_stars2:
 		#shader_rect.visible = false
 		mult_size_factor = 0.001
 		offset_factor = 1000
@@ -76,9 +80,15 @@ func set_atom_count(count: int):
 	if count > 150:
 		fake_count = 150 + ((count - 150) ** 2)
 	%AtomLabel.set_amount(fake_count)
-	if abs(count - previous_count) >= floori(count / 1.5):
+	if abs(count - previous_count) >= floori(count / 3):
 		%AtomLabel.animate(count > previous_count)
 	previous_count = count
+
+func increment_chain() -> int:
+	var prev_chain := chain
+	chain += 1
+	chain_timer = 5.0
+	return prev_chain
 
 func _on_enemy_killed(enemy: Element):
 	%Player.add_element(enemy)

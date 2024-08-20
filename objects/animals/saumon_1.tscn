@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5rs78vb5up1u"]
+[gd_scene load_steps=7 format=3 uid="uid://c5rs78vb5up1u"]
 
 [ext_resource type="PackedScene" uid="uid://c2rv2i4um7l80" path="res://objects/animals/pinpin_1.tscn" id="1_enhwr"]
 [ext_resource type="PackedScene" uid="uid://c1hhf8iebvdp8" path="res://objects/projectiles/projectile_bubulle.tscn" id="2_4ieua"]
 [ext_resource type="Texture2D" uid="uid://ioj6flpfvaiv" path="res://assets/textures/animals/saumon.png" id="2_6rvhh"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wcn8"]
-radius = 294.785
-height = 2468.9
+[ext_resource type="AudioStream" uid="uid://3mpc7sjrtvce" path="res://assets/audio/Kenney/Interface/drop_004c.ogg" id="4_hyijk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qe1p"]
 radius = 90.8936
 height = 978.336
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wcn8"]
+radius = 294.785
+height = 2468.9
 
 [node name="saumon_1" instance=ExtResource("1_enhwr")]
 hp = 3888
@@ -22,19 +23,22 @@ player_projectile_speed_factor = 0.0
 scale = Vector2(48.753, 48.753)
 texture = ExtResource("2_6rvhh")
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(65, -22)
-rotation = 1.6395
-shape = SubResource("CapsuleShape2D_1wcn8")
-
 [node name="CollisionShape2D2" parent="." index="3"]
 position = Vector2(-94, -407)
 rotation = 1.66172
 shape = SubResource("CapsuleShape2D_3qe1p")
 
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(65, -22)
+rotation = 1.6395
+shape = SubResource("CapsuleShape2D_1wcn8")
+
 [node name="HPBar" parent="HPBarAnchor" index="0"]
 position = Vector2(-0.999985, -580)
 scale = Vector2(183.405, 93.1353)
 
-[node name="ShootTimer" parent="." index="6"]
+[node name="ShootTimer" parent="." index="7"]
 wait_time = 1.0
+
+[node name="AudioShoot" parent="." index="10"]
+stream = ExtResource("4_hyijk")

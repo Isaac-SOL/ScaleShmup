@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dk1iyi3vx4sgj"]
+[gd_scene load_steps=23 format=3 uid="uid://dk1iyi3vx4sgj"]
 
 [ext_resource type="Script" path="res://scripts/element.gd" id="1_8i05w"]
 [ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="2_ho7fk"]
@@ -6,9 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://c07yxt6fcwqsl" path="res://objects/flying_label.tscn" id="3_sxo3m"]
 [ext_resource type="PackedScene" uid="uid://e0v8px0kmilg" path="res://objects/hp_bar.tscn" id="4_3nwog"]
 [ext_resource type="AudioStream" uid="uid://cllxabpo2wbbg" path="res://assets/audio/Kenney/Impacts/footstep_wood_000.ogg" id="6_68l0v"]
+[ext_resource type="AudioStream" uid="uid://citbe0bk5aji2" path="res://assets/audio/Kenney/Impacts/footstep_wood_001.ogg" id="7_vae48"]
 [ext_resource type="AudioStream" uid="uid://k4ih1bgg4g7p" path="res://assets/audio/Kenney/Impacts/impactWood_heavy_000.ogg" id="7_yo0rj"]
 [ext_resource type="AudioStream" uid="uid://dbbvukmdeu1j0" path="res://assets/audio/Kenney/Digital/phaserUp4.ogg" id="8_2xgt2"]
+[ext_resource type="AudioStream" uid="uid://cc5i3gvkxmolh" path="res://assets/audio/Kenney/Impacts/footstep_wood_002.ogg" id="8_c0tqq"]
+[ext_resource type="AudioStream" uid="uid://c7t7kj0d2l0hu" path="res://assets/audio/Kenney/Impacts/footstep_wood_003.ogg" id="9_64hp6"]
 [ext_resource type="AudioStream" uid="uid://c43q5tsdn0vl3" path="res://assets/audio/Kenney/Impacts/impactPunch_heavy_001.ogg" id="9_g6nye"]
+[ext_resource type="AudioStream" uid="uid://uxj1owt7cf8g" path="res://assets/audio/Kenney/Impacts/footstep_wood_004.ogg" id="10_yrw2i"]
+[ext_resource type="AudioStream" uid="uid://cdgm2ffprudag" path="res://assets/audio/Kenney/Impacts/impactWood_heavy_001.ogg" id="12_gdxwj"]
+[ext_resource type="AudioStream" uid="uid://c5rj5ya0enh8h" path="res://assets/audio/Kenney/Impacts/impactWood_heavy_002.ogg" id="13_mc8pn"]
+[ext_resource type="AudioStream" uid="uid://ich42yeb30g8" path="res://assets/audio/Kenney/Impacts/impactWood_heavy_003.ogg" id="14_31554"]
+[ext_resource type="AudioStream" uid="uid://c8bw08hgmydj0" path="res://assets/audio/Kenney/Impacts/impactWood_heavy_004.ogg" id="15_40u3q"]
 
 [sub_resource type="Gradient" id="Gradient_mc6tc"]
 offsets = PackedFloat32Array(0, 0.340249, 0.423237, 0.738589)
@@ -23,6 +31,32 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdnrd"]
 radius = 10.4399
 height = 46.1723
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hnve0"]
+streams_count = 5
+stream_0/stream = ExtResource("6_68l0v")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_vae48")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_c0tqq")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("9_64hp6")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("10_yrw2i")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2kc47"]
+streams_count = 5
+stream_0/stream = ExtResource("7_yo0rj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_gdxwj")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_mc8pn")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_31554")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("15_40u3q")
+stream_4/weight = 1.0
 
 [node name="Atom" type="Area2D" groups=["Element"]]
 collision_layer = 4
@@ -78,13 +112,13 @@ autostart = true
 
 [node name="AudioHit" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("6_68l0v")
+stream = SubResource("AudioStreamRandomizer_hnve0")
 max_polyphony = 16
 bus = &"Sfx"
 
 [node name="AudioShoot" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("7_yo0rj")
+stream = SubResource("AudioStreamRandomizer_2kc47")
 bus = &"Sfx"
 
 [node name="AudioWin" type="AudioStreamPlayer" parent="."]

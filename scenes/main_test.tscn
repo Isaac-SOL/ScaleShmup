@@ -1,10 +1,12 @@
-[gd_scene load_steps=71 format=3 uid="uid://cnl7nvedtiim8"]
+[gd_scene load_steps=83 format=3 uid="uid://cnl7nvedtiim8"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6ytji"]
+[ext_resource type="PackedScene" uid="uid://cepcu5makcgy6" path="res://scenes/parallax_background_stars.tscn" id="2_4vy7o"]
 [ext_resource type="Script" path="res://scripts/shaker_2d.gd" id="2_hm5jh"]
 [ext_resource type="Material" uid="uid://dk85d0p3sijsr" path="res://assets/shaders/shader_material_background.tres" id="3_8cv3r"]
 [ext_resource type="Shader" path="res://assets/shaders/main_cells.gdshader" id="4_2objl"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="4_ggheu"]
+[ext_resource type="Shader" path="res://assets/shaders/main_volcano.gdshader" id="4_kypmi"]
 [ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="5_3n0il"]
 [ext_resource type="Material" uid="uid://brv642opwryh3" path="res://assets/shaders/shader_material_trip.tres" id="5_i4dl5"]
 [ext_resource type="Shader" path="res://assets/shaders/main.gdshader" id="5_oapi1"]
@@ -14,6 +16,7 @@
 [ext_resource type="Material" uid="uid://bosmbu8knq70j" path="res://assets/shaders/shader_material_shockwave.tres" id="7_p2lik"]
 [ext_resource type="PackedScene" uid="uid://gpfmxd2mfrkn" path="res://objects/elements/molecule_1.tscn" id="8_15cq6"]
 [ext_resource type="PackedScene" uid="uid://d4hs57jskg0wy" path="res://objects/elements/molecule_2.tscn" id="9_k1eeh"]
+[ext_resource type="Material" uid="uid://dsfqscfks8i50" path="res://assets/shaders/shader_material_stars2.tres" id="10_45fcq"]
 [ext_resource type="PackedScene" uid="uid://cfi1a2grotf78" path="res://objects/elements/molecule_3.tscn" id="10_ibe4u"]
 [ext_resource type="PackedScene" uid="uid://bjm3xkpcjhscq" path="res://objects/elements/molecule_4.tscn" id="11_u7w4m"]
 [ext_resource type="PackedScene" uid="uid://q441khku8e4n" path="res://objects/elements/molecule_5.tscn" id="12_u6xvq"]
@@ -55,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjtxlrtymbh8" path="res://objects/space/planete_7.tscn" id="47_np8cn"]
 [ext_resource type="PackedScene" uid="uid://bulpixfoca577" path="res://objects/space/planete_8.tscn" id="48_fncf2"]
 [ext_resource type="PackedScene" uid="uid://vp2coe7of34" path="res://objects/space/planete_9.tscn" id="49_8yqqq"]
+[ext_resource type="PackedScene" uid="uid://c40q07ix50fr7" path="res://objects/space/galaxie_1_true.tscn" id="50_bu58h"]
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="50_ioufj"]
 [ext_resource type="Theme" uid="uid://dtqnw4yhbe0kk" path="res://assets/fonts/second_title_them.tres" id="51_eeqjj"]
 [ext_resource type="Theme" uid="uid://cbnl37hp5d4kk" path="res://assets/fonts/button_smaller.tres" id="52_wdr44"]
@@ -76,7 +80,22 @@ func set_target_zoom(target: Vector2):
 	target_zoom = target
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfsr8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v2avu"]
+shader = ExtResource("4_kypmi")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/alpha = 0.0
+shader_parameter/mult_size = 0.3
+shader_parameter/fract_ampl = 1.938
+shader_parameter/pattern_size = 30.0
+shader_parameter/light_beam_size = 0.0071
+shader_parameter/back_light_fact = 0.9
+shader_parameter/time_mult = 0.1
+shader_parameter/color_a = Color(0.545098, 0.145098, 0.00784314, 1)
+shader_parameter/color_b = Color(0, 0, 0, 1)
+shader_parameter/param_c = Color(0.647059, 0, 0, 1)
+shader_parameter/param_d = Color(0.65098, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4c18"]
 shader = ExtResource("4_2objl")
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/alpha = 1.0
@@ -88,7 +107,7 @@ shader_parameter/param_cell_c = Color(-0.052, 0.388, 0.218, 1)
 shader_parameter/param_cell_d = Color(0.138, -2.422, -1.972, 1)
 shader_parameter/pixel_size = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bs6bh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxvf3"]
 shader = ExtResource("5_oapi1")
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/alpha = 1.0
@@ -103,7 +122,7 @@ shader_parameter/color_b = Color(0.0784314, 0.207843, 0.380392, 1)
 shader_parameter/param_c = Color(-0.052, 0.388, 0.218, 1)
 shader_parameter/param_d = Color(0.377, 1.527, 1.897, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uig8r"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24ixe"]
 shader = ExtResource("4_2objl")
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/alpha = 1.0
@@ -132,9 +151,444 @@ point_count = 5
 [sub_resource type="Theme" id="Theme_rx576"]
 default_font_size = 75
 
+[sub_resource type="Animation" id="Animation_781t4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shaker2D/Camera2D/ShaderRect_geometry:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shaker2D/Camera2D/ShaderRect_cell:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shaker2D/Camera2D/ShaderRect_trip:material:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shaker2D/Camera2D/ShaderRect_volcano:material:shader_parameter/alpha")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/alpha")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ParallaxBackgroundStars/ParallaxLayer2/Sprite2D:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.588235)]
+}
+
+[sub_resource type="Animation" id="Animation_euqc0"]
+resource_name = "cells_on"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shaker2D/Camera2D/ShaderRect_geometry:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shaker2D/Camera2D/ShaderRect_cell:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shaker2D/Camera2D/ShaderRect_cell:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shaker2D/Camera2D/ShaderRect_geometry:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nbepn"]
+resource_name = "geometry_on"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shaker2D/Camera2D/ShaderRect_geometry:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shaker2D/Camera2D/ShaderRect_cell:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shaker2D/Camera2D/ShaderRect_trip:material:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shaker2D/Camera2D/ShaderRect_volcano:material:shader_parameter/alpha")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/alpha")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ParallaxBackgroundStars/ParallaxLayer2/Sprite2D:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Shaker2D/Camera2D/ShaderRect_trip:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Shaker2D/Camera2D/ShaderRect_volcano:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Shaker2D/Camera2D/ShaderRect_cell:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xmswr"]
+resource_name = "stars_on"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shaker2D/Camera2D/ShaderRect_volcano:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParallaxBackgroundStars/ParallaxLayer2/Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shaker2D/Camera2D/ShaderRect_volcano:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_15da2"]
+resource_name = "trip_on"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shaker2D/Camera2D/ShaderRect_cell:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shaker2D/Camera2D/ShaderRect_trip:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shaker2D/Camera2D/ShaderRect_cell:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shaker2D/Camera2D/ShaderRect_trip:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_a2qq7"]
+resource_name = "volcano_on"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shaker2D/Camera2D/ShaderRect_trip:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shaker2D/Camera2D/ShaderRect_volcano:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shaker2D/Camera2D/ShaderRect_trip:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shaker2D/Camera2D/ShaderRect_volcano:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_st5hw"]
+_data = {
+"RESET": SubResource("Animation_781t4"),
+"cells_on": SubResource("Animation_euqc0"),
+"geometry_on": SubResource("Animation_nbepn"),
+"stars_on": SubResource("Animation_xmswr"),
+"trip_on": SubResource("Animation_15da2"),
+"volcano_on": SubResource("Animation_a2qq7")
+}
+
 [node name="Main" type="Node2D" groups=["MainGroup"]]
 texture_filter = 1
 script = ExtResource("1_6ytji")
+
+[node name="ParallaxBackgroundStars" parent="." instance=ExtResource("2_4vy7o")]
+unique_name_in_owner = true
+
+[node name="Sprite2D" parent="ParallaxBackgroundStars/ParallaxLayer2" index="0"]
+modulate = Color(1, 1, 1, 0.588235)
 
 [node name="Shaker2D" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
 script = ExtResource("2_hm5jh")
@@ -144,9 +598,11 @@ target_node = NodePath("../Player")
 unique_name_in_owner = true
 script = SubResource("GDScript_1mht6")
 
-[node name="ShaderRect_geometry" type="ColorRect" parent="Shaker2D/Camera2D"]
+[node name="ShaderRect_volcano" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
-material = ExtResource("3_8cv3r")
+visible = false
+modulate = Color(0.588235, 1, 1, 1)
+material = SubResource("ShaderMaterial_v2avu")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,52 +611,6 @@ offset_left = -500.0
 offset_top = -500.0
 offset_right = 500.0
 offset_bottom = 500.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(500, 500)
-
-[node name="ShaderRect_cell" type="ColorRect" parent="Shaker2D/Camera2D"]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_wfsr8")
-custom_minimum_size = Vector2(1000, 1000)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 500.0
-offset_bottom = 500.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(500, 500)
-
-[node name="ShaderRect_geometry_2" type="ColorRect" parent="Shaker2D/Camera2D"]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_bs6bh")
-custom_minimum_size = Vector2(1000, 1000)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 500.0
-offset_bottom = 500.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(500, 500)
-
-[node name="ShaderRect_cell_2" type="ColorRect" parent="Shaker2D/Camera2D"]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_uig8r")
-custom_minimum_size = Vector2(1000, 1000)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1000.0
-offset_top = -1000.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(500, 500)
@@ -221,10 +631,20 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(500, 500)
 
-[node name="ShaderRect_stars" type="ColorRect" parent="Shaker2D/Camera2D"]
+[node name="ShaderRect_cell" type="ColorRect" parent="Shaker2D/Camera2D"]
 unique_name_in_owner = true
 visible = false
-material = ExtResource("6_fh5cr")
+material = SubResource("ShaderMaterial_n4c18")
+custom_minimum_size = Vector2(1000, 1000)
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_geometry" type="ColorRect" parent="Shaker2D/Camera2D"]
+unique_name_in_owner = true
+material = ExtResource("3_8cv3r")
 custom_minimum_size = Vector2(1000, 1000)
 anchors_preset = 15
 anchor_right = 1.0
@@ -237,7 +657,71 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(500, 500)
 
-[node name="ShaderRect_shockwave" type="ColorRect" parent="Shaker2D/Camera2D"]
+[node name="others" type="Node2D" parent="Shaker2D/Camera2D"]
+
+[node name="ShaderRect_geometry_2" type="ColorRect" parent="Shaker2D/Camera2D/others"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_fxvf3")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_cell_2" type="ColorRect" parent="Shaker2D/Camera2D/others"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_24ixe")
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1000.0
+offset_top = -1000.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 500)
+
+[node name="ShaderRect_stars" type="ColorRect" parent="Shaker2D/Camera2D/others"]
+unique_name_in_owner = true
+visible = false
+material = ExtResource("6_fh5cr")
+custom_minimum_size = Vector2(1920, 1920)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -960.0
+offset_right = 960.0
+offset_bottom = 960.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 500)
+
+[node name="ShaderRect_stars2" type="ColorRect" parent="Shaker2D/Camera2D/others"]
+unique_name_in_owner = true
+visible = false
+material = ExtResource("10_45fcq")
+custom_minimum_size = Vector2(1920, 1920)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -960.0
+offset_right = 960.0
+offset_bottom = 960.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 500)
+
+[node name="ShaderRect_shockwave" type="ColorRect" parent="Shaker2D/Camera2D/others"]
 unique_name_in_owner = true
 visible = false
 material = ExtResource("7_p2lik")
@@ -251,7 +735,7 @@ offset_right = 500.0
 offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(500, 500)
+pivot_offset = Vector2(0, 500)
 
 [node name="Projectiles" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -446,6 +930,12 @@ position = Vector2(191104, -180352)
 hp = 1
 enemy_ai = false
 
+[node name="galaxie_1_true" parent="Enemies" instance=ExtResource("50_bu58h")]
+position = Vector2(615675, -117025)
+size = 6718464
+hp = 6718464
+enemy_ai = false
+
 [node name="Labels" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -545,6 +1035,13 @@ text = "Restart"
 unique_name_in_owner = true
 visible = false
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_st5hw")
+}
+
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="killed" from="Player" to="." method="_on_player_killed"]
 [connection signal="pressed" from="GameOverLayer/GameOver/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+
+[editable path="ParallaxBackgroundStars"]

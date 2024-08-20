@@ -8,7 +8,7 @@ extends Element
 func shoot(dir: Vector2):
 	if shoot_up:
 		dir = Vector2.UP.rotated(global_rotation)
-	play_audio_scaled(%AudioShoot, -20)
+	play_audio_scaled(%AudioShoot, -20, size)
 	var angle_rad: float = deg_to_rad(spread_angle)
 	for i in range(amount):
 		var eff_angle: float = randf_range(-angle_rad / 2, angle_rad / 2)

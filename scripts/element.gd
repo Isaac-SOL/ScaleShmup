@@ -104,7 +104,7 @@ func shoot_single_projectile(proj: PackedScene, dir: Vector2,
 	return new_projectile
 
 func shoot(dir: Vector2):
-	play_audio_scaled(%AudioShoot, -20)
+	play_audio_scaled(%AudioShoot, -20, size / 4.0)
 	shoot_single_projectile(projectile, dir)
 
 func shoot_anim():
@@ -115,7 +115,7 @@ func shoot_anim():
 		tween.tween_property(%Sprite2D, "scale", anim_base_scale, 0.25)
 
 func destroy():
-	play_audio_scaled(%AudioDestroy, -6)
+	play_audio_scaled(%AudioDestroy, -6, size)
 	Singletons.shaker.shake(sqrt(size), 1)
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
@@ -136,12 +136,16 @@ func destroy_threshold(threshold: int):
 	if (size <= threshold and not player_owned) or size <= threshold / 10:
 		destroy_no_effects()
 
+func destroy_not_player(threshold: int):
+	if not player_owned:
+		destroy_no_effects()
+
 func change_speed(new_speed: float):
 	direction = direction.normalized() * new_speed
 
 func give_to_player():
-	play_audio_scaled(%AudioDestroy, -18)
-	play_audio_scaled(%AudioWin, -24)
+	play_audio_scaled(%AudioDestroy, -18, size)
+	play_audio_scaled(%AudioWin, -24, size)
 	set_mode(true)
 	hp = size
 	shoot_strength = floori(shoot_strength * 1.7)
@@ -164,17 +168,27 @@ func _on_shoot_timer_timeout():
 			shoot((Singletons.player.global_position - %ShootOrigin.global_position).normalized())
 
 func instantiate_damage_label(pos: Vector2, damage: int):
+	var low_threshold: int =  Singletons.player.size / 200
 	if damage < Singletons.player.size / 200: return
+	var dmg_scale: float = (damage - low_threshold) / ((Singletons.player.size / 10.0) - low_threshold)
+	dmg_scale = clampf(dmg_scale, 0.2, 1)
 	var inst_pos: Vector2 = lerp(position, pos, 0.75)
 	var dmg_label: FlyingLabel = flying_label.instantiate()
 	dmg_label.text = str(damage)
+	dmg_label.final_scale = dmg_scale
 	Singletons.labels.add_child(dmg_label)
 	dmg_label.position = inst_pos
 	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
 
-func play_audio_scaled(source: AudioStreamPlayer, base_db: float):
-	if size < Singletons.player.size / 100: return
+func play_audio_scaled(source: AudioStreamPlayer, base_db: float, scale_value: float):
+	if scale_value < Singletons.player.size / 100: return
 	source.volume_db = base_db
+	if scale_value < Singletons.player.size / 20:
+		var t: float = ((Singletons.player.size / size) - 20) / 80
+		source.volume_db = lerp(base_db, -60.0, t)
+	if source == %AudioWin:
+		var chain: int = Singletons.main.increment_chain()
+		source.pitch_scale = 1.0 + 0.05 * chain
 	source.play()
 
 func _on_element_body_entered(body: Node2D):
@@ -184,14 +198,14 @@ func _on_element_body_entered(body: Node2D):
 			if Singletons.player.immunity <= 0:
 				if body.damage_value < Singletons.player.size / 20:
 					body.damage_value /= 10
-				play_audio_scaled(%AudioHit, -10)
+				play_audio_scaled(%AudioHit, -10, body.damage_value)
 				hp -= ceili(body.damage_value / 8.0)
 				if hp < 0: hp = 0
 				hp_changed.emit(hp)
 				if hp == 0: destroy()
 	else:
 		if body is Projectile and body.player:
-			play_audio_scaled(%AudioHit, -10)
+			play_audio_scaled(%AudioHit, -10, min(body.damage_value, size))
 			instantiate_damage_label(body.position, body.damage_value)
 			body.destroy()
 			hp -= body.damage_value
@@ -205,20 +219,22 @@ func _on_element_body_entered(body: Node2D):
 func _on_area_entered(area: Area2D):
 	if player_owned:
 		if area is Element and not area.player_owned and Singletons.player.immunity <= 0:
-			play_audio_scaled(%AudioHit, -10)
-			hp -= area.hp
+			play_audio_scaled(%AudioHit, -10, area.size)
+			hp -= min(area.hp, ceili(size / 3.0))
 			if hp < 0: hp = 0
 			hp_changed.emit(hp)
 			if hp == 0: destroy()
 	else:
 		if area is Element and area.player_owned:
-			play_audio_scaled(%AudioHit, -10)
+			play_audio_scaled(%AudioHit, -10, min(area.size, size))
 			instantiate_damage_label(area.position, area.hp)
-			hp -= area.hp
+			hp -= min(area.hp, ceili(area.size / 3.0))
 			var hp_ratio := float(hp) / max_hp
 			%HPBar.set_ratio(hp_ratio)
 			if hp_ratio <= 0.9: %HPBar.visible = true
-			if hp <= 0: destroy()
+			if hp <= 0:
+				destroyed_by_player.emit(self)
+				Singletons.shaker.shake(sqrt(size * 2), 1)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	if enemy_ai:

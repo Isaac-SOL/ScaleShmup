@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://hvbyqvwpg7ru"]
+
+[ext_resource type="PackedScene" uid="uid://c40q07ix50fr7" path="res://objects/space/galaxie_1_true.tscn" id="1_q3n6x"]
+[ext_resource type="Texture2D" uid="uid://cr0q7l8x2uiyk" path="res://assets/textures/space/galaxie_2.png" id="2_d1w2r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcuwr"]
+radius = 77629.7
+height = 278100.0
+
+[node name="galaxie_2" instance=ExtResource("1_q3n6x")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_d1w2r")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(-1719, 2603)
+rotation = -0.970205
+shape = SubResource("CapsuleShape2D_qcuwr")
