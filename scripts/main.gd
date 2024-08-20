@@ -1,6 +1,8 @@
 class_name Main extends Node2D
 
 @export var black_hole: PackedScene
+@export var current_bgm: AudioStreamPlayer
+@export var win_scene: PackedScene
 
 var pause = false
 @onready var shader_rect = %ShaderRect_geometry
@@ -37,11 +39,7 @@ func _process(delta):
 	if shader_rect == %ShaderRect_stars2:
 		%ParallaxBackgroundStars.scale = shader_scale
 		var dir = player.direction*0.01
-		if dir == Vector2.ZERO:
-			dir = Vector2.ONE
-			print("Dir == 0 > dir = "+str(dir))
-		else:
-			print("Dir != 0 > dir = "+str(dir))
+		if dir == Vector2.ZERO: dir = Vector2.ONE
 		shader_rect.material.set_shader_parameter("speed_vec", dir)
 	
 	if chain_timer > 0.0:
@@ -59,6 +57,13 @@ func set_atom_count(count: int):
 		$EnemySpawner/Timer.wait_time = 0.66
 	else:
 		$EnemySpawner/Timer.wait_time = 1
+	if count > 10 and count < 150 and current_bgm != %BGM1:
+		crossfade_music(%BGM1)
+	if count > 2000 and count < 650000 and current_bgm != %BGM2:
+		crossfade_music(%BGM2)
+	if count > 5000000 and count < 50000000 and current_bgm != %BGM3:
+		crossfade_music(%BGM3)
+	
 	if count > 150 and count < 1500 and shader_rect != %ShaderRect_cell:
 		#shader_rect.visible = false
 		mult_size_factor = 0.4
@@ -96,6 +101,7 @@ func set_atom_count(count: int):
 	if count >= 100000000 and not boss_spawned:
 		boss_spawned = true
 		anim_player.queue("stars_boss_on")
+		crossfade_music(%BGM_Boss)
 		$ParallaxBackgroundStars/ParallaxLayer2.visible = false
 		$ParallaxBackgroundStars/ParallaxLayer3.visible = false
 		$ParallaxBackgroundStars/ParallaxLayer4.visible = false
@@ -121,7 +127,7 @@ func _on_enemy_killed(enemy: Element):
 	enemy.give_to_player()
 
 func _on_black_hole_killed(hole: BlackHole):
-	%WinLayer.visible = true
+	get_tree().change_scene_to_packed(win_scene)
 	get_tree().paused = true
 
 func _on_player_killed():
@@ -140,3 +146,18 @@ func pauseMenu():
 		%PauseMenu.show()
 		Engine.time_scale = 0
 	pause = !pause
+
+func crossfade_music(new_bgm: AudioStreamPlayer):
+	var bgm_pos: float = current_bgm.get_playback_position()
+	new_bgm.volume_db = -60
+	new_bgm.play(bgm_pos)
+	var cross_tween := get_tree().create_tween()
+	cross_tween.tween_property(current_bgm, "volume_db", -60, 2).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+	cross_tween.parallel().tween_property(new_bgm, "volume_db", -30, 2).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	cross_tween.tween_callback(stop_all_other_bgm)
+	current_bgm = new_bgm
+
+func stop_all_other_bgm():
+	for node: Node in $BGM.get_children():
+		if node != current_bgm:
+			node.stop()
