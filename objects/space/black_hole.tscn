@@ -1,0 +1,121 @@
+[gd_scene load_steps=28 format=3 uid="uid://brx000lmdij6e"]
+
+[ext_resource type="Script" path="res://scripts/black_hole.gd" id="1_6namf"]
+[ext_resource type="Texture2D" uid="uid://0xuth1w02ehq" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose1_base.png" id="1_hk51e"]
+[ext_resource type="Texture2D" uid="uid://dymcnixtrb2wx" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose2_base.png" id="3_avski"]
+[ext_resource type="Texture2D" uid="uid://b4klyxkw7ibhm" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose1_trail.png" id="3_n1xo8"]
+[ext_resource type="Texture2D" uid="uid://d3jug4r717yff" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose3_base.png" id="4_5ebud"]
+[ext_resource type="Texture2D" uid="uid://brumrqevi2k1m" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose4_base.png" id="5_dp67k"]
+[ext_resource type="Texture2D" uid="uid://bphyw34rnii84" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose2_trail.png" id="7_ccen6"]
+[ext_resource type="Texture2D" uid="uid://c1wmkxc0c6yjb" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose3_trail.png" id="8_pc7o3"]
+[ext_resource type="Texture2D" uid="uid://dc2s2gr4v2ysd" path="res://assets/textures/gamjam_boss_folder/gamjam_boss_pose4_trail.png" id="9_e3ihg"]
+[ext_resource type="AudioStream" uid="uid://bj485phnfehph" path="res://assets/audio/Kenney/Digital/laser1.ogg" id="10_ilv4g"]
+[ext_resource type="AudioStream" uid="uid://hysyv0fes0vu" path="res://assets/audio/Jananass/brrrr_v1.ogg" id="10_mrimt"]
+[ext_resource type="AudioStream" uid="uid://brf3cuae67tb5" path="res://assets/audio/Jananass/euh_v1.ogg" id="11_0k2y8"]
+[ext_resource type="AudioStream" uid="uid://b4cs36hfi03i3" path="res://assets/audio/Kenney/Digital/laser2.ogg" id="11_cso8v"]
+[ext_resource type="AudioStream" uid="uid://b4ka48l4puwrj" path="res://assets/audio/Kenney/Digital/laser3.ogg" id="12_es78b"]
+[ext_resource type="AudioStream" uid="uid://bgefd1urei7vn" path="res://assets/audio/Jananass/wraah_v1.ogg" id="12_oqeva"]
+[ext_resource type="AudioStream" uid="uid://dy1tf5k0c2d7y" path="res://assets/audio/Jananass/wuh_v1.ogg" id="13_tem4i"]
+[ext_resource type="AudioStream" uid="uid://dgx4xtwn7piq3" path="res://assets/audio/Jananass/mmmh_v1.ogg" id="14_i2vs4"]
+[ext_resource type="AudioStream" uid="uid://cog7qy808t06m" path="res://assets/audio/Jananass/oh_v1.ogg" id="15_8irwr"]
+[ext_resource type="AudioStream" uid="uid://p1qbufxnh16u" path="res://assets/audio/Jananass/uh_v1.ogg" id="16_mqafq"]
+[ext_resource type="AudioStream" uid="uid://vj8oh4pdh55f" path="res://assets/audio/Jananass/uh_v2.ogg" id="17_trh1g"]
+[ext_resource type="AudioStream" uid="uid://103qo8evt3m6" path="res://assets/audio/Jananass/uh_v3.ogg" id="18_vraln"]
+[ext_resource type="AudioStream" uid="uid://d4gi730tkyask" path="res://assets/audio/Jananass/woh_v1.ogg" id="19_p12hk"]
+[ext_resource type="AudioStream" uid="uid://cgnwwtxqttg7m" path="res://assets/audio/Jananass/woh_v2.ogg" id="20_20abc"]
+[ext_resource type="AudioStream" uid="uid://b37n2lqhv18p0" path="res://assets/audio/Jananass/woh_v3.ogg" id="21_467fn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_frwwd"]
+radius = 108.0
+height = 518.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o6nkg"]
+streams_count = 12
+stream_0/stream = ExtResource("10_mrimt")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_0k2y8")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("14_i2vs4")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("15_8irwr")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("16_mqafq")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("17_trh1g")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("18_vraln")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("19_p12hk")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("20_20abc")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("21_467fn")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("12_oqeva")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("13_tem4i")
+stream_11/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nfe0b"]
+streams_count = 3
+stream_0/stream = ExtResource("10_ilv4g")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_cso8v")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("12_es78b")
+stream_2/weight = 1.0
+
+[node name="BlackHole" type="Node2D" node_paths=PackedStringArray("trails")]
+script = ExtResource("1_6namf")
+poses = Array[Texture2D]([ExtResource("1_hk51e"), ExtResource("3_avski"), ExtResource("4_5ebud"), ExtResource("5_dp67k")])
+trail_poses = Array[Texture2D]([ExtResource("3_n1xo8"), ExtResource("7_ccen6"), ExtResource("8_pc7o3"), ExtResource("9_e3ihg")])
+trails = [NodePath("Trail1"), NodePath("Trail2"), NodePath("Trail3")]
+
+[node name="Trail3" type="Sprite2D" parent="."]
+modulate = Color(0.407843, 1, 0, 1)
+texture = ExtResource("3_n1xo8")
+
+[node name="Trail2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0.913725, 1)
+texture = ExtResource("3_n1xo8")
+
+[node name="Trail1" type="Sprite2D" parent="."]
+modulate = Color(1, 0.301961, 0, 1)
+texture = ExtResource("3_n1xo8")
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 258
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_frwwd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
+unique_name_in_owner = true
+texture = ExtResource("1_hk51e")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="TimerMove" type="Timer" parent="."]
+wait_time = 3.5
+autostart = true
+
+[node name="AudioVoice" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_o6nkg")
+volume_db = -10.0
+max_polyphony = 2
+bus = &"Sfx"
+
+[node name="AudioShoot" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_nfe0b")
+volume_db = -25.0
+max_polyphony = 4
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerMove" to="." method="_on_timer_move_timeout"]

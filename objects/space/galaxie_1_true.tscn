@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c40q07ix50fr7"]
+
+[ext_resource type="PackedScene" uid="uid://pjvwicu72ktx" path="res://objects/space/galaxie_1.tscn" id="1_ibnos"]
+[ext_resource type="Script" path="res://scripts/patterns/element_spiral.gd" id="2_bshh8"]
+
+[node name="galaxie_1_true" instance=ExtResource("1_ibnos")]
+script = ExtResource("2_bshh8")
+
+[node name="ShootTimer" parent="." index="6"]
+wait_time = 0.7
