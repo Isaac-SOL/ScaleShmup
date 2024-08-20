@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/menus/volume_slider.gd" id="1_cm7es"]
 [ext_resource type="Theme" uid="uid://ujjtd62wvxsf" path="res://imports/pixel_theme.tres" id="2_poaec"]
-[ext_resource type="Texture2D" uid="uid://bsh0puupnlsnt" path="res://assets/textures/mouse/cursor.png" id="3_vcd4f"]
+[ext_resource type="Texture2D" uid="uid://bnbmikrc28dc8" path="res://assets/textures/space/sprite_lune.png" id="3_3lchv"]
 [ext_resource type="StyleBox" uid="uid://cln15kpjcsiss" path="res://imports/style_box_normal.tres" id="4_jghdw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ey1x6"]
-bg_color = Color(0.329412, 0.584314, 0.470588, 1)
+bg_color = Color(0.584314, 0.564706, 0.929412, 1)
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0235294, 0.0941176, 0.0784314, 1)
+border_color = Color(0.380392, 0.364706, 0.866667, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -42,7 +42,7 @@ alignment = 1
 [node name="Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
+theme_override_colors/font_color = Color(0.854902, 0.85098, 0.980392, 1)
 text = "Bus Name"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
@@ -59,9 +59,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = -1
-theme_override_icons/grabber = ExtResource("3_vcd4f")
-theme_override_icons/grabber_highlight = ExtResource("3_vcd4f")
-theme_override_icons/grabber_disabled = ExtResource("3_vcd4f")
+theme_override_icons/grabber = ExtResource("3_3lchv")
+theme_override_icons/grabber_highlight = ExtResource("3_3lchv")
+theme_override_icons/grabber_disabled = ExtResource("3_3lchv")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ey1x6")
 theme_override_styles/grabber_area = ExtResource("4_jghdw")
 theme_override_styles/grabber_area_highlight = ExtResource("4_jghdw")

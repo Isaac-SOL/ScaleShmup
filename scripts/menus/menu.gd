@@ -1,12 +1,14 @@
 extends Control
 
 #var screensize = Global.screenSize
+@onready var anim_player = $AnimationPlayer
 
 func _ready():
 	#screensize = Global.screenSize
 	#get_viewport().size = Global.viewport_size
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	$MarginContainer2/MarginContainer/VBoxContainer/NewGameButton.grab_focus()
+	%NewGameButton.grab_focus()
+	anim_player.queue("title_anim")
 	#NodeAudio.playAudio(NodeAudio.audioMenu)
 	
 

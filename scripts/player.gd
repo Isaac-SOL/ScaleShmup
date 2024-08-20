@@ -11,6 +11,7 @@ signal killed
 
 
 @onready var elements: Array[Element] = [$Elements/Atom]
+
 var parts_level: int = 1
 var internal_atoms: int = 0
 var atom_threshold: int = 1
