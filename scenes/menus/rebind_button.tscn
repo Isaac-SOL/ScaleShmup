@@ -29,7 +29,7 @@ alignment = 1
 [node name="Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
+theme_override_colors/font_color = Color(0.854902, 0.85098, 0.980392, 1)
 theme_override_font_sizes/font_size = 70
 text = "Action"
 
@@ -41,7 +41,7 @@ theme_override_constants/separation = 200
 [node name="Button" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
+theme_override_colors/font_color = Color(0.854902, 0.85098, 0.980392, 1)
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("3_gj0wm")
 theme_override_styles/hover = ExtResource("4_7aaoe")
