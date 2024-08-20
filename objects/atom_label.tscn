@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ji8uccvwr6yq"]
+[gd_scene load_steps=4 format=3 uid="uid://bo6snfbyyrgdb"]
 
 [ext_resource type="FontFile" uid="uid://c3o7p4o51tcg3" path="res://assets/fonts/ortland/Ortland.otf" id="1_4byjt"]
-[ext_resource type="PackedScene" uid="uid://diuwqpw6tmj5h" path="res://objects/flying_label_atoms.tscn" id="1_v1pyu"]
+[ext_resource type="PackedScene" path="res://objects/flying_label_atoms.tscn" id="1_v1pyu"]
 
 [sub_resource type="GDScript" id="GDScript_hvjl5"]
 script/source = "extends VBoxContainer
