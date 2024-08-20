@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://cnl7nvedtiim8"]
+[gd_scene load_steps=88 format=3 uid="uid://cnl7nvedtiim8"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6ytji"]
 [ext_resource type="PackedScene" uid="uid://cepcu5makcgy6" path="res://scenes/parallax_background_stars.tscn" id="2_4vy7o"]
@@ -61,8 +61,12 @@
 [ext_resource type="PackedScene" uid="uid://c40q07ix50fr7" path="res://objects/space/galaxie_1_true.tscn" id="50_bu58h"]
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="50_ioufj"]
 [ext_resource type="Theme" uid="uid://dtqnw4yhbe0kk" path="res://assets/fonts/second_title_them.tres" id="51_eeqjj"]
+[ext_resource type="PackedScene" uid="uid://hucawvxp2i04" path="res://objects/projectiles/projectile_caillou_gros.tscn" id="51_hv5yl"]
+[ext_resource type="PackedScene" uid="uid://brx000lmdij6e" path="res://objects/space/black_hole.tscn" id="52_i7bey"]
+[ext_resource type="PackedScene" uid="uid://hvbyqvwpg7ru" path="res://objects/space/galaxie_2.tscn" id="52_iigmj"]
 [ext_resource type="Theme" uid="uid://cbnl37hp5d4kk" path="res://assets/fonts/button_smaller.tres" id="52_wdr44"]
 [ext_resource type="StyleBox" uid="uid://cln15kpjcsiss" path="res://imports/style_box_normal.tres" id="53_5tuom"]
+[ext_resource type="PackedScene" uid="uid://lp6yfl2xplhr" path="res://objects/space/galaxie_4.tscn" id="53_q0k0x"]
 [ext_resource type="StyleBox" uid="uid://ddmyelf7ggrso" path="res://imports/style_box_hover.tres" id="54_d5g0l"]
 [ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="55_2u0di"]
 [ext_resource type="PackedScene" uid="uid://41iw3r017qm6" path="res://scenes/menus/pause_menu.tscn" id="56_yf0if"]
@@ -149,6 +153,9 @@ _data = {
 point_count = 5
 
 [sub_resource type="Theme" id="Theme_rx576"]
+default_font_size = 75
+
+[sub_resource type="Theme" id="Theme_obhvi"]
 default_font_size = 75
 
 [sub_resource type="Animation" id="Animation_781t4"]
@@ -583,6 +590,7 @@ _data = {
 [node name="Main" type="Node2D" groups=["MainGroup"]]
 texture_filter = 1
 script = ExtResource("1_6ytji")
+black_hole = ExtResource("52_i7bey")
 
 [node name="ParallaxBackgroundStars" parent="." instance=ExtResource("2_4vy7o")]
 unique_name_in_owner = true
@@ -746,177 +754,212 @@ script = SubResource("GDScript_7myx6")
 
 [node name="Atom" parent="Enemies" instance=ExtResource("5_3n0il")]
 position = Vector2(70, -139)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Atom2" parent="Enemies" instance=ExtResource("6_axo6u")]
 position = Vector2(223, -136)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Atom3" parent="Enemies" instance=ExtResource("7_atmel")]
 position = Vector2(385, -70)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Molecule2" parent="Enemies" instance=ExtResource("8_15cq6")]
 position = Vector2(559, -64)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Molecule3" parent="Enemies" instance=ExtResource("9_k1eeh")]
 position = Vector2(742, -67)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Molecule" parent="Enemies" instance=ExtResource("10_ibe4u")]
 position = Vector2(969, -64)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_4" parent="Enemies" instance=ExtResource("11_u7w4m")]
 position = Vector2(1191, -76)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_5" parent="Enemies" instance=ExtResource("12_u6xvq")]
 position = Vector2(1372, -67)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_6" parent="Enemies" instance=ExtResource("13_o6y2u")]
 position = Vector2(1693, -82)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_7" parent="Enemies" instance=ExtResource("14_n2ebi")]
 position = Vector2(1682, 265)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_8" parent="Enemies" instance=ExtResource("15_s8y5m")]
 position = Vector2(1678, 622)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_9" parent="Enemies" instance=ExtResource("16_2l4d8")]
 position = Vector2(1365, 100)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_1_true" parent="Enemies" instance=ExtResource("17_kxevh")]
 position = Vector2(1420, 1274)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_2" parent="Enemies" instance=ExtResource("18_4a2fx")]
 position = Vector2(426, 1277)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_3" parent="Enemies" instance=ExtResource("19_5gust")]
 position = Vector2(-666, 1387)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_4" parent="Enemies" instance=ExtResource("20_fh36p")]
 position = Vector2(-1774, 1335)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_5" parent="Enemies" instance=ExtResource("21_3ps1h")]
 position = Vector2(-2859, 1327)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_6" parent="Enemies" instance=ExtResource("22_7b5if")]
 position = Vector2(-2897, 352)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_7" parent="Enemies" instance=ExtResource("23_2n8og")]
 position = Vector2(-2830, -599)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_8" parent="Enemies" instance=ExtResource("24_sfg1x")]
 position = Vector2(-2845, -1598)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_9" parent="Enemies" instance=ExtResource("25_frtvx")]
 position = Vector2(-2826, -2659)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_10" parent="Enemies" instance=ExtResource("26_73efu")]
 position = Vector2(-1765, -2597)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_1" parent="Enemies" instance=ExtResource("30_tl1g5")]
 position = Vector2(167, -4167)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_2" parent="Enemies" instance=ExtResource("31_01xyn")]
 position = Vector2(3208, -4155)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_3" parent="Enemies" instance=ExtResource("32_fk3bp")]
 position = Vector2(6364, -4036)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_4" parent="Enemies" instance=ExtResource("33_ky8xu")]
 position = Vector2(9862, -3915)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_5" parent="Enemies" instance=ExtResource("34_8oeow")]
 position = Vector2(13629, -3768)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_6" parent="Enemies" instance=ExtResource("35_3k2vh")]
 position = Vector2(17248, -3754)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="pinpin_1" parent="Enemies" instance=ExtResource("28_x3m7m")]
 position = Vector2(9069, 458)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="saumon_1" parent="Enemies" instance=ExtResource("29_i7bjo")]
 position = Vector2(12815, 458)
+audio_bus_name = &""
 script = ExtResource("38_kl5rc")
 hp = 1
 enemy_ai = false
 
 [node name="batiment_1" parent="Enemies" instance=ExtResource("36_5us0t")]
 position = Vector2(53020, 1992)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_2" parent="Enemies" instance=ExtResource("37_him7l")]
 position = Vector2(41594, 28850)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_3" parent="Enemies" instance=ExtResource("38_ew51n")]
 position = Vector2(7833, 47715)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_4" parent="Enemies" instance=ExtResource("39_fh2hf")]
 position = Vector2(-71936, 57472)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_5" parent="Enemies" instance=ExtResource("40_6j8wg")]
 position = Vector2(-126848, 15616)
+audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
@@ -933,7 +976,28 @@ enemy_ai = false
 [node name="galaxie_1_true" parent="Enemies" instance=ExtResource("50_bu58h")]
 position = Vector2(615675, -117025)
 size = 6718464
-hp = 6718464
+hp = 839808
+projectile = ExtResource("51_hv5yl")
+enemy_ai = false
+
+[node name="galaxie_2" parent="Enemies" instance=ExtResource("52_iigmj")]
+position = Vector2(820608, 321408)
+hp = 839808
+enemy_ai = false
+
+[node name="galaxie_4" parent="Enemies" instance=ExtResource("53_q0k0x")]
+position = Vector2(926848, 784128)
+hp = 839808
+enemy_ai = false
+
+[node name="galaxie_5" parent="Enemies" instance=ExtResource("53_q0k0x")]
+position = Vector2(1.39622e+06, 595456)
+hp = 839808
+enemy_ai = false
+
+[node name="galaxie_6" parent="Enemies" instance=ExtResource("53_q0k0x")]
+position = Vector2(1.41082e+06, 115328)
+hp = 839808
 enemy_ai = false
 
 [node name="Labels" type="Node2D" parent="."]
@@ -1021,6 +1085,70 @@ size_flags_vertical = 4
 theme_override_constants/separation = 20
 
 [node name="RestartButton" type="Button" parent="GameOverLayer/GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("52_wdr44")
+theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
+theme_override_styles/normal = ExtResource("53_5tuom")
+theme_override_styles/hover = ExtResource("54_d5g0l")
+theme_override_styles/pressed = ExtResource("55_2u0di")
+text = "Restart"
+
+[node name="WinLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
+[node name="GameOver" type="Control" parent="WinLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="WinLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.254902, 0.254902, 0.678431)
+
+[node name="MarginContainer" type="MarginContainer" parent="WinLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_obhvi")
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="WinLayer/GameOver/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WinLayer/GameOver/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="WinLayer/GameOver/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("51_eeqjj")
+theme_override_colors/font_color = Color(0.329412, 0.584314, 0.470588, 1)
+theme_override_font_sizes/font_size = 72
+text = "Game Over!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinLayer/GameOver/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="WinLayer/GameOver/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("52_wdr44")
 theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)

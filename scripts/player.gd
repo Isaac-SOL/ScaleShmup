@@ -56,6 +56,7 @@ func add_debug(x):
 	get_tree().call_group("MainGroup", "set_atom_count",add)
 
 func update_size(atom_count: int):
+	if atom_count > 100000000: atom_count = 100000000
 	size = atom_count
 	sqrt_size = sqrt(atom_count)
 	Singletons.main.set_atom_count(size)

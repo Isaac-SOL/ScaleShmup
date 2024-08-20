@@ -1,10 +1,11 @@
-[gd_scene load_steps=84 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=87 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
 [ext_resource type="Material" uid="uid://dk85d0p3sijsr" path="res://assets/shaders/shader_material_background.tres" id="2_evyai"]
 [ext_resource type="Script" path="res://scripts/shaker_2d.gd" id="2_gfya1"]
 [ext_resource type="PackedScene" uid="uid://cepcu5makcgy6" path="res://scenes/parallax_background_stars.tscn" id="2_m7qis"]
+[ext_resource type="PackedScene" uid="uid://brx000lmdij6e" path="res://objects/space/black_hole.tscn" id="2_s1vfr"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
 [ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="4_4ge4g"]
 [ext_resource type="Material" uid="uid://brv642opwryh3" path="res://assets/shaders/shader_material_trip.tres" id="4_idq7l"]
@@ -69,6 +70,7 @@
 [ext_resource type="PackedScene" uid="uid://hvbyqvwpg7ru" path="res://objects/space/galaxie_2.tscn" id="59_7kk0m"]
 [ext_resource type="PackedScene" uid="uid://cmivser754ag3" path="res://objects/space/galaxie_3.tscn" id="60_6y53i"]
 [ext_resource type="PackedScene" uid="uid://lp6yfl2xplhr" path="res://objects/space/galaxie_4.tscn" id="61_ij16h"]
+[ext_resource type="Texture2D" uid="uid://bvmey4j8qy6a" path="res://assets/textures/ui_viseur.png" id="64_87ril"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
@@ -141,6 +143,15 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 432, -300, 0, 0, 0, 0, 427, 327, 0, 0, 0, 0, -490, 307, 0, 0, 0, 0, -480, -301, 0, 0, 0, 0, 431, -299)
 }
 point_count = 5
+
+[sub_resource type="GDScript" id="GDScript_qq2ov"]
+script/source = "extends Sprite2D
+
+func _process(_delta):
+	var center_vector: Vector2 = (get_viewport().get_mouse_position() - Vector2(320, 180)).normalized()
+	position = Vector2(320, 180) + center_vector * 30
+	rotation = center_vector.angle() + PI / 2
+"
 
 [sub_resource type="Theme" id="Theme_rx576"]
 default_font_size = 75
@@ -577,9 +588,13 @@ _data = {
 [node name="Main" type="Node2D" groups=["MainGroup"]]
 texture_filter = 1
 script = ExtResource("1_vyreg")
+black_hole = ExtResource("2_s1vfr")
 
 [node name="ParallaxBackgroundStars" parent="." instance=ExtResource("2_m7qis")]
 unique_name_in_owner = true
+
+[node name="ColorRect_stars" parent="ParallaxBackgroundStars/ParallaxLayer1" index="0"]
+visible = false
 
 [node name="Sprite2D" parent="ParallaxBackgroundStars/ParallaxLayer2" index="0"]
 modulate = Color(1, 1, 1, 0.588235)
@@ -760,6 +775,14 @@ rotation = 1.57877
 [node name="Player" parent="." instance=ExtResource("1_3qqml")]
 unique_name_in_owner = true
 
+[node name="TargetLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TargetLayer"]
+texture_filter = 1
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("64_87ril")
+script = SubResource("GDScript_qq2ov")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="AtomLabel" parent="UI" instance=ExtResource("56_kd3dx")]
@@ -829,6 +852,70 @@ theme_override_styles/hover = ExtResource("10_jty1g")
 theme_override_styles/pressed = ExtResource("11_ic8d2")
 text = "Restart"
 
+[node name="WinLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
+[node name="GameOver" type="Control" parent="WinLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="WinLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.254902, 0.254902, 0.678431)
+
+[node name="MarginContainer" type="MarginContainer" parent="WinLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rx576")
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="WinLayer/GameOver/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WinLayer/GameOver/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="WinLayer/GameOver/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_skxey")
+theme_override_colors/font_color = Color(0.329412, 0.584314, 0.470588, 1)
+theme_override_font_sizes/font_size = 72
+text = "Game Over!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinLayer/GameOver/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="WinLayer/GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_0hcfq")
+theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
+theme_override_styles/normal = ExtResource("9_00ovv")
+theme_override_styles/hover = ExtResource("10_jty1g")
+theme_override_styles/pressed = ExtResource("11_ic8d2")
+text = "Restart"
+
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="PauseLayer" instance=ExtResource("5_rev7c")]
@@ -839,9 +926,11 @@ visible = false
 libraries = {
 "": SubResource("AnimationLibrary_st5hw")
 }
+autoplay = "geometry_on"
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="killed" from="Player" to="." method="_on_player_killed"]
 [connection signal="pressed" from="GameOverLayer/GameOver/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="WinLayer/GameOver/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 
 [editable path="ParallaxBackgroundStars"]

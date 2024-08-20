@@ -1,5 +1,7 @@
 class_name Main extends Node2D
 
+@export var black_hole: PackedScene
+
 var pause = false
 @onready var shader_rect = %ShaderRect_geometry
 @onready var player = %Player
@@ -10,6 +12,7 @@ var mult_size_factor: float = 1
 var offset_factor: float = 1
 var chain: int = 0
 var chain_timer: float = 0.0
+var boss_spawned: bool = false
 
 func _ready():
 	Singletons.main = self
@@ -24,7 +27,11 @@ func _process(delta):
 	# Pause menus
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
-	shader_rect.scale = Vector2.ONE / %Camera2D.zoom
+	var shader_scale: Vector2 = Vector2.ONE / %Camera2D.zoom
+	%ShaderRect_volcano.scale = shader_scale
+	%ShaderRect_trip.scale = shader_scale
+	%ShaderRect_cell.scale = shader_scale
+	%ShaderRect_geometry.scale = shader_scale
 	shader_rect.material.set_shader_parameter("mult_size", (0.5 * mult_size_factor) / %Camera2D.zoom.x)
 	shader_rect.material.set_shader_parameter("offset", %Camera2D.global_position / (1000 * offset_factor))
 	if shader_rect == %ShaderRect_stars2:
@@ -77,12 +84,24 @@ func set_atom_count(count: int):
 		shader_rect = %ShaderRect_stars2
 		anim_player.queue("stars_on")
 		#%ParallaxBackgroundStars.visible = true
+	
 	if count > 150:
 		fake_count = 150 + ((count - 150) ** 2)
 	%AtomLabel.set_amount(fake_count)
 	if abs(count - previous_count) >= floori(count / 3):
 		%AtomLabel.animate(count > previous_count)
 	previous_count = count
+	
+	if count >= 100000000 and not boss_spawned:
+		boss_spawned = true
+		get_tree().call_group("Element", "destroy_not_player")
+		$EnemySpawner.process_mode = Node.PROCESS_MODE_DISABLED
+		var hole: BlackHole = black_hole.instantiate()
+		hole.global_position = player.global_position + Vector2(0, -600000)
+		%Enemies.add_child(hole)
+		hole.destroyed_by_player.connect(_on_black_hole_killed)
+		await get_tree().create_timer(5).timeout
+		hole.start()
 
 func increment_chain() -> int:
 	var prev_chain := chain
@@ -93,6 +112,10 @@ func increment_chain() -> int:
 func _on_enemy_killed(enemy: Element):
 	%Player.add_element(enemy)
 	enemy.give_to_player()
+
+func _on_black_hole_killed(hole: BlackHole):
+	%WinLayer.visible = true
+	get_tree().paused = true
 
 func _on_player_killed():
 	%GameOverLayer.visible = true

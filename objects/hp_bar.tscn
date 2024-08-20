@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://e0v8px0kmilg"]
+[gd_scene load_steps=7 format=3 uid="uid://e0v8px0kmilg"]
 
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="1_i2tka"]
+[ext_resource type="Texture2D" uid="uid://cctu26yhiuxut" path="res://assets/textures/ui_barre_ennemi.png" id="2_roe2m"]
 
 [sub_resource type="Gradient" id="Gradient_nitoa"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -18,7 +19,13 @@ gradient = SubResource("Gradient_2c3ne")
 width = 1
 
 [node name="HPBar" type="Node2D"]
+scale = Vector2(1, 0.993938)
 script = ExtResource("1_i2tka")
+
+[node name="Background2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.282, 0.407)
+texture = ExtResource("2_roe2m")
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(10, 2)
