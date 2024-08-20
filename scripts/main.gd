@@ -79,8 +79,8 @@ func set_atom_count(count: int):
 		anim_player.queue("trip_on")
 		#shader_rect.visible = true
 	if count > 750000 and count < 3000000 and shader_rect != %ShaderRect_volcano:
-		mult_size_factor = 0.01
-		offset_factor = 100
+		mult_size_factor = 0.002
+		offset_factor = 250
 		shader_rect = %ShaderRect_volcano
 		anim_player.queue("volcano_on")
 	if count > 5000000 and shader_rect != %ShaderRect_stars2:
@@ -128,7 +128,7 @@ func _on_enemy_killed(enemy: Element):
 
 func _on_black_hole_killed(hole: BlackHole):
 	current_bgm.stop()
-	%Win.play
+	%Win.play()
 	await %Win.finished
 	get_tree().change_scene_to_packed(win_scene)
 	get_tree().paused = true

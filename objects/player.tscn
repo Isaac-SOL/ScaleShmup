@@ -19,6 +19,7 @@ radius = 5.0
 
 [node name="Player" type="Area2D"]
 collision_mask = 268
+audio_bus_name = &"Master"
 script = ExtResource("1_cmjns")
 base_move_speed = 100.0
 projectile = ExtResource("2_cuvwt")
@@ -38,6 +39,7 @@ debug_color = Color(1, 0, 0.701961, 0.419608)
 unique_name_in_owner = true
 
 [node name="Atom" parent="Elements" instance=ExtResource("4_hylfv")]
+audio_bus_name = &"Master"
 hp = 1
 player_owned = true
 shoot_strength = 175.0
