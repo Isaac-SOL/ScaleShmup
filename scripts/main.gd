@@ -57,7 +57,7 @@ func set_atom_count(count: int):
 	if count > 150:
 		fake_count = 150 + ((count - 150) ** 2)
 	%AtomLabel.set_amount(fake_count)
-	if abs(count - previous_count) >= floori(count / 1.5):
+	if abs(count - previous_count) >= floori(count / 3):
 		%AtomLabel.animate(count > previous_count)
 	previous_count = count
 

@@ -59,22 +59,14 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qv5bt")
 
 [node name="CollisionShape2D" parent="." index="6"]
-unique_name_in_owner = false
 position = Vector2(-1099, 10458)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_upbth")
-
-[node name="HPBarAnchor" parent="." index="7"]
-position = Vector2(0, 0)
-scale = Vector2(1, 1)
 
 [node name="HPBar" parent="HPBarAnchor" index="0"]
 position = Vector2(-229, -17353)
 scale = Vector2(3281.19, 1666.23)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="8"]
-visible = true
 position = Vector2(-441.5, 2162)
 scale = Vector2(3186.25, 1929.7)
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

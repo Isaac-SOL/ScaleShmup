@@ -164,10 +164,14 @@ func _on_shoot_timer_timeout():
 			shoot((Singletons.player.global_position - %ShootOrigin.global_position).normalized())
 
 func instantiate_damage_label(pos: Vector2, damage: int):
+	var low_threshold: int =  Singletons.player.size / 200
 	if damage < Singletons.player.size / 200: return
+	var dmg_scale: float = (damage - low_threshold) / ((Singletons.player.size / 10.0) - low_threshold)
+	if dmg_scale > 1: dmg_scale = 1
 	var inst_pos: Vector2 = lerp(position, pos, 0.75)
 	var dmg_label: FlyingLabel = flying_label.instantiate()
 	dmg_label.text = str(damage)
+	dmg_label.final_scale = dmg_scale
 	Singletons.labels.add_child(dmg_label)
 	dmg_label.position = inst_pos
 	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
@@ -206,7 +210,7 @@ func _on_area_entered(area: Area2D):
 	if player_owned:
 		if area is Element and not area.player_owned and Singletons.player.immunity <= 0:
 			play_audio_scaled(%AudioHit, -10)
-			hp -= area.hp
+			hp -= min(area.hp, ceili(size / 3.0))
 			if hp < 0: hp = 0
 			hp_changed.emit(hp)
 			if hp == 0: destroy()
@@ -214,11 +218,13 @@ func _on_area_entered(area: Area2D):
 		if area is Element and area.player_owned:
 			play_audio_scaled(%AudioHit, -10)
 			instantiate_damage_label(area.position, area.hp)
-			hp -= area.hp
+			hp -= min(area.hp, ceili(area.size / 3.0))
 			var hp_ratio := float(hp) / max_hp
 			%HPBar.set_ratio(hp_ratio)
 			if hp_ratio <= 0.9: %HPBar.visible = true
-			if hp <= 0: destroy()
+			if hp <= 0:
+				destroyed_by_player.emit(self)
+				Singletons.shaker.shake(sqrt(size * 2), 1)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	if enemy_ai:

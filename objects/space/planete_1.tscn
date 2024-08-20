@@ -21,12 +21,12 @@ scale = Vector2(2956.29, 2956.29)
 scale = Vector2(1536, 1536)
 texture = ExtResource("2_23lh7")
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource("CircleShape2D_6c44g")
 
 [node name="HPBar" parent="HPBarAnchor" index="0"]
 position = Vector2(-101, -49333)
 scale = Vector2(9321.96, 4733.81)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
 scale = Vector2(7206.28, 7206.28)
