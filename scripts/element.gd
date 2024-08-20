@@ -136,7 +136,7 @@ func destroy_threshold(threshold: int):
 	if (size <= threshold and not player_owned) or size <= threshold / 10:
 		destroy_no_effects()
 
-func destroy_not_player(threshold: int):
+func destroy_not_player():
 	if not player_owned:
 		destroy_no_effects()
 

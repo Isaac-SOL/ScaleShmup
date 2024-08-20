@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://4k55n8tvjtad"]
+
+[ext_resource type="PackedScene" uid="uid://dk3gmnv0q411o" path="res://objects/projectiles/projectile_planete.tscn" id="1_e2k1g"]
+[ext_resource type="Script" path="res://scripts/ProjectileSuperPlanete.gd" id="2_j27av"]
+[ext_resource type="Texture2D" uid="uid://dsvwscvgyuwgp" path="res://assets/textures/sprite_pprojectile_1.png" id="3_0s0o2"]
+[ext_resource type="Texture2D" uid="uid://co4gkasqoss2q" path="res://assets/textures/sprite_pprojectile_2.png" id="4_r3qow"]
+[ext_resource type="Texture2D" uid="uid://dkrstashj1yjv" path="res://assets/textures/sprite_pprojectile_3.png" id="5_aaea1"]
+
+[node name="ProjectileSuperPlanete" instance=ExtResource("1_e2k1g")]
+script = ExtResource("2_j27av")
+rotation_speed = 6.28319
+sprites = Array[Texture2D]([ExtResource("3_0s0o2"), ExtResource("4_r3qow"), ExtResource("5_aaea1")])
+damage_value = 3840000
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_0s0o2")

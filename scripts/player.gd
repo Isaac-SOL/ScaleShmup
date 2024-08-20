@@ -43,8 +43,6 @@ func _process(delta: float):
 		move_vec.x -= move_speed
 	if Input.is_action_pressed("right"):
 		move_vec.x += move_speed
-	if Input.is_action_just_pressed("action"):
-		add_debug(10)
 	direction = move_vec
 	position += move_vec * delta
 	
@@ -57,6 +55,7 @@ func add_debug(x):
 	get_tree().call_group("MainGroup", "set_atom_count",add)
 
 func update_size(atom_count: int):
+	if atom_count > 100000000: atom_count = 100000000
 	size = atom_count
 	sqrt_size = sqrt(atom_count)
 	Singletons.main.set_atom_count(size)

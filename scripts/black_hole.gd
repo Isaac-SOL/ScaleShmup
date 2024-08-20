@@ -10,9 +10,11 @@ signal destroyed_by_player(hole: BlackHole)
 @export var flying_label: PackedScene
 @export var hp: int
 @export var size: int
+@export var test_mode = false
 
+var next_pattern: int = 0
 
-var target: Vector2
+@onready var target: Vector2 = global_position
 var last_pose: int = 0
 @onready var max_hp: int = hp
 
@@ -24,8 +26,15 @@ func _process(delta):
 		node.global_position = Util.decayv2(node.global_position, prev_pos, 10 * delta)
 		prev_pos = node.global_position
 
+func start():
+	$Timer.start()
+	$TimerMove.start()
+	_on_timer_timeout()
+	_on_timer_move_timeout()
+
 func move():
-	target = %Hitbox.global_position + (Vector2(500, 0) if randf() < 0.5 else Vector2(-500, 0))
+	%AudioVoice.play()
+	target = %Hitbox.global_position + Vector2(500 * scale.x, 0) * (1 if randf() < 0.5 else -1)
 
 func shoot_single_projectile(proj: PackedScene, dir: Vector2, strength_enemy) -> Projectile:
 	var new_projectile: Projectile = proj.instantiate()
@@ -33,7 +42,7 @@ func shoot_single_projectile(proj: PackedScene, dir: Vector2, strength_enemy) ->
 	if size < Singletons.player.size / 80:
 		new_projectile.damage_value *= Singletons.player.size / (80 * size)
 	Singletons.projectiles.add_child(new_projectile)
-	new_projectile.global_position = %ShootOrigin.global_position
+	new_projectile.global_position = %Hitbox.global_position
 	new_projectile.global_rotation = dir.angle() - PI / 2
 	var proj_speed: float
 	proj_speed = strength_enemy
@@ -41,12 +50,26 @@ func shoot_single_projectile(proj: PackedScene, dir: Vector2, strength_enemy) ->
 	return new_projectile
 
 func shoot():
-	#%AudioShoot.play()
-	#var dir = (Singletons.player.global_position - %Hitbox.global_position).normalized()
-	pass
+	%AudioShoot.play()
+	if test_mode: return
+	var dir = (Singletons.player.global_position - %Hitbox.global_position).normalized()
+	if next_pattern == 0:
+		shoot_multiple(dir, 4, 60)
+		next_pattern = 1
+	elif next_pattern == 1:
+		shoot_multiple(dir, 5, 100)
+		next_pattern = 0
+
+func shoot_multiple(dir: Vector2, amount: int, angle: float):
+	var angle_rad: float = deg_to_rad(angle)
+	var angle_part: float = angle_rad / (amount - 1)
+	var curr_angle: float = -angle_rad / 2
+	for i in range(amount):
+		var curr_dir: Vector2 = dir.rotated(curr_angle)
+		shoot_single_projectile(projectile, curr_dir, 800000)
+		curr_angle += angle_part
 
 func change_pose():
-	#%AudioVoice.play()
 	var tween := get_tree().create_tween().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(%Sprite2D, "scale", Vector2(1, 0.8), 0.15).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(change_pose_effective)
@@ -69,6 +92,7 @@ func _on_timer_move_timeout():
 	move()
 
 func play_audio_scaled(source: AudioStreamPlayer, base_db: float, scale_value: float):
+	if test_mode: return
 	if scale_value < Singletons.player.size / 100: return
 	source.volume_db = base_db
 	if scale_value < Singletons.player.size / 20:
@@ -77,29 +101,17 @@ func play_audio_scaled(source: AudioStreamPlayer, base_db: float, scale_value: f
 	source.play()
 
 func instantiate_damage_label(pos: Vector2, damage: int):
+	if test_mode: return
 	var low_threshold: int =  Singletons.player.size / 200
-	if damage < Singletons.player.size / 200: return
-	var dmg_scale: float = (damage - low_threshold) / ((Singletons.player.size / 10.0) - low_threshold)
-	dmg_scale = clampf(dmg_scale, 0.2, 1)
-	var inst_pos: Vector2 = lerp(position, pos, 0.75)
+	var inst_pos: Vector2 = lerp(%Hitbox.global_position, pos, 0.75)
 	var dmg_label: FlyingLabel = flying_label.instantiate()
 	dmg_label.text = str(damage)
-	dmg_label.final_scale = dmg_scale
 	Singletons.labels.add_child(dmg_label)
-	dmg_label.position = inst_pos
+	dmg_label.global_position = inst_pos
 	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
 
 func _on_hitbox_area_entered(area):
-	if area is Element and area.player_owned:
-		play_audio_scaled(%AudioHit, -10, min(area.size, size))
-		instantiate_damage_label(area.position, area.hp)
-		hp -= min(area.hp, ceili(area.size / 3.0))
-		var hp_ratio := float(hp) / max_hp
-		%HPBar.set_ratio(hp_ratio)
-		if hp_ratio <= 0.9: %HPBar.visible = true
-		if hp <= 0:
-			destroyed_by_player.emit(self)
-			Singletons.shaker.shake(sqrt(size * 2), 1)
+	Singletons.shaker.shake(sqrt(size * 2), 1)
 
 func _on_hitbox_body_entered(body):
 	if body is Projectile and body.player:
@@ -108,8 +120,38 @@ func _on_hitbox_body_entered(body):
 		body.destroy()
 		hp -= body.damage_value
 		var hp_ratio := float(hp) / max_hp
-		%HPBar.set_ratio(hp_ratio)
-		if hp_ratio <= 0.9: %HPBar.visible = true
 		if hp <= 0:
-			destroyed_by_player.emit(self)
-			Singletons.shaker.shake(sqrt(size), 0.5)
+			end_sequence()
+
+func bwob():
+	var tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(%Sprite2D, "scale", Vector2(0.7, 1.3), 0.25)
+	tween.tween_property(%Sprite2D, "scale", Vector2(1.3, 0.7), 0.25)
+	tween.tween_property(%Sprite2D, "scale", Vector2.ONE, 0.25)
+
+func end_sequence():
+	%Hitbox.set_deferred("collision_mask", 0)
+	%Hitbox.set_deferred("collision_layer", 0)
+	$Timer.stop()
+	$TimerMove.stop()
+	bwob()
+	shoot()
+	%AudioSmallBoom.play()
+	Singletons.shaker.shake(sqrt(size * 2), 1)
+	await get_tree().create_timer(1).timeout
+	bwob()
+	shoot()
+	%AudioSmallBoom.play()
+	Singletons.shaker.shake(sqrt(size * 2), 1)
+	await get_tree().create_timer(1).timeout
+	bwob()
+	shoot()
+	%AudioSmallBoom.play()
+	Singletons.shaker.shake(sqrt(size * 2), 1)
+	await get_tree().create_timer(1).timeout
+	%AudioBigBoom.play()
+	shoot()
+	Singletons.shaker.shake(sqrt(size * 5), 2)
+	visible = false
+	await get_tree().create_timer(3).timeout
+	destroyed_by_player.emit(self)
