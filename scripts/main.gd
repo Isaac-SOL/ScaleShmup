@@ -127,6 +127,9 @@ func _on_enemy_killed(enemy: Element):
 	enemy.give_to_player()
 
 func _on_black_hole_killed(hole: BlackHole):
+	current_bgm.stop()
+	%Win.play
+	await %Win.finished
 	get_tree().change_scene_to_packed(win_scene)
 	get_tree().paused = true
 

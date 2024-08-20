@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=95 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
@@ -77,6 +77,7 @@
 [ext_resource type="AudioStream" uid="uid://cyogtexr26mwj" path="res://assets/audio/Jananass/bgm/atomic_jazz_accross_the_stars_lv2.ogg" id="74_4nj8n"]
 [ext_resource type="AudioStream" uid="uid://cccnspysr2flu" path="res://assets/audio/Jananass/bgm/atomic_jazz_accross_the_stars_lv3.ogg" id="75_q20jo"]
 [ext_resource type="AudioStream" uid="uid://rfcidiknt7ro" path="res://assets/audio/Jananass/bgm/atomic_jazz_accross_the_stars_lvboss.ogg" id="76_w1vco"]
+[ext_resource type="AudioStream" uid="uid://h2ytr7p1333t" path="res://assets/audio/Jananass/fin_des_atomicaux.ogg" id="78_8hngj"]
 
 [sub_resource type="GDScript" id="GDScript_1mht6"]
 script/source = "extends Camera2D
@@ -1142,6 +1143,11 @@ volume_db = -30.0
 unique_name_in_owner = true
 stream = ExtResource("76_w1vco")
 volume_db = -30.0
+
+[node name="Win" type="AudioStreamPlayer" parent="BGM"]
+unique_name_in_owner = true
+stream = ExtResource("78_8hngj")
+volume_db = -5.0
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="killed" from="Player" to="." method="_on_player_killed"]
