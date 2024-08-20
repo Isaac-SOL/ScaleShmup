@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cepcu5makcgy6"]
+
+[ext_resource type="Material" uid="uid://dsfqscfks8i50" path="res://assets/shaders/shader_material_stars2.tres" id="2_5xygh"]
+[ext_resource type="Texture2D" uid="uid://b2sauqm3rfdxy" path="res://assets/textures/backgrounds/background_stars.png" id="2_guydi"]
+
+[node name="ParallaxBackgroundStars" type="ParallaxBackground"]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(1920, 1920)
+
+[node name="ColorRect_stars" type="ColorRect" parent="ParallaxLayer1"]
+material = ExtResource("2_5xygh")
+custom_minimum_size = Vector2(1920, 1920)
+offset_right = 1920.0
+offset_bottom = 1920.0
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1920, 1920)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 1, 1, 0.615686)
+texture = ExtResource("2_guydi")
+centered = false
