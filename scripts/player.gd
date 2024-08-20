@@ -42,8 +42,6 @@ func _process(delta: float):
 		move_vec.x -= move_speed
 	if Input.is_action_pressed("right"):
 		move_vec.x += move_speed
-	if Input.is_action_just_pressed("action"):
-		add_debug(10)
 	direction = move_vec
 	position += move_vec * delta
 	
