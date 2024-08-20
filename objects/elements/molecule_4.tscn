@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://c8qrefbkfp1n6" path="res://objects/projectiles/projectile_atom.tscn" id="2_nevdk"]
 [ext_resource type="Texture2D" uid="uid://c1kkhxriqogbl" path="res://assets/textures/elements/sprite_molecule_4.png" id="2_s4tsp"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb1gu"]
-radius = 8.99999
-height = 38.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qct1"]
-radius = 8.99997
-height = 59.995
+radius = 0.382755
+height = 2.57658
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb1gu"]
+radius = 0.348293
+height = 1.70848
 
 [node name="molecule_4" instance=ExtResource("1_rumws")]
 size = 4
@@ -18,25 +18,25 @@ hp = 32
 projectile = ExtResource("2_nevdk")
 
 [node name="Shadow" parent="." index="0"]
-scale = Vector2(2, 2)
+scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" parent="." index="1"]
-position = Vector2(7, 3)
-scale = Vector2(3, 3)
+position = Vector2(0, 0)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_s4tsp")
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(8, 0)
-shape = SubResource("CapsuleShape2D_wb1gu")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(-1, 0)
+position = Vector2(-0.398438, -0.132813)
 rotation = 0.00239396
 shape = SubResource("CapsuleShape2D_6qct1")
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(0.138268, -0.265935)
+shape = SubResource("CapsuleShape2D_wb1gu")
 
 [node name="HPBar" parent="HPBarAnchor" index="0"]
 position = Vector2(0, -26)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
-position = Vector2(2.84217e-14, 3)
-scale = Vector2(4.42, 4.25)
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+position = Vector2(3.38813e-21, 0)
+scale = Vector2(0.221, 0.213)

@@ -4,35 +4,35 @@
 [ext_resource type="Texture2D" uid="uid://c1kkhxriqogbl" path="res://assets/textures/elements/sprite_molecule_4.png" id="2_m6bno"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_svt6e"]
-radius = 9.0
+radius = 0.495694
 
 [node name="Molecule" instance=ExtResource("1_n58xr")]
 size = 4
 hp = 32
 
 [node name="Shadow" parent="." index="0"]
-scale = Vector2(2, 2)
+scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" parent="." index="1"]
-position = Vector2(7, 3)
+position = Vector2(0, 0)
 texture = ExtResource("2_m6bno")
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(0, -21)
-
 [node name="CollisionShape2D2" parent="." index="3"]
-position = Vector2(0, 0)
+position = Vector2(-0.343751, -1.23437)
 
 [node name="CollisionShape2D3" parent="." index="4"]
-position = Vector2(20, 0)
+position = Vector2(0.648853, -0.122649)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="." index="5"]
-position = Vector2(0, 21)
+position = Vector2(-0.370056, -0.143433)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_svt6e")
+
+[node name="CollisionShape2D" parent="." index="6"]
+position = Vector2(-0.348, 0.930767)
 
 [node name="HPBar" parent="HPBarAnchor" index="0"]
 position = Vector2(0, -29)
 
-[node name="ShootTimer" parent="." index="8"]
+[node name="ShootTimer" parent="." index="9"]
 wait_time = 1.114

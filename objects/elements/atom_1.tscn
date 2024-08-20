@@ -29,8 +29,8 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdnrd"]
-radius = 10.4399
-height = 46.1723
+radius = 0.34
+height = 1.61
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hnve0"]
 streams_count = 5
@@ -71,19 +71,20 @@ player_color = Color(0, 0.694118, 1, 0)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+scale = Vector2(0.05, 0.05)
 texture = SubResource("GradientTexture2D_naak6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(-2, 0)
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_o4gdr")
 
 [node name="ShootOrigin" type="Marker2D" parent="."]
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
 rotation = 1.86584
 shape = SubResource("CapsuleShape2D_fdnrd")
 
@@ -99,7 +100,7 @@ scale = Vector2(5.12, 2.6)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-4.76837e-07, 0)
-scale = Vector2(2.6, 2.5)
+scale = Vector2(0.13, 0.125)
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 3.15
