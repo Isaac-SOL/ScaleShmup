@@ -2,6 +2,8 @@ class_name Main extends Node2D
 
 var pause = false
 @onready var shader_rect = %ShaderRect_geometry
+@onready var player = %Player
+@onready var anim_player = $AnimationPlayer
 
 var previous_count: int = 1
 var mult_size_factor: float = 1
@@ -15,6 +17,7 @@ func _ready():
 	%PauseMenu.hide()
 	# Play game song
 	#NodeAudio.playAudio(NodeAudio.audioGame)
+	anim_player.queue("geometry_on")
 
 func _process(delta):
 	# Pause menus
@@ -23,6 +26,14 @@ func _process(delta):
 	shader_rect.scale = Vector2.ONE / %Camera2D.zoom
 	shader_rect.material.set_shader_parameter("mult_size", (0.5 * mult_size_factor) / %Camera2D.zoom.x)
 	shader_rect.material.set_shader_parameter("offset", %Camera2D.global_position / (1000 * offset_factor))
+	if shader_rect == %ShaderRect_stars2:
+		var dir = player.direction*0.01
+		if dir == Vector2(0.0,0.0):
+			dir = Vector2(1.0,1.0)
+			print("Dir == 0 > dir = "+str(dir))
+		else:
+			print("Dir != 0 > dir = "+str(dir))
+		shader_rect.material.set_shader_parameter("speed_vec", dir)
 
 func set_camera_zoom(size: float):
 	print(size)
@@ -37,23 +48,31 @@ func set_atom_count(count: int):
 	else:
 		$EnemySpawner/Timer.wait_time = 1
 	if count > 150 and shader_rect != %ShaderRect_cell:
-		shader_rect.visible = false
+		#shader_rect.visible = false
 		mult_size_factor = 0.4
 		offset_factor = 2
 		shader_rect = %ShaderRect_cell
-		shader_rect.visible = true
-	if count > 2000 and shader_rect != %ShaderRect_geometry_2:
-		shader_rect.visible = false
+		anim_player.queue("cells_on")
+		#shader_rect.visible = true
+	if count > 2000 and shader_rect != %ShaderRect_trip:
+		#shader_rect.visible = false
 		mult_size_factor = 0.025
 		offset_factor = 35
-		shader_rect = %ShaderRect_geometry_2
-		shader_rect.visible = true
-	if count > 5000000 and shader_rect != %ShaderRect_cell_2:
-		shader_rect.visible = false
+		shader_rect = %ShaderRect_trip
+		anim_player.queue("trip_on")
+		#shader_rect.visible = true
+	if count > 5000000 and shader_rect != %ShaderRect_volcano:
 		mult_size_factor = 0.01
 		offset_factor = 100
-		shader_rect = %ShaderRect_cell_2
-		shader_rect.visible = true
+		shader_rect = %ShaderRect_volcano
+		anim_player.queue("volcano_on")
+	if count > 5000000000 and shader_rect != %ShaderRect_stars2:
+		#shader_rect.visible = false
+		mult_size_factor = 0.001
+		offset_factor = 1000
+		shader_rect = %ShaderRect_stars2
+		anim_player.queue("stars_on")
+		#%ParallaxBackgroundStars.visible = true
 	if count > 150:
 		fake_count = 150 + ((count - 150) ** 2)
 	%AtomLabel.set_amount(fake_count)

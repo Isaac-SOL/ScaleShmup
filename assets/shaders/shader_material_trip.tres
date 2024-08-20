@@ -6,11 +6,12 @@
 [resource]
 shader = ExtResource("1_jpe8j")
 shader_parameter/mult = 500.0
+shader_parameter/alpha = 0.0
 shader_parameter/offset = 1.0
 shader_parameter/time_mult = 0.5
-shader_parameter/line_strenght = 0.5
-shader_parameter/color_a = Color(1, 1, 0.403922, 1)
-shader_parameter/color_b = Color(1, 1, 0.631373, 1)
-shader_parameter/param_c = Color(0, 0, 1, 1)
-shader_parameter/param_d = Color(0, 0, 0.231373, 1)
+shader_parameter/line_strenght = 5.0
+shader_parameter/color_a = Color(0.916526, 0.793703, 0.961668, 1)
+shader_parameter/color_b = Color(0.0482213, 0.628715, 0.872879, 1)
+shader_parameter/param_c = Color(0.487755, 0.437136, 0.42128, 1)
+shader_parameter/param_d = Color(0, 0, 0.486275, 1)
 shader_parameter/text_img = ExtResource("2_u37xm")

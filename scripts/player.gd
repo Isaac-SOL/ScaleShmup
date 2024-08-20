@@ -21,6 +21,8 @@ var move_speed: float
 var immunity: float = 0
 var size: int = 1
 var sqrt_size: float = 1
+var direction: Vector2
+var add = 0
 
 func _ready():
 	Singletons.player = self
@@ -40,10 +42,18 @@ func _process(delta: float):
 		move_vec.x -= move_speed
 	if Input.is_action_pressed("right"):
 		move_vec.x += move_speed
+	if Input.is_action_just_pressed("action"):
+		add_debug(10)
+	direction = move_vec
 	position += move_vec * delta
 	
 	if immunity > 0:
 		immunity -= delta
+
+#DEBUG
+func add_debug(x):
+	add += x
+	get_tree().call_group("MainGroup", "set_atom_count",add)
 
 func update_size(atom_count: int):
 	size = atom_count

@@ -1,7 +1,8 @@
 shader_type canvas_item;
 
 uniform sampler2D text_img;
-uniform float mult = 1.0;
+uniform float mult = 500.0;
+uniform float alpha = 1.0;
 uniform float offset;
 uniform float time_mult = 0.5;
 uniform float line_strenght = 0.5;
@@ -35,12 +36,14 @@ void fragment() {
 		vec2 uv = (SCREEN_UV * 2.0)-1.0;
 		vec2 uv0 = UV;
 		vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
+		uv.x *= screen_size.x/screen_size.y ;
+		uv += offset;
+		//uv = mod(uv + vec2(1, 1), 2) - vec2(1, 1);
 		vec4 current_color;
 		vec4 color;
-		uv.x *= screen_size.x/screen_size.y ;
 		uv *= mult;
 		uv += offset;
-		vec2 U = vec2(uv.x,uv.y);
+		vec2 U = uv;
 	    vec2 R = screen_size.xy;
 		
 		//for (float f = 0.0; f <=5.0; f++){
@@ -54,12 +57,12 @@ void fragment() {
 		//param_c_time.b *= abs((sin(TIME*0.5)));
 		vec3 palette_back = palette(length(uv),color_a,color_b,param_c_time,param_d);
 		vec3 palette_lines = vec3(0.0,0.5,2.0);
-		color = mix( .5+.5*sin(05.*n+vec4(palette_back,0.)), // .97
+		color = mix( .5+.5*sin(05.*n+vec4(palette_back,0.0)), // .97
              (.5+.5*sin(05.*n+(sin(TIME / 10.0) * 5.0)+vec4(palette_lines,1.0))),
              v );
 		//}
 	
-	COLOR = color;
+	COLOR = vec4(0.2,0.3,color.z,alpha);
 }
 
 //void light() {
