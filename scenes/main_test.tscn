@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://cnl7nvedtiim8"]
+[gd_scene load_steps=89 format=3 uid="uid://cnl7nvedtiim8"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6ytji"]
 [ext_resource type="PackedScene" uid="uid://cepcu5makcgy6" path="res://scenes/parallax_background_stars.tscn" id="2_4vy7o"]
@@ -7,7 +7,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/main_cells.gdshader" id="4_2objl"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="4_ggheu"]
 [ext_resource type="Shader" path="res://assets/shaders/main_volcano.gdshader" id="4_kypmi"]
-[ext_resource type="PackedScene" path="res://objects/elements/atom_1_real.tscn" id="5_3n0il"]
+[ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="5_3n0il"]
 [ext_resource type="Material" uid="uid://brv642opwryh3" path="res://assets/shaders/shader_material_trip.tres" id="5_i4dl5"]
 [ext_resource type="Shader" path="res://assets/shaders/main.gdshader" id="5_oapi1"]
 [ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="6_axo6u"]
@@ -24,25 +24,25 @@
 [ext_resource type="PackedScene" uid="uid://cl0m6gm6l8jxk" path="res://objects/elements/molecule_7.tscn" id="14_n2ebi"]
 [ext_resource type="PackedScene" uid="uid://dpyloqnlh7sqr" path="res://objects/elements/molecule_8.tscn" id="15_s8y5m"]
 [ext_resource type="PackedScene" uid="uid://mqa1crc6dmom" path="res://objects/elements/molecule_9.tscn" id="16_2l4d8"]
-[ext_resource type="PackedScene" path="res://objects/cells/cell_1_true.tscn" id="17_kxevh"]
-[ext_resource type="PackedScene" uid="uid://bm5rnkt23gq5q" path="res://objects/cells/cell_2.tscn" id="18_4a2fx"]
-[ext_resource type="PackedScene" uid="uid://bak8eh7jscmsd" path="res://objects/cells/cell_3.tscn" id="19_5gust"]
-[ext_resource type="PackedScene" uid="uid://6dwiaffkixg0" path="res://objects/cells/cell_4.tscn" id="20_fh36p"]
-[ext_resource type="PackedScene" uid="uid://c044wjyytvawy" path="res://objects/cells/cell_5.tscn" id="21_3ps1h"]
-[ext_resource type="PackedScene" uid="uid://dcq1dsfnl3aaj" path="res://objects/cells/cell_6.tscn" id="22_7b5if"]
-[ext_resource type="PackedScene" uid="uid://xyb0n6bbr31e" path="res://objects/cells/cell_7.tscn" id="23_2n8og"]
-[ext_resource type="PackedScene" uid="uid://bq8kredyq0xsk" path="res://objects/cells/cell_8.tscn" id="24_sfg1x"]
-[ext_resource type="PackedScene" uid="uid://7c75qi6ihe64" path="res://objects/cells/cell_9.tscn" id="25_frtvx"]
-[ext_resource type="PackedScene" uid="uid://dht01k5do7ua8" path="res://objects/cells/cell_10.tscn" id="26_73efu"]
-[ext_resource type="PackedScene" uid="uid://dgrxxeqw174li" path="res://objects/cells/cell_11.tscn" id="27_aq6u6"]
+[ext_resource type="PackedScene" uid="uid://crpvbkcslfnbg" path="res://objects/cells/cell_1_true.tscn" id="17_kxevh"]
+[ext_resource type="PackedScene" uid="uid://tib2bdwk55d6" path="res://objects/cells/cell_2.tscn" id="18_4a2fx"]
+[ext_resource type="PackedScene" uid="uid://ccfbvyst2y517" path="res://objects/cells/cell_3.tscn" id="19_5gust"]
+[ext_resource type="PackedScene" uid="uid://cj76ecev5r8n8" path="res://objects/cells/cell_4.tscn" id="20_fh36p"]
+[ext_resource type="PackedScene" uid="uid://cfw32dsbkwx4s" path="res://objects/cells/cell_5.tscn" id="21_3ps1h"]
+[ext_resource type="PackedScene" uid="uid://d3j2pxpaq8m3o" path="res://objects/cells/cell_6.tscn" id="22_7b5if"]
+[ext_resource type="PackedScene" uid="uid://d2csh2xlyvl1p" path="res://objects/cells/cell_7.tscn" id="23_2n8og"]
+[ext_resource type="PackedScene" uid="uid://xyefcntl01ys" path="res://objects/cells/cell_8.tscn" id="24_sfg1x"]
+[ext_resource type="PackedScene" uid="uid://duvru0vnbfl8l" path="res://objects/cells/cell_9.tscn" id="25_frtvx"]
+[ext_resource type="PackedScene" uid="uid://l2cuqn55hobe" path="res://objects/cells/cell_10.tscn" id="26_73efu"]
+[ext_resource type="PackedScene" uid="uid://dwqnrvlniixjj" path="res://objects/cells/cell_11.tscn" id="27_aq6u6"]
 [ext_resource type="PackedScene" uid="uid://c2rv2i4um7l80" path="res://objects/animals/pinpin_1.tscn" id="28_x3m7m"]
-[ext_resource type="PackedScene" path="res://objects/animals/saumon_1.tscn" id="29_i7bjo"]
+[ext_resource type="PackedScene" uid="uid://c5rs78vb5up1u" path="res://objects/animals/saumon_1.tscn" id="29_i7bjo"]
 [ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="30_tl1g5"]
-[ext_resource type="PackedScene" uid="uid://dcyaj2alr50xe" path="res://objects/animals/human_2.tscn" id="31_01xyn"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_3.tscn" id="32_fk3bp"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_4.tscn" id="33_ky8xu"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_5.tscn" id="34_8oeow"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_6.tscn" id="35_3k2vh"]
+[ext_resource type="PackedScene" uid="uid://bs6px4714q04x" path="res://objects/animals/human_2.tscn" id="31_01xyn"]
+[ext_resource type="PackedScene" uid="uid://cxex1s1m0r7ml" path="res://objects/animals/human_3.tscn" id="32_fk3bp"]
+[ext_resource type="PackedScene" uid="uid://86qtcth3i5lm" path="res://objects/animals/human_4.tscn" id="33_ky8xu"]
+[ext_resource type="PackedScene" uid="uid://bvrhraiw1sqn5" path="res://objects/animals/human_5.tscn" id="34_8oeow"]
+[ext_resource type="PackedScene" uid="uid://b3lc8rh2av8tg" path="res://objects/animals/human_6.tscn" id="35_3k2vh"]
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="36_5us0t"]
 [ext_resource type="PackedScene" uid="uid://drxcuaatqngdl" path="res://objects/structures/batiment_2.tscn" id="37_him7l"]
 [ext_resource type="PackedScene" uid="uid://bw7x4ovwd0gc2" path="res://objects/structures/batiment_3.tscn" id="38_ew51n"]
@@ -58,7 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjtxlrtymbh8" path="res://objects/space/planete_7.tscn" id="47_np8cn"]
 [ext_resource type="PackedScene" uid="uid://bulpixfoca577" path="res://objects/space/planete_8.tscn" id="48_fncf2"]
 [ext_resource type="PackedScene" uid="uid://vp2coe7of34" path="res://objects/space/planete_9.tscn" id="49_8yqqq"]
-[ext_resource type="PackedScene" path="res://objects/space/galaxie_1_true.tscn" id="50_bu58h"]
+[ext_resource type="PackedScene" uid="uid://c40q07ix50fr7" path="res://objects/space/galaxie_1_true.tscn" id="50_bu58h"]
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="50_ioufj"]
 [ext_resource type="Theme" uid="uid://dtqnw4yhbe0kk" path="res://assets/fonts/second_title_them.tres" id="51_eeqjj"]
 [ext_resource type="PackedScene" uid="uid://hucawvxp2i04" path="res://objects/projectiles/projectile_caillou_gros.tscn" id="51_hv5yl"]
@@ -505,6 +505,58 @@ tracks/8/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_umc7t"]
+resource_name = "stars_boss_on"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.047, 0.047, 0.322, 1), Color(1.028, 0.288, 0.288, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_b")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.129, 0.039, 0.122, 1), Color(-1.432, 0.5, 0.5, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_c")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.228, 0, 0, 1), Color(1.598, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_d")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.377, 1.527, 1.897, 1), Color(-0.813, 0.447, 0.857, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_xmswr"]
 resource_name = "stars_on"
 length = 5.0
@@ -769,58 +821,6 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_umc7t"]
-resource_name = "stars_boss_on"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.047, 0.047, 0.322, 1), Color(1.028, 0.288, 0.288, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_b")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.129, 0.039, 0.122, 1), Color(-1.432, 0.5, 0.5, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_c")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(2.228, 0, 0, 1), Color(1.598, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_d")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.377, 1.527, 1.897, 1), Color(-0.813, 0.447, 0.857, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_st5hw"]
 _data = {
 "RESET": SubResource("Animation_781t4"),
@@ -839,6 +839,7 @@ black_hole = ExtResource("52_i7bey")
 
 [node name="ParallaxBackgroundStars" parent="." instance=ExtResource("2_4vy7o")]
 unique_name_in_owner = true
+scroll_base_scale = Vector2(0.001, 0.001)
 
 [node name="ParallaxLayer2" parent="ParallaxBackgroundStars" index="1"]
 modulate = Color(0.2, 0.2, 0.2, 1)
@@ -999,212 +1000,177 @@ script = SubResource("GDScript_7myx6")
 
 [node name="Atom" parent="Enemies" instance=ExtResource("5_3n0il")]
 position = Vector2(70, -139)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Atom2" parent="Enemies" instance=ExtResource("6_axo6u")]
 position = Vector2(223, -136)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Atom3" parent="Enemies" instance=ExtResource("7_atmel")]
 position = Vector2(385, -70)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Molecule2" parent="Enemies" instance=ExtResource("8_15cq6")]
 position = Vector2(559, -64)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Molecule3" parent="Enemies" instance=ExtResource("9_k1eeh")]
 position = Vector2(742, -67)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="Molecule" parent="Enemies" instance=ExtResource("10_ibe4u")]
 position = Vector2(969, -64)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_4" parent="Enemies" instance=ExtResource("11_u7w4m")]
 position = Vector2(1191, -76)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_5" parent="Enemies" instance=ExtResource("12_u6xvq")]
 position = Vector2(1372, -67)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_6" parent="Enemies" instance=ExtResource("13_o6y2u")]
 position = Vector2(1693, -82)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_7" parent="Enemies" instance=ExtResource("14_n2ebi")]
 position = Vector2(1682, 265)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_8" parent="Enemies" instance=ExtResource("15_s8y5m")]
 position = Vector2(1678, 622)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="molecule_9" parent="Enemies" instance=ExtResource("16_2l4d8")]
 position = Vector2(1365, 100)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_1_true" parent="Enemies" instance=ExtResource("17_kxevh")]
 position = Vector2(1420, 1274)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_2" parent="Enemies" instance=ExtResource("18_4a2fx")]
 position = Vector2(426, 1277)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_3" parent="Enemies" instance=ExtResource("19_5gust")]
 position = Vector2(-666, 1387)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_4" parent="Enemies" instance=ExtResource("20_fh36p")]
 position = Vector2(-1774, 1335)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_5" parent="Enemies" instance=ExtResource("21_3ps1h")]
 position = Vector2(-2859, 1327)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_6" parent="Enemies" instance=ExtResource("22_7b5if")]
 position = Vector2(-2897, 352)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_7" parent="Enemies" instance=ExtResource("23_2n8og")]
 position = Vector2(-2830, -599)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_8" parent="Enemies" instance=ExtResource("24_sfg1x")]
 position = Vector2(-2845, -1598)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_9" parent="Enemies" instance=ExtResource("25_frtvx")]
 position = Vector2(-2826, -2659)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="cell_10" parent="Enemies" instance=ExtResource("26_73efu")]
 position = Vector2(-1765, -2597)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_1" parent="Enemies" instance=ExtResource("30_tl1g5")]
 position = Vector2(167, -4167)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_2" parent="Enemies" instance=ExtResource("31_01xyn")]
 position = Vector2(3208, -4155)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_3" parent="Enemies" instance=ExtResource("32_fk3bp")]
 position = Vector2(6364, -4036)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_4" parent="Enemies" instance=ExtResource("33_ky8xu")]
 position = Vector2(9862, -3915)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_5" parent="Enemies" instance=ExtResource("34_8oeow")]
 position = Vector2(13629, -3768)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="human_6" parent="Enemies" instance=ExtResource("35_3k2vh")]
 position = Vector2(17248, -3754)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="pinpin_1" parent="Enemies" instance=ExtResource("28_x3m7m")]
 position = Vector2(9069, 458)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="saumon_1" parent="Enemies" instance=ExtResource("29_i7bjo")]
 position = Vector2(12815, 458)
-audio_bus_name = &""
 script = ExtResource("38_kl5rc")
 hp = 1
 enemy_ai = false
 
 [node name="batiment_1" parent="Enemies" instance=ExtResource("36_5us0t")]
 position = Vector2(53020, 1992)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_2" parent="Enemies" instance=ExtResource("37_him7l")]
 position = Vector2(41594, 28850)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_3" parent="Enemies" instance=ExtResource("38_ew51n")]
 position = Vector2(7833, 47715)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_4" parent="Enemies" instance=ExtResource("39_fh2hf")]
 position = Vector2(-71936, 57472)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 
 [node name="batiment_5" parent="Enemies" instance=ExtResource("40_6j8wg")]
 position = Vector2(-126848, 15616)
-audio_bus_name = &""
 hp = 1
 enemy_ai = false
 

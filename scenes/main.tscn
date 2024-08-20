@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=88 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cepcu5makcgy6" path="res://scenes/parallax_background_stars.tscn" id="2_m7qis"]
 [ext_resource type="PackedScene" uid="uid://brx000lmdij6e" path="res://objects/space/black_hole.tscn" id="2_s1vfr"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_4mhxf"]
-[ext_resource type="PackedScene" path="res://objects/elements/atom_1_real.tscn" id="4_4ge4g"]
+[ext_resource type="PackedScene" uid="uid://5glcloy21yt" path="res://objects/elements/atom_1_real.tscn" id="4_4ge4g"]
 [ext_resource type="Material" uid="uid://brv642opwryh3" path="res://assets/shaders/shader_material_trip.tres" id="4_idq7l"]
 [ext_resource type="PackedScene" uid="uid://bs6fvvtv7qoal" path="res://objects/elements/atom_2.tscn" id="4_jaagb"]
 [ext_resource type="Shader" path="res://assets/shaders/main_cells.gdshader" id="4_r4o50"]
@@ -31,26 +31,26 @@
 [ext_resource type="StyleBox" uid="uid://b3p1lms34esoy" path="res://imports/style_box_click.tres" id="11_ic8d2"]
 [ext_resource type="PackedScene" uid="uid://cl0m6gm6l8jxk" path="res://objects/elements/molecule_7.tscn" id="12_ivwwh"]
 [ext_resource type="PackedScene" uid="uid://dpyloqnlh7sqr" path="res://objects/elements/molecule_8.tscn" id="13_tyumn"]
-[ext_resource type="PackedScene" uid="uid://bm5rnkt23gq5q" path="res://objects/cells/cell_2.tscn" id="15_cf78x"]
-[ext_resource type="PackedScene" uid="uid://bak8eh7jscmsd" path="res://objects/cells/cell_3.tscn" id="16_k0rki"]
-[ext_resource type="PackedScene" path="res://objects/cells/cell_1_true.tscn" id="17_33twd"]
-[ext_resource type="PackedScene" uid="uid://6dwiaffkixg0" path="res://objects/cells/cell_4.tscn" id="17_hiiu3"]
-[ext_resource type="PackedScene" uid="uid://c044wjyytvawy" path="res://objects/cells/cell_5.tscn" id="18_yv12n"]
-[ext_resource type="PackedScene" uid="uid://dcq1dsfnl3aaj" path="res://objects/cells/cell_6.tscn" id="19_l6nx0"]
-[ext_resource type="PackedScene" uid="uid://xyb0n6bbr31e" path="res://objects/cells/cell_7.tscn" id="20_kyeo1"]
-[ext_resource type="PackedScene" uid="uid://bq8kredyq0xsk" path="res://objects/cells/cell_8.tscn" id="21_6vje1"]
-[ext_resource type="PackedScene" uid="uid://7c75qi6ihe64" path="res://objects/cells/cell_9.tscn" id="22_85rhn"]
-[ext_resource type="PackedScene" uid="uid://dht01k5do7ua8" path="res://objects/cells/cell_10.tscn" id="23_110pa"]
-[ext_resource type="PackedScene" uid="uid://dgrxxeqw174li" path="res://objects/cells/cell_11.tscn" id="24_lrwc0"]
+[ext_resource type="PackedScene" uid="uid://tib2bdwk55d6" path="res://objects/cells/cell_2.tscn" id="15_cf78x"]
+[ext_resource type="PackedScene" uid="uid://ccfbvyst2y517" path="res://objects/cells/cell_3.tscn" id="16_k0rki"]
+[ext_resource type="PackedScene" uid="uid://crpvbkcslfnbg" path="res://objects/cells/cell_1_true.tscn" id="17_33twd"]
+[ext_resource type="PackedScene" uid="uid://cj76ecev5r8n8" path="res://objects/cells/cell_4.tscn" id="17_hiiu3"]
+[ext_resource type="PackedScene" uid="uid://cfw32dsbkwx4s" path="res://objects/cells/cell_5.tscn" id="18_yv12n"]
+[ext_resource type="PackedScene" uid="uid://d3j2pxpaq8m3o" path="res://objects/cells/cell_6.tscn" id="19_l6nx0"]
+[ext_resource type="PackedScene" uid="uid://d2csh2xlyvl1p" path="res://objects/cells/cell_7.tscn" id="20_kyeo1"]
+[ext_resource type="PackedScene" uid="uid://xyefcntl01ys" path="res://objects/cells/cell_8.tscn" id="21_6vje1"]
+[ext_resource type="PackedScene" uid="uid://duvru0vnbfl8l" path="res://objects/cells/cell_9.tscn" id="22_85rhn"]
+[ext_resource type="PackedScene" uid="uid://l2cuqn55hobe" path="res://objects/cells/cell_10.tscn" id="23_110pa"]
+[ext_resource type="PackedScene" uid="uid://dwqnrvlniixjj" path="res://objects/cells/cell_11.tscn" id="24_lrwc0"]
 [ext_resource type="PackedScene" uid="uid://btx4vmnuhkadk" path="res://objects/animals/human_1.tscn" id="25_d1f3q"]
-[ext_resource type="PackedScene" uid="uid://dcyaj2alr50xe" path="res://objects/animals/human_2.tscn" id="26_6q63m"]
+[ext_resource type="PackedScene" uid="uid://bs6px4714q04x" path="res://objects/animals/human_2.tscn" id="26_6q63m"]
 [ext_resource type="PackedScene" uid="uid://c2rv2i4um7l80" path="res://objects/animals/pinpin_1.tscn" id="27_y577c"]
 [ext_resource type="PackedScene" uid="uid://mqa1crc6dmom" path="res://objects/elements/molecule_9.tscn" id="29_twjg8"]
-[ext_resource type="PackedScene" path="res://objects/animals/saumon_1.tscn" id="30_3i33a"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_4.tscn" id="31_3qrwx"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_5.tscn" id="32_is5d3"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_3.tscn" id="32_tvour"]
-[ext_resource type="PackedScene" path="res://objects/animals/human_6.tscn" id="33_iby7y"]
+[ext_resource type="PackedScene" uid="uid://c5rs78vb5up1u" path="res://objects/animals/saumon_1.tscn" id="30_3i33a"]
+[ext_resource type="PackedScene" uid="uid://86qtcth3i5lm" path="res://objects/animals/human_4.tscn" id="31_3qrwx"]
+[ext_resource type="PackedScene" uid="uid://bvrhraiw1sqn5" path="res://objects/animals/human_5.tscn" id="32_is5d3"]
+[ext_resource type="PackedScene" uid="uid://cxex1s1m0r7ml" path="res://objects/animals/human_3.tscn" id="32_tvour"]
+[ext_resource type="PackedScene" uid="uid://b3lc8rh2av8tg" path="res://objects/animals/human_6.tscn" id="33_iby7y"]
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="34_enks2"]
 [ext_resource type="PackedScene" uid="uid://drxcuaatqngdl" path="res://objects/structures/batiment_2.tscn" id="35_tcq38"]
 [ext_resource type="PackedScene" uid="uid://bw7x4ovwd0gc2" path="res://objects/structures/batiment_3.tscn" id="36_86o4y"]
@@ -65,7 +65,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjtxlrtymbh8" path="res://objects/space/planete_7.tscn" id="45_7j36w"]
 [ext_resource type="PackedScene" uid="uid://bulpixfoca577" path="res://objects/space/planete_8.tscn" id="46_3nnm2"]
 [ext_resource type="PackedScene" uid="uid://vp2coe7of34" path="res://objects/space/planete_9.tscn" id="47_vtadc"]
-[ext_resource type="PackedScene" uid="uid://ji8uccvwr6yq" path="res://objects/atom_label.tscn" id="56_kd3dx"]
+[ext_resource type="PackedScene" uid="uid://bo6snfbyyrgdb" path="res://objects/atom_label.tscn" id="56_kd3dx"]
 [ext_resource type="PackedScene" uid="uid://c40q07ix50fr7" path="res://objects/space/galaxie_1_true.tscn" id="58_an2dr"]
 [ext_resource type="PackedScene" uid="uid://hvbyqvwpg7ru" path="res://objects/space/galaxie_2.tscn" id="59_7kk0m"]
 [ext_resource type="PackedScene" uid="uid://cmivser754ag3" path="res://objects/space/galaxie_3.tscn" id="60_6y53i"]
@@ -503,6 +503,58 @@ tracks/8/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_umc7t"]
+resource_name = "stars_boss_on"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.047, 0.047, 0.322, 1), Color(1.028, 0.288, 0.288, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_b")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.129, 0.039, 0.122, 1), Color(-1.432, 0.5, 0.5, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_c")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.228, 0, 0, 1), Color(1.598, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_d")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.377, 1.527, 1.897, 1), Color(-0.813, 0.447, 0.857, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_xmswr"]
 resource_name = "stars_on"
 length = 5.0
@@ -765,58 +817,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_umc7t"]
-resource_name = "stars_boss_on"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.047, 0.047, 0.322, 1), Color(1.028, 0.288, 0.288, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/color_b")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.129, 0.039, 0.122, 1), Color(-1.432, 0.5, 0.5, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_c")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(2.228, 0, 0, 1), Color(1.598, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ParallaxBackgroundStars/ParallaxLayer1/ColorRect_stars:material:shader_parameter/param_d")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.377, 1.527, 1.897, 1), Color(-0.813, 0.447, 0.857, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_st5hw"]

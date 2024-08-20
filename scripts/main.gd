@@ -35,9 +35,10 @@ func _process(delta):
 	shader_rect.material.set_shader_parameter("mult_size", (0.5 * mult_size_factor) / %Camera2D.zoom.x)
 	shader_rect.material.set_shader_parameter("offset", %Camera2D.global_position / (1000 * offset_factor))
 	if shader_rect == %ShaderRect_stars2:
+		%ParallaxBackgroundStars.scale = shader_scale
 		var dir = player.direction*0.01
-		if dir == Vector2(0.0,0.0):
-			dir = Vector2(1.0,1.0)
+		if dir == Vector2.ZERO:
+			dir = Vector2.ONE
 			print("Dir == 0 > dir = "+str(dir))
 		else:
 			print("Dir != 0 > dir = "+str(dir))
@@ -94,6 +95,12 @@ func set_atom_count(count: int):
 	
 	if count >= 100000000 and not boss_spawned:
 		boss_spawned = true
+		anim_player.queue("stars_boss_on")
+		$ParallaxBackgroundStars/ParallaxLayer2.visible = false
+		$ParallaxBackgroundStars/ParallaxLayer3.visible = false
+		$ParallaxBackgroundStars/ParallaxLayer4.visible = false
+		$ParallaxBackgroundStars/ParallaxLayer5.visible = false
+		$ParallaxBackgroundStars/ParallaxLayer6.visible = false
 		get_tree().call_group("Element", "destroy_not_player")
 		$EnemySpawner.process_mode = Node.PROCESS_MODE_DISABLED
 		var hole: BlackHole = black_hole.instantiate()

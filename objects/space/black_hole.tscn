@@ -103,7 +103,6 @@ texture = ExtResource("3_n1xo8")
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 258
-audio_bus_name = &""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_frwwd")
