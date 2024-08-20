@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxgs4aoyn2aue"]
+[gd_scene load_steps=16 format=3 uid="uid://cxgs4aoyn2aue"]
 
 [ext_resource type="PackedScene" uid="uid://bvsoknqb3kby5" path="res://objects/structures/batiment_1.tscn" id="1_egy0j"]
 [ext_resource type="Script" path="res://scripts/patterns/element_slight_random_burst.gd" id="2_ax1qj"]
 [ext_resource type="Texture2D" uid="uid://cyqf5do60fbu2" path="res://assets/textures/structures/volcan.png" id="2_y50l3"]
 [ext_resource type="PackedScene" uid="uid://dk7v8y3xs0bym" path="res://objects/projectiles/projectile_caillou_feu.tscn" id="3_dfxx5"]
+[ext_resource type="AudioStream" uid="uid://cllxabpo2wbbg" path="res://assets/audio/Kenney/Impacts/footstep_wood_000.ogg" id="5_00mrb"]
+[ext_resource type="AudioStream" uid="uid://5s24qjt27lgu" path="res://assets/audio/Kenney/Impacts/footstep_snow_000.ogg" id="5_kg3u7"]
+[ext_resource type="AudioStream" uid="uid://dpimpa7yb8cv5" path="res://assets/audio/Kenney/Impacts/footstep_snow_001.ogg" id="6_0w7ef"]
+[ext_resource type="AudioStream" uid="uid://cksyc6l5uajem" path="res://assets/audio/Kenney/Impacts/footstep_snow_002.ogg" id="7_au1er"]
+[ext_resource type="AudioStream" uid="uid://opp1behyo4fw" path="res://assets/audio/Kenney/Impacts/footstep_snow_003.ogg" id="8_5fepo"]
+[ext_resource type="AudioStream" uid="uid://cdo05oqld31o8" path="res://assets/audio/Kenney/Impacts/footstep_snow_004.ogg" id="9_nfemb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_14hks"]
 radius = 6622.0
@@ -20,6 +26,19 @@ height = 16978.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upbth"]
 radius = 3176.0
 height = 54170.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3u0ji"]
+streams_count = 5
+stream_0/stream = ExtResource("5_kg3u7")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_0w7ef")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_au1er")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_5fepo")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("9_nfemb")
+stream_4/weight = 1.0
 
 [node name="batiment_1" instance=ExtResource("1_egy0j")]
 script = ExtResource("2_ax1qj")
@@ -70,3 +89,9 @@ scale = Vector2(3281.19, 1666.23)
 [node name="VisibleOnScreenNotifier2D" parent="." index="8"]
 position = Vector2(-441.5, 2162)
 scale = Vector2(3186.25, 1929.7)
+
+[node name="AudioHit" parent="." index="11"]
+stream = ExtResource("5_00mrb")
+
+[node name="AudioShoot" parent="." index="12"]
+stream = SubResource("AudioStreamRandomizer_3u0ji")
