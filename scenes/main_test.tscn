@@ -843,6 +843,19 @@ scroll_base_scale = Vector2(0.001, 0.001)
 
 [node name="ParallaxLayer2" parent="ParallaxBackgroundStars" index="1"]
 modulate = Color(0.2, 0.2, 0.2, 1)
+motion_scale = Vector2(0.25, 0.25)
+
+[node name="ParallaxLayer3" parent="ParallaxBackgroundStars" index="2"]
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="ParallaxLayer4" parent="ParallaxBackgroundStars" index="3"]
+motion_scale = Vector2(0.35, 0.35)
+
+[node name="ParallaxLayer5" parent="ParallaxBackgroundStars" index="4"]
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="ParallaxLayer6" parent="ParallaxBackgroundStars" index="5"]
+motion_scale = Vector2(0.45, 0.45)
 
 [node name="Shaker2D" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
 script = ExtResource("2_hm5jh")
@@ -1000,177 +1013,212 @@ script = SubResource("GDScript_7myx6")
 
 [node name="Atom" parent="Enemies" instance=ExtResource("5_3n0il")]
 position = Vector2(70, -139)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="Atom2" parent="Enemies" instance=ExtResource("6_axo6u")]
 position = Vector2(223, -136)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="Atom3" parent="Enemies" instance=ExtResource("7_atmel")]
 position = Vector2(385, -70)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="Molecule2" parent="Enemies" instance=ExtResource("8_15cq6")]
 position = Vector2(559, -64)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="Molecule3" parent="Enemies" instance=ExtResource("9_k1eeh")]
 position = Vector2(742, -67)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="Molecule" parent="Enemies" instance=ExtResource("10_ibe4u")]
 position = Vector2(969, -64)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="molecule_4" parent="Enemies" instance=ExtResource("11_u7w4m")]
 position = Vector2(1191, -76)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="molecule_5" parent="Enemies" instance=ExtResource("12_u6xvq")]
 position = Vector2(1372, -67)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="molecule_6" parent="Enemies" instance=ExtResource("13_o6y2u")]
 position = Vector2(1693, -82)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="molecule_7" parent="Enemies" instance=ExtResource("14_n2ebi")]
 position = Vector2(1682, 265)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="molecule_8" parent="Enemies" instance=ExtResource("15_s8y5m")]
 position = Vector2(1678, 622)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="molecule_9" parent="Enemies" instance=ExtResource("16_2l4d8")]
 position = Vector2(1365, 100)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_1_true" parent="Enemies" instance=ExtResource("17_kxevh")]
 position = Vector2(1420, 1274)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_2" parent="Enemies" instance=ExtResource("18_4a2fx")]
 position = Vector2(426, 1277)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_3" parent="Enemies" instance=ExtResource("19_5gust")]
 position = Vector2(-666, 1387)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_4" parent="Enemies" instance=ExtResource("20_fh36p")]
 position = Vector2(-1774, 1335)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_5" parent="Enemies" instance=ExtResource("21_3ps1h")]
 position = Vector2(-2859, 1327)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_6" parent="Enemies" instance=ExtResource("22_7b5if")]
 position = Vector2(-2897, 352)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_7" parent="Enemies" instance=ExtResource("23_2n8og")]
 position = Vector2(-2830, -599)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_8" parent="Enemies" instance=ExtResource("24_sfg1x")]
 position = Vector2(-2845, -1598)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_9" parent="Enemies" instance=ExtResource("25_frtvx")]
 position = Vector2(-2826, -2659)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="cell_10" parent="Enemies" instance=ExtResource("26_73efu")]
 position = Vector2(-1765, -2597)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="human_1" parent="Enemies" instance=ExtResource("30_tl1g5")]
 position = Vector2(167, -4167)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="human_2" parent="Enemies" instance=ExtResource("31_01xyn")]
 position = Vector2(3208, -4155)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="human_3" parent="Enemies" instance=ExtResource("32_fk3bp")]
 position = Vector2(6364, -4036)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="human_4" parent="Enemies" instance=ExtResource("33_ky8xu")]
 position = Vector2(9862, -3915)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="human_5" parent="Enemies" instance=ExtResource("34_8oeow")]
 position = Vector2(13629, -3768)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="human_6" parent="Enemies" instance=ExtResource("35_3k2vh")]
 position = Vector2(17248, -3754)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="pinpin_1" parent="Enemies" instance=ExtResource("28_x3m7m")]
 position = Vector2(9069, 458)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="saumon_1" parent="Enemies" instance=ExtResource("29_i7bjo")]
 position = Vector2(12815, 458)
+audio_bus_name = &"Master"
 script = ExtResource("38_kl5rc")
 hp = 1
 enemy_ai = false
 
 [node name="batiment_1" parent="Enemies" instance=ExtResource("36_5us0t")]
 position = Vector2(53020, 1992)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="batiment_2" parent="Enemies" instance=ExtResource("37_him7l")]
 position = Vector2(41594, 28850)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="batiment_3" parent="Enemies" instance=ExtResource("38_ew51n")]
 position = Vector2(7833, 47715)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="batiment_4" parent="Enemies" instance=ExtResource("39_fh2hf")]
 position = Vector2(-71936, 57472)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
 [node name="batiment_5" parent="Enemies" instance=ExtResource("40_6j8wg")]
 position = Vector2(-126848, 15616)
+audio_bus_name = &"Master"
 hp = 1
 enemy_ai = false
 
