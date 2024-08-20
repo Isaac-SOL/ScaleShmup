@@ -3,9 +3,9 @@ shader_type canvas_item;
 uniform vec2 offset;
 uniform float alpha = 1.0;
 uniform float mult_size = 1.0;
-uniform float time_speed = 0.5;
-uniform	vec3 color_cell_a : source_color = vec3(-0.002, 0.668, 0.448);
-uniform	vec3 color_cell_b : source_color = vec3(0.078, 0.358, 0.380);
+uniform float time_speed = 0.1;
+uniform	vec3 color_cell_a : source_color = vec3(0.376, 0.278, 0.424);
+uniform	vec3 color_cell_b : source_color = vec3(0.0, 0.22, 0.0);
 uniform	vec3 param_cell_c : source_color = vec3(-0.052, 0.388, 0.218);
 uniform	vec3 param_cell_d : source_color = vec3(0.138, -2.422, -1.972);
 
