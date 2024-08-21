@@ -103,7 +103,6 @@ texture = ExtResource("3_n1xo8")
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 258
-audio_bus_name = &"Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_frwwd")
@@ -120,7 +119,7 @@ wait_time = 3.5
 [node name="AudioVoice" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_o6nkg")
-volume_db = -10.0
+volume_db = -8.0
 max_polyphony = 2
 bus = &"Sfx"
 

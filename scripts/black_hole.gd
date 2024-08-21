@@ -34,7 +34,7 @@ func start():
 
 func move():
 	%AudioVoice.play()
-	target = %Hitbox.global_position + Vector2(500 * scale.x, 0) * (1 if randf() < 0.5 else -1)
+	target = %Hitbox.global_position + Vector2(500 * scale.x, 0) * (1 if %Hitbox.global_position.x < 0 else -1)
 
 func shoot_single_projectile(proj: PackedScene, dir: Vector2, strength_enemy) -> Projectile:
 	var new_projectile: Projectile = proj.instantiate()
