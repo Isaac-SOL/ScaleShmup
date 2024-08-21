@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bulpixfoca577"]
+[gd_scene load_steps=5 format=3 uid="uid://bulpixfoca577"]
 
 [ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="1_fetvp"]
+[ext_resource type="Script" path="res://scripts/patterns/element_omni_double.gd" id="2_6v8qg"]
 [ext_resource type="Texture2D" uid="uid://bxl2rn62ti6rw" path="res://assets/textures/space/planete_8.png" id="2_sn3bn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uoaqj"]
 radius = 41405.7
 
 [node name="planete_8" instance=ExtResource("1_fetvp")]
+script = ExtResource("2_6v8qg")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_sn3bn")
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(-3831, -2453)
 shape = SubResource("CircleShape2D_uoaqj")

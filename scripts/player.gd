@@ -36,13 +36,14 @@ func _ready():
 func _process(delta: float):
 	var move_vec := Vector2.ZERO
 	if Input.is_action_pressed("up"):
-		move_vec.y -= move_speed
+		move_vec.y -= 1
 	if Input.is_action_pressed("down"):
-		move_vec.y += move_speed
+		move_vec.y += 1
 	if Input.is_action_pressed("left"):
-		move_vec.x -= move_speed
+		move_vec.x -= 1
 	if Input.is_action_pressed("right"):
-		move_vec.x += move_speed
+		move_vec.x += 1
+	move_vec = move_vec.normalized() * move_speed
 	direction = move_vec
 	position += move_vec * delta
 	

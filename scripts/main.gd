@@ -131,7 +131,6 @@ func _on_black_hole_killed(hole: BlackHole):
 	%Win.play()
 	await %Win.finished
 	get_tree().change_scene_to_packed(win_scene)
-	get_tree().paused = true
 
 func _on_player_killed():
 	%GameOverLayer.visible = true

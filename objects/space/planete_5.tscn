@@ -1,30 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlb6rvwovxbx3"]
+[gd_scene load_steps=6 format=3 uid="uid://dlb6rvwovxbx3"]
 
 [ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="1_6k5an"]
+[ext_resource type="Script" path="res://scripts/patterns/element_omni_double.gd" id="2_mrtrf"]
 [ext_resource type="Texture2D" uid="uid://c3eo3m8riehaq" path="res://assets/textures/space/planete_5.png" id="2_pckgk"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_q662k"]
-radius = 53308.6
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fknfv"]
 radius = 14118.0
 height = 205124.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_q662k"]
+radius = 53308.6
+
 [node name="planete_5" instance=ExtResource("1_6k5an")]
+script = ExtResource("2_mrtrf")
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(4169, 2816)
 texture = ExtResource("2_pckgk")
 
-[node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("CircleShape2D_q662k")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(3849, 5739)
 rotation = 1.55007
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_fknfv")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
+[node name="CollisionShape2D" parent="." index="4"]
+shape = SubResource("CircleShape2D_q662k")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
 position = Vector2(3783, 880.5)
 scale = Vector2(10489.3, 7206.28)

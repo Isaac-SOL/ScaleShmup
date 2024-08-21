@@ -57,7 +57,6 @@
 [ext_resource type="PackedScene" uid="uid://bw7x4ovwd0gc2" path="res://objects/structures/batiment_3.tscn" id="36_86o4y"]
 [ext_resource type="PackedScene" uid="uid://csy4durf3ssu2" path="res://objects/structures/montagne_1.tscn" id="37_ibako"]
 [ext_resource type="PackedScene" uid="uid://cxgs4aoyn2aue" path="res://objects/structures/volcan_1.tscn" id="38_ixve3"]
-[ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="39_vsdmy"]
 [ext_resource type="PackedScene" uid="uid://dtl7dqdgqo7dh" path="res://objects/space/planete_2.tscn" id="40_bs7jt"]
 [ext_resource type="PackedScene" uid="uid://hmj5hri2jvfa" path="res://objects/space/planete_3.tscn" id="41_q3wkh"]
 [ext_resource type="PackedScene" uid="uid://du4askubide1k" path="res://objects/space/planete_4.tscn" id="42_ojy14"]
@@ -66,6 +65,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjtxlrtymbh8" path="res://objects/space/planete_7.tscn" id="45_7j36w"]
 [ext_resource type="PackedScene" uid="uid://bulpixfoca577" path="res://objects/space/planete_8.tscn" id="46_3nnm2"]
 [ext_resource type="PackedScene" uid="uid://vp2coe7of34" path="res://objects/space/planete_9.tscn" id="47_vtadc"]
+[ext_resource type="PackedScene" uid="uid://cuwiilfh00xnh" path="res://objects/space/planete_1_true.tscn" id="51_spd8k"]
 [ext_resource type="PackedScene" uid="uid://bo6snfbyyrgdb" path="res://objects/atom_label.tscn" id="56_kd3dx"]
 [ext_resource type="PackedScene" uid="uid://c40q07ix50fr7" path="res://objects/space/galaxie_1_true.tscn" id="58_an2dr"]
 [ext_resource type="PackedScene" uid="uid://hvbyqvwpg7ru" path="res://objects/space/galaxie_2.tscn" id="59_7kk0m"]
@@ -1009,7 +1009,7 @@ unique_name_in_owner = true
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("3_4mhxf")
-enemies = Array[PackedScene]([ExtResource("4_4ge4g"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("29_twjg8"), ExtResource("17_33twd"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0"), ExtResource("27_y577c"), ExtResource("30_3i33a"), ExtResource("25_d1f3q"), ExtResource("26_6q63m"), ExtResource("32_tvour"), ExtResource("31_3qrwx"), ExtResource("32_is5d3"), ExtResource("33_iby7y"), ExtResource("34_enks2"), ExtResource("35_tcq38"), ExtResource("36_86o4y"), ExtResource("37_ibako"), ExtResource("38_ixve3"), ExtResource("39_vsdmy"), ExtResource("40_bs7jt"), ExtResource("41_q3wkh"), ExtResource("42_ojy14"), ExtResource("43_coca7"), ExtResource("44_oauir"), ExtResource("45_7j36w"), ExtResource("46_3nnm2"), ExtResource("47_vtadc"), ExtResource("58_an2dr"), ExtResource("59_7kk0m"), ExtResource("60_6y53i"), ExtResource("61_ij16h")])
+enemies = Array[PackedScene]([ExtResource("4_4ge4g"), ExtResource("4_jaagb"), ExtResource("5_dyv2q"), ExtResource("6_0r7if"), ExtResource("7_lu0qn"), ExtResource("8_0ippw"), ExtResource("9_7yamx"), ExtResource("10_170lc"), ExtResource("11_6hf33"), ExtResource("12_ivwwh"), ExtResource("13_tyumn"), ExtResource("29_twjg8"), ExtResource("17_33twd"), ExtResource("15_cf78x"), ExtResource("16_k0rki"), ExtResource("17_hiiu3"), ExtResource("18_yv12n"), ExtResource("19_l6nx0"), ExtResource("20_kyeo1"), ExtResource("21_6vje1"), ExtResource("22_85rhn"), ExtResource("23_110pa"), ExtResource("24_lrwc0"), ExtResource("27_y577c"), ExtResource("30_3i33a"), ExtResource("25_d1f3q"), ExtResource("26_6q63m"), ExtResource("32_tvour"), ExtResource("31_3qrwx"), ExtResource("32_is5d3"), ExtResource("33_iby7y"), ExtResource("34_enks2"), ExtResource("35_tcq38"), ExtResource("36_86o4y"), ExtResource("37_ibako"), ExtResource("38_ixve3"), ExtResource("51_spd8k"), ExtResource("40_bs7jt"), ExtResource("41_q3wkh"), ExtResource("42_ojy14"), ExtResource("43_coca7"), ExtResource("44_oauir"), ExtResource("45_7j36w"), ExtResource("46_3nnm2"), ExtResource("47_vtadc"), ExtResource("58_an2dr"), ExtResource("59_7kk0m"), ExtResource("60_6y53i"), ExtResource("61_ij16h")])
 weights = Array[float]([400.0, 400.0, 40.0, 43.8, 43.8, 43.8, 37.5, 37.5, 25.0, 25.0, 25.0, 2.5, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 9.09, 1.0, 9.09, 6.0, 6.0, 2.5, 0.2, 2.5, 2.5, 2.5, 2.5, 1.0, 1.0, 1.0, 1.0, 1.0, 0.111, 0.111, 0.111, 0.111, 0.111, 0.01, 0.111, 0.111, 0.111, 0.03, 0.03, 0.03, 0.01])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
