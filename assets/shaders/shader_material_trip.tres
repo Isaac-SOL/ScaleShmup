@@ -6,8 +6,10 @@
 [resource]
 shader = ExtResource("1_jpe8j")
 shader_parameter/mult = 500.0
-shader_parameter/alpha = 1.0
-shader_parameter/offset = 1.0
+shader_parameter/alpha = 0.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/pattern_offset = null
+shader_parameter/mult_size = -0.795
 shader_parameter/time_mult = 0.5
 shader_parameter/line_strenght = 5.0
 shader_parameter/color_a = Color(0.916526, 0.793703, 0.961668, 1)

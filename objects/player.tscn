@@ -45,6 +45,7 @@ shoot_strength = 175.0
 [node name="ShootTimer" parent="Elements/Atom" index="6"]
 wait_time = 2.205
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="destroyed" from="Elements/Atom" to="." method="_on_part_destroyed"]
 [connection signal="hp_changed" from="Elements/Atom" to="." method="_on_part_hp_changed"]

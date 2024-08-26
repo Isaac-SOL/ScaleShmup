@@ -3,7 +3,9 @@ shader_type canvas_item;
 uniform sampler2D text_img;
 uniform float mult = 500.0;
 uniform float alpha = 1.0;
-uniform float offset;
+uniform vec2 offset;
+uniform float pattern_offset;
+uniform float mult_size = 1.0;
 uniform float time_mult = 0.5;
 uniform float line_strenght = 0.5;
 
@@ -34,22 +36,24 @@ float noise3( vec3 x ) {
 
 void fragment() {
 		vec2 uv = (SCREEN_UV * 2.0)-1.0;
+		uv *= mult_size;
+		uv += offset;
 		vec2 uv0 = UV;
 		vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
 		uv.x *= screen_size.x/screen_size.y ;
-		uv += offset;
+		uv += pattern_offset;
 		//uv = mod(uv + vec2(1, 1), 2) - vec2(1, 1);
 		vec4 current_color;
 		vec4 color;
 		uv *= mult;
-		uv += offset;
+		uv += pattern_offset;
 		vec2 U = uv;
 	    vec2 R = screen_size.xy;
 		
 		//for (float f = 0.0; f <=5.0; f++){
 	    float n = noise(vec3(U*2.0/min(R.x,R.y), .03*TIME)),//first num controlls zoom, second speed.
 	          v = sin(26.28*(sin(TIME / 25.0) + 4.)*n),
-	        t = TIME;
+	          t = TIME;
 	    
 	    v = smoothstep(1.,0., .8*abs(v)/fwidth(v));
 		//current_color += textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);

@@ -24,6 +24,8 @@ var size: int = 1
 var sqrt_size: float = 1
 var direction: Vector2
 var add = 0
+var target: Vector2
+var going_to_target: float = 0
 
 func _ready():
 	Singletons.player = self
@@ -34,18 +36,22 @@ func _ready():
 	base_radius = radius
 
 func _process(delta: float):
-	var move_vec := Vector2.ZERO
-	if Input.is_action_pressed("up"):
-		move_vec.y -= 1
-	if Input.is_action_pressed("down"):
-		move_vec.y += 1
-	if Input.is_action_pressed("left"):
-		move_vec.x -= 1
-	if Input.is_action_pressed("right"):
-		move_vec.x += 1
-	move_vec = move_vec.normalized() * move_speed
-	direction = move_vec
-	position += move_vec * delta
+	if going_to_target > 0:
+		global_position = Util.decayv2(global_position, target, 8 * delta)
+		going_to_target -= delta
+	else:
+		var move_vec := Vector2.ZERO
+		if Input.is_action_pressed("up"):
+			move_vec.y -= 1
+		if Input.is_action_pressed("down"):
+			move_vec.y += 1
+		if Input.is_action_pressed("left"):
+			move_vec.x -= 1
+		if Input.is_action_pressed("right"):
+			move_vec.x += 1
+		move_vec = move_vec.normalized() * move_speed
+		direction = move_vec
+		position += move_vec * delta
 	
 	if immunity > 0:
 		immunity -= delta
@@ -121,6 +127,12 @@ func _on_area_exited(area: Area2D):
 	if area is Element and area.player_owned:
 		var new_target := Util.rand_in_circle(0, radius)
 		area.direction = (new_target - area.position).normalized() * part_speed
+
+func _on_area_entered(area: Area2D):
+	if area.get_parent() is BlackHole:
+		var throw_vector: Vector2 = global_position - area.global_position
+		target = global_position + throw_vector * 4
+		going_to_target = 1.0
 
 func _on_part_hp_changed(_new_hp: int):
 	update_size(count_atoms())

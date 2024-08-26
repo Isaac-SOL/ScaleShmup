@@ -69,6 +69,11 @@ func shoot_multiple(dir: Vector2, amount: int, angle: float):
 		shoot_single_projectile(projectile, curr_dir, 800000)
 		curr_angle += angle_part
 
+func shoot_omni():
+	for i in range(32):
+		var curr_dir = Vector2.UP.rotated(i * PI / 16)
+		shoot_single_projectile(projectile, curr_dir, 800000)
+
 func change_pose():
 	var tween := get_tree().create_tween().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(%Sprite2D, "scale", Vector2(1, 0.8), 0.15).set_ease(Tween.EASE_OUT)
@@ -102,13 +107,12 @@ func play_audio_scaled(source: AudioStreamPlayer, base_db: float, scale_value: f
 
 func instantiate_damage_label(pos: Vector2, damage: int):
 	if test_mode: return
-	var low_threshold: int =  Singletons.player.size / 200
 	var inst_pos: Vector2 = lerp(%Hitbox.global_position, pos, 0.75)
 	var dmg_label: FlyingLabel = flying_label.instantiate()
 	dmg_label.text = str(damage)
 	Singletons.labels.add_child(dmg_label)
 	dmg_label.global_position = inst_pos
-	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
+	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 6
 
 func _on_hitbox_area_entered(area):
 	Singletons.shaker.shake(sqrt(size * 2), 1)
@@ -135,22 +139,22 @@ func end_sequence():
 	$Timer.stop()
 	$TimerMove.stop()
 	bwob()
-	shoot()
+	shoot_omni.call_deferred()
 	%AudioSmallBoom.play()
 	Singletons.shaker.shake(sqrt(size * 2), 1)
 	await get_tree().create_timer(1).timeout
 	bwob()
-	shoot()
+	shoot_omni.call_deferred()
 	%AudioSmallBoom.play()
 	Singletons.shaker.shake(sqrt(size * 2), 1)
 	await get_tree().create_timer(1).timeout
 	bwob()
-	shoot()
+	shoot_omni.call_deferred()
 	%AudioSmallBoom.play()
 	Singletons.shaker.shake(sqrt(size * 2), 1)
 	await get_tree().create_timer(1).timeout
 	%AudioBigBoom.play()
-	shoot()
+	shoot_omni.call_deferred()
 	Singletons.shaker.shake(sqrt(size * 5), 2)
 	visible = false
 	await get_tree().create_timer(3).timeout

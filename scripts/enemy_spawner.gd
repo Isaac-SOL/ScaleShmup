@@ -20,7 +20,11 @@ func pick_enemy_weighted(player_size: int) -> PackedScene:
 	var available_enemies: Array[PackedScene] = []
 	var available_weights: Array[float] = []
 	for i: int in range(len(sizes)):
-		if sizes[i] >= floori(player_size / 10) and sizes[i] <= player_size * 20:
+		if player_size <= 2:
+			if sizes[i] == 1:
+				available_enemies.append(enemies[i])
+				available_weights.append(weights[i])
+		elif sizes[i] >= floori(player_size / 10) and sizes[i] <= player_size * 20:
 			available_enemies.append(enemies[i])
 			available_weights.append(weights[i])
 	if available_enemies.is_empty(): return null

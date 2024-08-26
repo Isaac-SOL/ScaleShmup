@@ -968,6 +968,7 @@ texture = ExtResource("20_n3lr5")
 libraries = {
 "": SubResource("AnimationLibrary_sclce")
 }
+speed_scale = 1.5
 
 [node name="AudioStreamPlayer2D_title" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_odmuw")
