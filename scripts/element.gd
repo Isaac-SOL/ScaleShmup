@@ -55,7 +55,7 @@ func _ready():
 	max_hp = hp
 	speed *= sqrt(size)
 	constant_rotation = randf_range(-PI / 2, PI / 2)
-	anim_base_scale = %Sprite2D.scale
+	anim_base_scale = %AnimatedSprite2D.scale if has_node("AnimatedSprite2D") else %Sprite2D.scale
 
 func _process(delta):
 	if player_owned:
@@ -92,6 +92,9 @@ func _process(delta):
 		target_position = Util.rand_on_circle(current_radius * shake_factor * sqrt(size))
 		next_shake += shake_interval
 	%Sprite2D.position = Util.decayv2(%Sprite2D.position, target_position, move_speed * delta)
+	if has_node("AnimatedSprite2D"):
+		%AnimatedSprite2D.position = Util.decayv2(%AnimatedSprite2D.position, target_position, move_speed * delta)
+		
 
 func shake(amount: float, duration: float):
 	if amount < current_radius: return
@@ -137,10 +140,12 @@ func shoot(dir: Vector2):
 
 func shoot_anim():
 	if shooting_anim:
+		var target_node: Node2D = %AnimatedSprite2D if has_node("AnimatedSprite2D") else %Sprite2D
 		var tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
-		tween.tween_property(%Sprite2D, "scale", anim_base_scale * Vector2(0.9, 1.1), 0.25)
-		tween.tween_property(%Sprite2D, "scale", anim_base_scale * Vector2(1.1, 0.9), 0.25)
-		tween.tween_property(%Sprite2D, "scale", anim_base_scale, 0.25)
+		tween.tween_property(target_node, "scale", anim_base_scale * Vector2(0.9, 1.1), 0.25)
+		tween.tween_property(target_node, "scale", anim_base_scale * Vector2(1.1, 0.9), 0.25)
+		tween.tween_property(target_node, "scale", anim_base_scale, 0.25)
+		
 
 func destroy():
 	play_audio_scaled(%AudioDestroy, -6, size)
@@ -186,10 +191,10 @@ func give_to_player():
 func _on_shoot_timer_timeout():
 	if player_owned:
 		#if Input.is_action_pressed("shoot"):
-		var shoot_position: Vector2 = get_global_mouse_position()
-		var shoot_direction: Vector2 = (shoot_position - %ShootOrigin.global_position).normalized()
+		#var shoot_position: Vector2 = get_global_mouse_position()
+		#var shoot_direction: Vector2 = (shoot_position - %ShootOrigin.global_position).normalized()
 		shoot_anim()
-		shoot(shoot_direction)
+		shoot(Singletons.player.shoot_direction)
 		if position.length() > Singletons.player.radius * 2:
 			Singletons.player._on_area_exited(self)
 	elif %VisibleOnScreenNotifier2D.is_on_screen():

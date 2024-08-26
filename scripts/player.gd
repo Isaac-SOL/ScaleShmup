@@ -26,6 +26,8 @@ var direction: Vector2
 var add = 0
 var target: Vector2
 var going_to_target: float = 0
+var shoot_direction: Vector2
+var controller_mode: bool = false
 
 func _ready():
 	Singletons.player = self
@@ -41,20 +43,35 @@ func _process(delta: float):
 		going_to_target -= delta
 	else:
 		var move_vec := Vector2.ZERO
-		if Input.is_action_pressed("up"):
-			move_vec.y -= 1
-		if Input.is_action_pressed("down"):
-			move_vec.y += 1
-		if Input.is_action_pressed("left"):
-			move_vec.x -= 1
-		if Input.is_action_pressed("right"):
-			move_vec.x += 1
+		move_vec.y -= Input.get_action_strength("up")
+		move_vec.y += Input.get_action_strength("down")
+		move_vec.x -= Input.get_action_strength("left")
+		move_vec.x += Input.get_action_strength("right")
 		move_vec = move_vec.normalized() * move_speed
 		direction = move_vec
 		position += move_vec * delta
 	
 	if immunity > 0:
 		immunity -= delta
+	
+	if controller_mode:
+		var prev_shoot_direction := shoot_direction
+		shoot_direction.y -= Input.get_action_strength("aim_up")
+		shoot_direction.y += Input.get_action_strength("aim_down")
+		shoot_direction.x -= Input.get_action_strength("aim_left")
+		shoot_direction.x += Input.get_action_strength("aim_right")
+		shoot_direction = shoot_direction.normalized()
+		if shoot_direction == Vector2.ZERO:
+			shoot_direction = prev_shoot_direction
+	else:
+		var shoot_position: Vector2 = get_global_mouse_position()
+		shoot_direction = (shoot_position - global_position).normalized()
+
+func _input(event):
+	if event is InputEventKey:
+		controller_mode = false
+	elif event is InputEventJoypadMotion or event is InputEventJoypadButton:
+		controller_mode = true
 
 #DEBUG
 func add_debug(x):

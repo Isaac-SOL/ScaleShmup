@@ -155,7 +155,8 @@ point_count = 5
 script/source = "extends Sprite2D
 
 func _process(_delta):
-	var center_vector: Vector2 = (get_viewport().get_mouse_position() - Vector2(320, 180)).normalized()
+	#var center_vector: Vector2 = (get_viewport().get_mouse_position() - Vector2(320, 180)).normalized()
+	var center_vector: Vector2 = Singletons.player.shoot_direction
 	position = Vector2(320, 180) + center_vector * 30
 	rotation = center_vector.angle() + PI / 2
 "
