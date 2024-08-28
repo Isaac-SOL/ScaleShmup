@@ -43,7 +43,7 @@ func destroy():
 	set_deferred("freeze", true)
 	%Sprite2D.scale = 3 * %Sprite2D.scale if player else 1.5 * %Sprite2D.scale
 	%Shadow.scale = 3 * %Shadow.scale if player else 1.5 * %Shadow.scale
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_parallel()
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_parallel()
 	tween.tween_property(%Sprite2D, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN)
 	tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%Shadow, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN)

@@ -30,4 +30,3 @@ func _on_credit_button_pressed():
 
 #func _on_check_button_toggled(toggled_on):
 	#Global.french = toggled_on
-

@@ -39,9 +39,11 @@ func _ready():
 
 func _process(delta: float):
 	if going_to_target > 0:
+		# Being pushed back
 		global_position = Util.decayv2(global_position, target, 8 * delta)
 		going_to_target -= delta
 	else:
+		# Controlled by player
 		var move_vec := Vector2.ZERO
 		move_vec.y -= Input.get_action_strength("up")
 		move_vec.y += Input.get_action_strength("down")
@@ -51,10 +53,11 @@ func _process(delta: float):
 		direction = move_vec
 		position += move_vec * delta
 	
-	if immunity > 0:
-		immunity -= delta
+	# Clamp position inside the map
+	position = position.clamp(Vector2(-8500000, -8500000), Vector2(8500000, 8500000))
 	
 	if controller_mode:
+		# Aim towards joystick direction
 		var prev_shoot_direction := shoot_direction
 		shoot_direction.y -= Input.get_action_strength("aim_up")
 		shoot_direction.y += Input.get_action_strength("aim_down")
@@ -64,8 +67,12 @@ func _process(delta: float):
 		if shoot_direction == Vector2.ZERO:
 			shoot_direction = prev_shoot_direction
 	else:
+		# Aim towards mouse
 		var shoot_position: Vector2 = get_global_mouse_position()
 		shoot_direction = (shoot_position - global_position).normalized()
+	
+	if immunity > 0:
+		immunity -= delta
 
 func _input(event):
 	if event is InputEventKey:

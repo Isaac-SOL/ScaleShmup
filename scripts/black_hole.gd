@@ -75,7 +75,7 @@ func shoot_omni():
 		shoot_single_projectile(projectile, curr_dir, 800000)
 
 func change_pose():
-	var tween := get_tree().create_tween().set_trans(Tween.TRANS_QUAD)
+	var tween := create_tween().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(%Sprite2D, "scale", Vector2(1, 0.8), 0.15).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(change_pose_effective)
 	tween.tween_callback(shoot)
@@ -114,7 +114,7 @@ func instantiate_damage_label(pos: Vector2, damage: int):
 	dmg_label.global_position = inst_pos
 	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 6
 
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	Singletons.shaker.shake(sqrt(size * 2), 1)
 
 func _on_hitbox_body_entered(body):
@@ -123,12 +123,11 @@ func _on_hitbox_body_entered(body):
 		instantiate_damage_label(body.position, body.damage_value)
 		body.destroy()
 		hp -= body.damage_value
-		var hp_ratio := float(hp) / max_hp
 		if hp <= 0:
 			end_sequence()
 
 func bwob():
-	var tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	var tween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(%Sprite2D, "scale", Vector2(0.7, 1.3), 0.25)
 	tween.tween_property(%Sprite2D, "scale", Vector2(1.3, 0.7), 0.25)
 	tween.tween_property(%Sprite2D, "scale", Vector2.ONE, 0.25)

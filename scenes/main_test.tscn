@@ -1224,6 +1224,9 @@ position = Vector2(1.41082e+06, 115328)
 hp = 839808
 enemy_ai = false
 
+[node name="PlayerProjectiles" type="Node2D" parent="."]
+unique_name_in_owner = true
+
 [node name="Labels" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -1312,9 +1315,9 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme = ExtResource("52_wdr44")
 theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
-theme_override_styles/normal = ExtResource("53_5tuom")
 theme_override_styles/hover = ExtResource("54_d5g0l")
 theme_override_styles/pressed = ExtResource("55_2u0di")
+theme_override_styles/normal = ExtResource("53_5tuom")
 text = "Restart"
 
 [node name="WinLayer" type="CanvasLayer" parent="."]
@@ -1376,9 +1379,9 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme = ExtResource("52_wdr44")
 theme_override_colors/font_color = Color(0.619608, 0.937255, 0.768627, 1)
-theme_override_styles/normal = ExtResource("53_5tuom")
 theme_override_styles/hover = ExtResource("54_d5g0l")
 theme_override_styles/pressed = ExtResource("55_2u0di")
+theme_override_styles/normal = ExtResource("53_5tuom")
 text = "Restart"
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]

@@ -35,28 +35,18 @@ height = 46.1723
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hnve0"]
 streams_count = 5
 stream_0/stream = ExtResource("6_68l0v")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("7_vae48")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("8_c0tqq")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("9_64hp6")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("10_yrw2i")
-stream_4/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2kc47"]
 streams_count = 5
 stream_0/stream = ExtResource("7_yo0rj")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("12_gdxwj")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("13_mc8pn")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("14_31554")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("15_40u3q")
-stream_4/weight = 1.0
 
 [node name="Atom" type="Area2D" groups=["Element"]]
 collision_layer = 4

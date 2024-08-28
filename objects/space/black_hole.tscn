@@ -39,42 +39,25 @@ height = 518.0
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o6nkg"]
 streams_count = 12
 stream_0/stream = ExtResource("10_mrimt")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("11_0k2y8")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("14_i2vs4")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("15_8irwr")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("16_mqafq")
-stream_4/weight = 1.0
 stream_5/stream = ExtResource("17_trh1g")
-stream_5/weight = 1.0
 stream_6/stream = ExtResource("18_vraln")
-stream_6/weight = 1.0
 stream_7/stream = ExtResource("19_p12hk")
-stream_7/weight = 1.0
 stream_8/stream = ExtResource("20_20abc")
-stream_8/weight = 1.0
 stream_9/stream = ExtResource("21_467fn")
-stream_9/weight = 1.0
 stream_10/stream = ExtResource("12_oqeva")
-stream_10/weight = 1.0
 stream_11/stream = ExtResource("13_tem4i")
-stream_11/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kv0xy"]
 streams_count = 5
 stream_0/stream = ExtResource("25_pyvl1")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("26_pk2w2")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("27_d20u2")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("28_pkv4q")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("29_6lth8")
-stream_4/weight = 1.0
 
 [node name="BlackHole" type="Node2D" node_paths=PackedStringArray("trails")]
 scale = Vector2(1000, 1000)

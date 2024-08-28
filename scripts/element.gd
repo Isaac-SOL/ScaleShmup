@@ -101,7 +101,7 @@ func shake(amount: float, duration: float):
 	current_radius = amount
 	if shake_tween:
 		shake_tween.kill()
-	shake_tween = get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	shake_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	shake_tween.tween_property(self, "current_radius", 0, duration).from_current()
 
 func set_mode(player_mode: bool):
@@ -141,7 +141,7 @@ func shoot(dir: Vector2):
 func shoot_anim():
 	if shooting_anim:
 		var target_node: Node2D = %AnimatedSprite2D if has_node("AnimatedSprite2D") else %Sprite2D
-		var tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+		var tween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(target_node, "scale", anim_base_scale * Vector2(0.9, 1.1), 0.25)
 		tween.tween_property(target_node, "scale", anim_base_scale * Vector2(1.1, 0.9), 0.25)
 		tween.tween_property(target_node, "scale", anim_base_scale, 0.25)
@@ -155,7 +155,7 @@ func destroy():
 	direction = Vector2.ZERO
 	%Sprite2D.scale = 3 * %Sprite2D.scale if player_owned else 1.5 * %Sprite2D.scale
 	%Shadow.scale = 3 * %Shadow.scale if player_owned else 1.5 * %Shadow.scale
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_parallel()
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_parallel()
 	tween.tween_property(%Sprite2D, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN)
 	tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%Shadow, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN)
