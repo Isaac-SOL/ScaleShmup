@@ -48,7 +48,7 @@ func get_move_vector() -> Vector2:
 		move_vec.y += Input.get_action_strength("down")
 		move_vec.x -= Input.get_action_strength("left")
 		move_vec.x += Input.get_action_strength("right")
-		move_vec = move_vec.normalized() * move_speed
+		move_vec = move_vec.normalized()
 		return move_vec
 
 func set_aim_vector():
@@ -79,7 +79,7 @@ func _process(delta: float):
 		going_to_target -= delta
 	else:
 		# Controlled by player
-		var move_vec := get_move_vector()
+		var move_vec := get_move_vector() * move_speed
 		direction = move_vec
 		position += move_vec * delta
 	

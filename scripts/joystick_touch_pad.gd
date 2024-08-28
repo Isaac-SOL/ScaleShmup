@@ -57,18 +57,19 @@ func _input(event):
 				# Starting the left touch
 				base = %base_left
 				handle = %handle_left
+				joystick_left_finger_index = event.index
 				do_start = true
 			elif !joystick_right_finger_index:
 				# Starting the right touch
 				base = %base_right
 				handle = %handle_right
+				joystick_right_finger_index = event.index
 				do_start = true
 			if do_start:
 				base.show()
 				handle.show()
 				base.position =  event.position - (base.size/2)
 				handle.position = event.position - (base.size/2)  + (handle.size/2)
-				joystick_left_finger_index = event.index
 		else:
 			# Handeling the end of a touch
 			# Ending joystick touch hiding the ui and reseting the joystick

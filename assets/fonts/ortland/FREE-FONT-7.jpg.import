@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5y25smc8odgv"
 path.bptc="res://.godot/imported/FREE-FONT-7.jpg-a70b39fccec9465e3715354cdd1826d2.bptc.ctex"
+path.astc="res://.godot/imported/FREE-FONT-7.jpg-a70b39fccec9465e3715354cdd1826d2.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/fonts/ortland/FREE-FONT-7.jpg"
-dest_files=["res://.godot/imported/FREE-FONT-7.jpg-a70b39fccec9465e3715354cdd1826d2.bptc.ctex"]
+dest_files=["res://.godot/imported/FREE-FONT-7.jpg-a70b39fccec9465e3715354cdd1826d2.bptc.ctex", "res://.godot/imported/FREE-FONT-7.jpg-a70b39fccec9465e3715354cdd1826d2.astc.ctex"]
 
 [params]
 
