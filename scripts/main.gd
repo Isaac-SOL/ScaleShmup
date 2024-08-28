@@ -22,6 +22,7 @@ func _ready():
 	Singletons.player_projectiles = %PlayerProjectiles
 	Singletons.camera = %Camera2D
 	Singletons.labels = %Labels
+	Singletons.joystick_touch_pad = %joystick_touch_pad
 	%PauseMenu.hide()
 	# Play game song
 	#NodeAudio.playAudio(NodeAudio.audioGame)

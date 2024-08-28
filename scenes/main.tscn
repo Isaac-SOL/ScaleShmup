@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=96 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
@@ -72,6 +72,7 @@
 [ext_resource type="PackedScene" uid="uid://cmivser754ag3" path="res://objects/space/galaxie_3.tscn" id="60_6y53i"]
 [ext_resource type="PackedScene" uid="uid://lp6yfl2xplhr" path="res://objects/space/galaxie_4.tscn" id="61_ij16h"]
 [ext_resource type="Texture2D" uid="uid://bvmey4j8qy6a" path="res://assets/textures/ui_viseur.png" id="64_87ril"]
+[ext_resource type="PackedScene" uid="uid://bb0dcinj3d5r" path="res://objects/joystick_touch_pad.tscn" id="67_dsxe8"]
 [ext_resource type="AudioStream" uid="uid://b0x62eel15hh4" path="res://assets/audio/Jananass/bgm/atomic_jazz_accross_the_stars_lv0.ogg" id="72_adrpx"]
 [ext_resource type="AudioStream" uid="uid://ondaw5gch4s7" path="res://assets/audio/Jananass/bgm/atomic_jazz_accross_the_stars_lv1.ogg" id="73_qvh27"]
 [ext_resource type="AudioStream" uid="uid://cyogtexr26mwj" path="res://assets/audio/Jananass/bgm/atomic_jazz_accross_the_stars_lv2.ogg" id="74_4nj8n"]
@@ -1224,6 +1225,10 @@ script = SubResource("GDScript_qq2ov")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="AtomLabel" parent="UI" instance=ExtResource("56_kd3dx")]
+unique_name_in_owner = true
+offset_top = -52.0
+
+[node name="joystick_touch_pad" parent="UI" instance=ExtResource("67_dsxe8")]
 unique_name_in_owner = true
 
 [node name="GameOverLayer" type="CanvasLayer" parent="."]

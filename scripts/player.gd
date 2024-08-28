@@ -28,34 +28,30 @@ var target: Vector2
 var going_to_target: float = 0
 var shoot_direction: Vector2
 var controller_mode: bool = false
+var touchpad_mode: bool = false
 
 func _ready():
 	Singletons.player = self
+	touchpad_mode = Util.on_mobile()
 	part_speed = base_part_speed
 	move_speed = base_move_speed
 	$Elements/Atom.direction = Util.rand_on_circle(part_speed)
 	radius = %CollisionShape2D.shape.radius
 	base_radius = radius
 
-func _process(delta: float):
-	if going_to_target > 0:
-		# Being pushed back
-		global_position = Util.decayv2(global_position, target, 8 * delta)
-		going_to_target -= delta
+func get_move_vector() -> Vector2:
+	if touchpad_mode and not controller_mode:
+		return Singletons.joystick_touch_pad.get_joystick_left().normalized()
 	else:
-		# Controlled by player
 		var move_vec := Vector2.ZERO
 		move_vec.y -= Input.get_action_strength("up")
 		move_vec.y += Input.get_action_strength("down")
 		move_vec.x -= Input.get_action_strength("left")
 		move_vec.x += Input.get_action_strength("right")
 		move_vec = move_vec.normalized() * move_speed
-		direction = move_vec
-		position += move_vec * delta
-	
-	# Clamp position inside the map
-	position = position.clamp(Vector2(-8500000, -8500000), Vector2(8500000, 8500000))
-	
+		return move_vec
+
+func set_aim_vector():
 	if controller_mode:
 		# Aim towards joystick direction
 		var prev_shoot_direction := shoot_direction
@@ -66,10 +62,32 @@ func _process(delta: float):
 		shoot_direction = shoot_direction.normalized()
 		if shoot_direction == Vector2.ZERO:
 			shoot_direction = prev_shoot_direction
+	elif touchpad_mode:
+		var prev_shoot_direction := shoot_direction
+		shoot_direction = Singletons.joystick_touch_pad.get_joystick_right().normalized()
+		if shoot_direction == Vector2.ZERO:
+			shoot_direction = prev_shoot_direction
 	else:
 		# Aim towards mouse
 		var shoot_position: Vector2 = get_global_mouse_position()
 		shoot_direction = (shoot_position - global_position).normalized()
+
+func _process(delta: float):
+	if going_to_target > 0:
+		# Being pushed back
+		global_position = Util.decayv2(global_position, target, 8 * delta)
+		going_to_target -= delta
+	else:
+		# Controlled by player
+		var move_vec := get_move_vector()
+		direction = move_vec
+		position += move_vec * delta
+	
+	# Clamp position inside the map
+	position = position.clamp(Vector2(-8500000, -8500000), Vector2(8500000, 8500000))
+	
+	# Manage shooting direction
+	set_aim_vector()
 	
 	if immunity > 0:
 		immunity -= delta

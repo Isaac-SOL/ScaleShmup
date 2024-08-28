@@ -44,8 +44,8 @@ folder_colors={
 "res://assets/shaders/": "purple",
 "res://assets/textures/": "green",
 "res://objects/": "orange",
-"res://scenes/": "blue",
-"res://scripts/": "gray"
+"res://scenes/": "gray",
+"res://scripts/": "blue"
 }
 
 [input]
