@@ -21,7 +21,7 @@ position = Vector2(2, -3)
 scale = Vector2(2, 2)
 texture = ExtResource("2_jnm0s")
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(1, 0)
 rotation = 0.776723
 scale = Vector2(1.0417, 1.0596)
@@ -31,5 +31,5 @@ shape = SubResource("CapsuleShape2D_otf1i")
 position = Vector2(0, -18)
 scale = Vector2(3.19824, 1.62411)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
 scale = Vector2(3.5, 3.365)

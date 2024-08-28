@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuwiilfh00xnh"]
+
+[ext_resource type="PackedScene" uid="uid://c5qveao6r23yv" path="res://objects/space/planete_1.tscn" id="1_x5v0d"]
+[ext_resource type="Script" path="res://scripts/patterns/element_turn_around.gd" id="2_bu7o7"]
+
+[node name="planete_1_true" instance=ExtResource("1_x5v0d")]
+script = ExtResource("2_bu7o7")
+angle_per_shoot = 15.0
+size = 1
+hp = 4
+projectile = null
+shoot_strength = 10.0
+player_projectile_speed_factor = 1.0
+flying_label = null
+shooting_anim = true
+enemy_color = Color(0, 0, 0, 1)
+player_color = Color(0, 0, 0, 1)
+
+[node name="ShootTimer" parent="." index="6"]
+wait_time = 1.15

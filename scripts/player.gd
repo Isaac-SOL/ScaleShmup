@@ -24,30 +24,79 @@ var size: int = 1
 var sqrt_size: float = 1
 var direction: Vector2
 var add = 0
+var target: Vector2
+var going_to_target: float = 0
+var shoot_direction: Vector2
+var controller_mode: bool = false
+var touchpad_mode: bool = false
 
 func _ready():
 	Singletons.player = self
+	touchpad_mode = Util.on_mobile()
 	part_speed = base_part_speed
 	move_speed = base_move_speed
 	$Elements/Atom.direction = Util.rand_on_circle(part_speed)
 	radius = %CollisionShape2D.shape.radius
 	base_radius = radius
 
+func get_move_vector() -> Vector2:
+	if touchpad_mode and not controller_mode:
+		return Singletons.joystick_touch_pad.get_joystick_left().normalized()
+	else:
+		var move_vec := Vector2.ZERO
+		move_vec.y -= Input.get_action_strength("up")
+		move_vec.y += Input.get_action_strength("down")
+		move_vec.x -= Input.get_action_strength("left")
+		move_vec.x += Input.get_action_strength("right")
+		move_vec = move_vec.normalized()
+		return move_vec
+
+func set_aim_vector():
+	if controller_mode:
+		# Aim towards joystick direction
+		var prev_shoot_direction := shoot_direction
+		shoot_direction.y -= Input.get_action_strength("aim_up")
+		shoot_direction.y += Input.get_action_strength("aim_down")
+		shoot_direction.x -= Input.get_action_strength("aim_left")
+		shoot_direction.x += Input.get_action_strength("aim_right")
+		shoot_direction = shoot_direction.normalized()
+		if shoot_direction == Vector2.ZERO:
+			shoot_direction = prev_shoot_direction
+	elif touchpad_mode:
+		var prev_shoot_direction := shoot_direction
+		shoot_direction = Singletons.joystick_touch_pad.get_joystick_right().normalized()
+		if shoot_direction == Vector2.ZERO:
+			shoot_direction = prev_shoot_direction
+	else:
+		# Aim towards mouse
+		var shoot_position: Vector2 = get_global_mouse_position()
+		shoot_direction = (shoot_position - global_position).normalized()
+
 func _process(delta: float):
-	var move_vec := Vector2.ZERO
-	if Input.is_action_pressed("up"):
-		move_vec.y -= move_speed
-	if Input.is_action_pressed("down"):
-		move_vec.y += move_speed
-	if Input.is_action_pressed("left"):
-		move_vec.x -= move_speed
-	if Input.is_action_pressed("right"):
-		move_vec.x += move_speed
-	direction = move_vec
-	position += move_vec * delta
+	if going_to_target > 0:
+		# Being pushed back
+		global_position = Util.decayv2(global_position, target, 8 * delta)
+		going_to_target -= delta
+	else:
+		# Controlled by player
+		var move_vec := get_move_vector() * move_speed
+		direction = move_vec
+		position += move_vec * delta
+	
+	# Clamp position inside the map
+	position = position.clamp(Vector2(-8500000, -8500000), Vector2(8500000, 8500000))
+	
+	# Manage shooting direction
+	set_aim_vector()
 	
 	if immunity > 0:
 		immunity -= delta
+
+func _input(event):
+	if event is InputEventKey:
+		controller_mode = false
+	elif event is InputEventJoypadMotion or event is InputEventJoypadButton:
+		controller_mode = true
 
 #DEBUG
 func add_debug(x):
@@ -120,6 +169,12 @@ func _on_area_exited(area: Area2D):
 	if area is Element and area.player_owned:
 		var new_target := Util.rand_in_circle(0, radius)
 		area.direction = (new_target - area.position).normalized() * part_speed
+
+func _on_area_entered(area: Area2D):
+	if area.get_parent() is BlackHole:
+		var throw_vector: Vector2 = global_position - area.global_position
+		target = global_position + throw_vector * 4
+		going_to_target = 1.0
 
 func _on_part_hp_changed(_new_hp: int):
 	update_size(count_atoms())

@@ -23,11 +23,18 @@ signal destroyed_by_player(element: Element)
 @export var enemy_color: Color
 @export var player_color: Color
 
+@export_group("Sprite Shaking")
+@export var shake_interval: float = 0.035
+@export var shake_factor: float = 10
+@export var move_speed: float = 20
+
+# Interactions
 var direction := Vector2.ZERO
 var move_to_player: bool = false
 var max_hp: int
 var anim_base_scale: Vector2
 
+# Wander behavior
 var wander_time : float = 0.0
 var wander_countdown : float = 0.0
 var speed : float = 20.0
@@ -35,15 +42,20 @@ var current_angle : float = 0.0
 var old_wander := Vector2.ZERO
 var current_wander := Vector2.ZERO
 var constant_rotation : float
-
 const wander_transition : float = 2.5
+
+# Sprite shaking
+var shake_tween: Tween
+var current_radius: float
+@onready var next_shake: float = shake_interval
+@onready var target_position: Vector2 = position
 
 func _ready():
 	set_mode(player_owned)
 	max_hp = hp
 	speed *= sqrt(size)
 	constant_rotation = randf_range(-PI / 2, PI / 2)
-	anim_base_scale = %Sprite2D.scale
+	anim_base_scale = %AnimatedSprite2D.scale if has_node("AnimatedSprite2D") else %Sprite2D.scale
 
 func _process(delta):
 	if player_owned:
@@ -73,6 +85,24 @@ func _process(delta):
 	
 	rotation += constant_rotation * delta
 	%HPBarAnchor.global_rotation = 0
+	
+	# Sprite shaking
+	next_shake -= delta
+	while next_shake < 0:
+		target_position = Util.rand_on_circle(current_radius * shake_factor * sqrt(size))
+		next_shake += shake_interval
+	%Sprite2D.position = Util.decayv2(%Sprite2D.position, target_position, move_speed * delta)
+	if has_node("AnimatedSprite2D"):
+		%AnimatedSprite2D.position = Util.decayv2(%AnimatedSprite2D.position, target_position, move_speed * delta)
+		
+
+func shake(amount: float, duration: float):
+	if amount < current_radius: return
+	current_radius = amount
+	if shake_tween:
+		shake_tween.kill()
+	shake_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	shake_tween.tween_property(self, "current_radius", 0, duration).from_current()
 
 func set_mode(player_mode: bool):
 	player_owned = player_mode
@@ -92,7 +122,8 @@ func shoot_single_projectile(proj: PackedScene, dir: Vector2,
 	new_projectile.player = player_owned
 	if size < Singletons.player.size / 80:
 		new_projectile.damage_value *= Singletons.player.size / (80 * size)
-	Singletons.projectiles.add_child(new_projectile)
+	var parent: Node2D = Singletons.player_projectiles if player_owned else Singletons.projectiles
+	parent.add_child(new_projectile)
 	new_projectile.global_position = %ShootOrigin.global_position
 	new_projectile.global_rotation = dir.angle() - PI / 2
 	var proj_speed: float
@@ -109,10 +140,12 @@ func shoot(dir: Vector2):
 
 func shoot_anim():
 	if shooting_anim:
-		var tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
-		tween.tween_property(%Sprite2D, "scale", anim_base_scale * Vector2(0.9, 1.1), 0.25)
-		tween.tween_property(%Sprite2D, "scale", anim_base_scale * Vector2(1.1, 0.9), 0.25)
-		tween.tween_property(%Sprite2D, "scale", anim_base_scale, 0.25)
+		var target_node: Node2D = %AnimatedSprite2D if has_node("AnimatedSprite2D") else %Sprite2D
+		var tween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+		tween.tween_property(target_node, "scale", anim_base_scale * Vector2(0.9, 1.1), 0.25)
+		tween.tween_property(target_node, "scale", anim_base_scale * Vector2(1.1, 0.9), 0.25)
+		tween.tween_property(target_node, "scale", anim_base_scale, 0.25)
+		
 
 func destroy():
 	play_audio_scaled(%AudioDestroy, -6, size)
@@ -120,11 +153,13 @@ func destroy():
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
 	direction = Vector2.ZERO
-	var tween = get_tree().create_tween().set_parallel()
-	tween.tween_property(%Sprite2D, "scale", %Sprite2D.scale * 1.3, 0.5)
-	tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5)
-	tween.tween_property(%Shadow, "scale", %Shadow.scale * 1.3, 0.5)
-	tween.tween_property(%Shadow, "modulate", Color.TRANSPARENT, 0.5)
+	%Sprite2D.scale = 3 * %Sprite2D.scale if player_owned else 1.5 * %Sprite2D.scale
+	%Shadow.scale = 3 * %Shadow.scale if player_owned else 1.5 * %Shadow.scale
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_parallel()
+	tween.tween_property(%Sprite2D, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN)
+	tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_OUT)
+	tween.tween_property(%Shadow, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN)
+	tween.tween_property(%Shadow, "modulate", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_OUT)
 	tween.chain().tween_callback(func(): queue_free())
 	destroyed.emit(self)
 
@@ -156,10 +191,10 @@ func give_to_player():
 func _on_shoot_timer_timeout():
 	if player_owned:
 		#if Input.is_action_pressed("shoot"):
-		var shoot_position: Vector2 = get_global_mouse_position()
-		var shoot_direction: Vector2 = (shoot_position - %ShootOrigin.global_position).normalized()
+		#var shoot_position: Vector2 = get_global_mouse_position()
+		#var shoot_direction: Vector2 = (shoot_position - %ShootOrigin.global_position).normalized()
 		shoot_anim()
-		shoot(shoot_direction)
+		shoot(Singletons.player.shoot_direction)
 		if position.length() > Singletons.player.radius * 2:
 			Singletons.player._on_area_exited(self)
 	elif %VisibleOnScreenNotifier2D.is_on_screen():
@@ -199,6 +234,8 @@ func _on_element_body_entered(body: Node2D):
 				if body.damage_value < Singletons.player.size / 20:
 					body.damage_value /= 10
 				play_audio_scaled(%AudioHit, -10, body.damage_value)
+				if ceili(body.damage_value / 8.0) > hp / 100.0:
+					shake(0.6, 0.5)
 				hp -= ceili(body.damage_value / 8.0)
 				if hp < 0: hp = 0
 				hp_changed.emit(hp)
@@ -208,6 +245,8 @@ func _on_element_body_entered(body: Node2D):
 			play_audio_scaled(%AudioHit, -10, min(body.damage_value, size))
 			instantiate_damage_label(body.position, body.damage_value)
 			body.destroy()
+			if body.damage_value > hp / 100.0:
+				shake(0.6, 0.5)
 			hp -= body.damage_value
 			var hp_ratio := float(hp) / max_hp
 			%HPBar.set_ratio(hp_ratio)
@@ -220,6 +259,8 @@ func _on_area_entered(area: Area2D):
 	if player_owned:
 		if area is Element and not area.player_owned and Singletons.player.immunity <= 0:
 			play_audio_scaled(%AudioHit, -10, area.size)
+			if min(area.hp, ceili(size / 3.0)) > hp / 100.0:
+				shake(0.6, 0.5)
 			hp -= min(area.hp, ceili(size / 3.0))
 			if hp < 0: hp = 0
 			hp_changed.emit(hp)
@@ -228,6 +269,8 @@ func _on_area_entered(area: Area2D):
 		if area is Element and area.player_owned:
 			play_audio_scaled(%AudioHit, -10, min(area.size, size))
 			instantiate_damage_label(area.position, area.hp)
+			if min(area.hp, ceili(area.size / 3.0)) > hp / 100.0:
+				shake(0.6, 0.5)
 			hp -= min(area.hp, ceili(area.size / 3.0))
 			var hp_ratio := float(hp) / max_hp
 			%HPBar.set_ratio(hp_ratio)

@@ -19,8 +19,10 @@ var boss_spawned: bool = false
 func _ready():
 	Singletons.main = self
 	Singletons.projectiles = %Projectiles
+	Singletons.player_projectiles = %PlayerProjectiles
 	Singletons.camera = %Camera2D
 	Singletons.labels = %Labels
+	Singletons.joystick_touch_pad = %joystick_touch_pad
 	%PauseMenu.hide()
 	# Play game song
 	#NodeAudio.playAudio(NodeAudio.audioGame)
@@ -57,11 +59,11 @@ func set_atom_count(count: int):
 		$EnemySpawner/Timer.wait_time = 0.66
 	else:
 		$EnemySpawner/Timer.wait_time = 1
-	if count > 10 and count < 150 and current_bgm != %BGM1:
+	if count >= 10 and count < 150 and current_bgm != %BGM1:
 		crossfade_music(%BGM1)
-	if count > 2000 and count < 650000 and current_bgm != %BGM2:
+	if count >= 2000 and count < 650000 and current_bgm != %BGM2:
 		crossfade_music(%BGM2)
-	if count > 5000000 and count < 50000000 and current_bgm != %BGM3:
+	if count >= 5000000 and count < 50000000 and current_bgm != %BGM3:
 		crossfade_music(%BGM3)
 	
 	if count > 150 and count < 1500 and shader_rect != %ShaderRect_cell:
@@ -102,16 +104,11 @@ func set_atom_count(count: int):
 		boss_spawned = true
 		anim_player.queue("stars_boss_on")
 		crossfade_music(%BGM_Boss)
-		$ParallaxBackgroundStars/ParallaxLayer2.visible = false
-		$ParallaxBackgroundStars/ParallaxLayer3.visible = false
-		$ParallaxBackgroundStars/ParallaxLayer4.visible = false
-		$ParallaxBackgroundStars/ParallaxLayer5.visible = false
-		$ParallaxBackgroundStars/ParallaxLayer6.visible = false
 		get_tree().call_group("Element", "destroy_not_player")
 		$EnemySpawner.process_mode = Node.PROCESS_MODE_DISABLED
 		var hole: BlackHole = black_hole.instantiate()
 		hole.global_position = player.global_position + Vector2(0, -600000)
-		%Enemies.add_child(hole)
+		$Boss.add_child(hole)
 		hole.destroyed_by_player.connect(_on_black_hole_killed)
 		await get_tree().create_timer(5).timeout
 		hole.start()
@@ -126,12 +123,11 @@ func _on_enemy_killed(enemy: Element):
 	%Player.add_element(enemy)
 	enemy.give_to_player()
 
-func _on_black_hole_killed(hole: BlackHole):
+func _on_black_hole_killed(_hole: BlackHole):
 	current_bgm.stop()
 	%Win.play()
 	await %Win.finished
-	get_tree().change_scene_to_packed(win_scene)
-	get_tree().paused = true
+	get_tree().change_scene_to_packed.bind(win_scene).call_deferred()
 
 func _on_player_killed():
 	%GameOverLayer.visible = true

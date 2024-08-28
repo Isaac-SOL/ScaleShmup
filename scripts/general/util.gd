@@ -42,3 +42,6 @@ static func rand_in_sphere(min_radius: float, max_radius: float) -> Vector3:
 	var base_vector := Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
 	var radius := randf_range(min_radius, max_radius)
 	return base_vector.normalized() * radius
+
+static func on_mobile() -> bool:
+	return OS.has_feature("web_android") or OS.has_feature("web_ios") or OS.has_feature("android") or OS.has_feature("ios")

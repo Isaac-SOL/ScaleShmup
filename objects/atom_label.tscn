@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo6snfbyyrgdb"]
 
 [ext_resource type="FontFile" uid="uid://c3o7p4o51tcg3" path="res://assets/fonts/ortland/Ortland.otf" id="1_4byjt"]
-[ext_resource type="PackedScene" path="res://objects/flying_label_atoms.tscn" id="1_v1pyu"]
+[ext_resource type="PackedScene" uid="uid://diuwqpw6tmj5h" path="res://objects/flying_label_atoms.tscn" id="1_v1pyu"]
 
 [sub_resource type="GDScript" id="GDScript_hvjl5"]
 script/source = "extends VBoxContainer
@@ -11,6 +11,12 @@ script/source = "extends VBoxContainer
 @export var flying_label: PackedScene
 
 var previous_amount: int = 1
+
+func _ready() -> void:
+	# Move to top left on mobile to give room for joystick
+	if Util.on_mobile():
+		position = Vector2.ZERO
+		pivot_offset = Vector2.ZERO
 
 func str_separated(amount: int) -> String:
 	var amount_txt: String = str(amount)
@@ -25,6 +31,11 @@ func str_separated(amount: int) -> String:
 
 func set_amount(amount: int):
 	%LabelAtoms.text = str_separated(amount)
+	
+	if previous_amount == 1 and amount != 1:
+		%LabelText.text = \"Atoms\"
+	if previous_amount != 1 and amount == 1:
+		%LabelText.text = \"Atom\"
 	
 	var amount_diff := amount - previous_amount
 	if abs(amount_diff) > floori(amount / 10.0):
@@ -68,10 +79,11 @@ theme_override_font_sizes/font_size = 32
 text = "1"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="LabelText" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("1_4byjt")
-text = "Atoms"
+text = "Atom"
 horizontal_alignment = 1

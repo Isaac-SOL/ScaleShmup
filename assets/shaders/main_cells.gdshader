@@ -31,7 +31,7 @@ void fragment() {
 	uv *= mult_size;
 	uv += offset;
 	//uv = mod(uv + vec2(1, 1), 2) - vec2(1, 1);
-	
+
 	float min_dist = 100.0;
 	vec2 grid_coords = floor(uv);
 	vec2 grid_uv = fract(uv)-0.5;
@@ -46,8 +46,8 @@ void fragment() {
 			}
 	}
 	vec3 color = vec3(palette(sqrt(min_dist),color_cell_a,color_cell_b,param_cell_c,param_cell_d));
-	
-	
+
+
 
 	COLOR = vec4(color, alpha);
 }

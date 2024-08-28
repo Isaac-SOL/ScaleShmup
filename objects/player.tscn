@@ -19,7 +19,6 @@ radius = 5.0
 
 [node name="Player" type="Area2D"]
 collision_mask = 268
-audio_bus_name = &"Master"
 script = ExtResource("1_cmjns")
 base_move_speed = 100.0
 projectile = ExtResource("2_cuvwt")
@@ -39,7 +38,6 @@ debug_color = Color(1, 0, 0.701961, 0.419608)
 unique_name_in_owner = true
 
 [node name="Atom" parent="Elements" instance=ExtResource("4_hylfv")]
-audio_bus_name = &"Master"
 hp = 1
 player_owned = true
 shoot_strength = 175.0
@@ -47,6 +45,7 @@ shoot_strength = 175.0
 [node name="ShootTimer" parent="Elements/Atom" index="6"]
 wait_time = 2.205
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="destroyed" from="Elements/Atom" to="." method="_on_part_destroyed"]
 [connection signal="hp_changed" from="Elements/Atom" to="." method="_on_part_hp_changed"]

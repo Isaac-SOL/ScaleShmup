@@ -8,7 +8,6 @@
 radius = 50363.9
 
 [node name="planete_1" instance=ExtResource("1_li1me")]
-audio_bus_name = &"Master"
 size = 6718464
 hp = 6718464
 projectile = ExtResource("2_dhm4t")
