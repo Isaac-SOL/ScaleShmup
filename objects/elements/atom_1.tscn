@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://dk1iyi3vx4sgj"]
+[gd_scene load_steps=24 format=3 uid="uid://dk1iyi3vx4sgj"]
 
 [ext_resource type="Script" path="res://scripts/element.gd" id="1_8i05w"]
 [ext_resource type="PackedScene" uid="uid://pxda5hpbxdf0" path="res://objects/projectiles/neutron.tscn" id="2_ho7fk"]
 [ext_resource type="Texture2D" uid="uid://calqncgvrw1yb" path="res://assets/textures/elements/sprite_atome_1.png" id="2_o4gdr"]
 [ext_resource type="PackedScene" uid="uid://c07yxt6fcwqsl" path="res://objects/flying_label.tscn" id="3_sxo3m"]
 [ext_resource type="PackedScene" uid="uid://e0v8px0kmilg" path="res://objects/hp_bar.tscn" id="4_3nwog"]
+[ext_resource type="Material" uid="uid://xdit0dmtg7xi" path="res://assets/shaders/shader_material_object_dmg.tres" id="4_kwxc8"]
 [ext_resource type="AudioStream" uid="uid://cllxabpo2wbbg" path="res://assets/audio/Kenney/Impacts/footstep_wood_000.ogg" id="6_68l0v"]
 [ext_resource type="AudioStream" uid="uid://citbe0bk5aji2" path="res://assets/audio/Kenney/Impacts/footstep_wood_001.ogg" id="7_vae48"]
 [ext_resource type="AudioStream" uid="uid://k4ih1bgg4g7p" path="res://assets/audio/Kenney/Impacts/impactWood_heavy_000.ogg" id="7_yo0rj"]
@@ -52,12 +53,20 @@ stream_4/stream = ExtResource("15_40u3q")
 collision_layer = 4
 collision_mask = 258
 script = ExtResource("1_8i05w")
+size = null
+hp = null
 projectile = ExtResource("2_ho7fk")
+player_owned = null
 shoot_strength = 100.0
 player_projectile_speed_factor = 150.0
 flying_label = ExtResource("3_sxo3m")
+shooting_anim = null
+enemy_ai = null
 enemy_color = Color(1, 0.462745, 0, 1)
 player_color = Color(0, 0.694118, 1, 0)
+shake_interval = null
+shake_factor = null
+move_speed = null
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -66,6 +75,7 @@ texture = SubResource("GradientTexture2D_naak6")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
+material = ExtResource("4_kwxc8")
 position = Vector2(-2, 0)
 texture = ExtResource("2_o4gdr")
 
@@ -100,6 +110,9 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
+[node name="TimerFlash" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="AudioHit" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_hnve0")
@@ -126,3 +139,4 @@ bus = &"Sfx"
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="timeout" from="TimerFlash" to="." method="_on_timer_flash_timeout"]

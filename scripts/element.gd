@@ -234,6 +234,7 @@ func _on_element_body_entered(body: Node2D):
 				if body.damage_value < Singletons.player.size / 20:
 					body.damage_value /= 10
 				play_audio_scaled(%AudioHit, -10, body.damage_value)
+				flash_player()
 				if ceili(body.damage_value / 8.0) > hp / 100.0:
 					shake(0.6, 0.5)
 				hp -= ceili(body.damage_value / 8.0)
@@ -243,6 +244,7 @@ func _on_element_body_entered(body: Node2D):
 	else:
 		if body is Projectile and body.player:
 			play_audio_scaled(%AudioHit, -10, min(body.damage_value, size))
+			flash_ennemie()
 			instantiate_damage_label(body.position, body.damage_value)
 			body.destroy()
 			if body.damage_value > hp / 100.0:
@@ -286,3 +288,16 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_kill_timer_timeout():
 	if not %VisibleOnScreenNotifier2D.is_on_screen() and enemy_ai:
 		destroy_no_effects()
+
+func flash_ennemie():
+	%Sprite2D.material.set_shader_parameter("flash_color", Vector3(1,0,0.286))
+	%Sprite2D.material.set_shader_parameter("flash_modifier", 0.8)
+	$TimerFlash.start()
+
+func flash_player():
+	%Sprite2D.material.set_shader_parameter("flash_color", Vector3(0,1,0.6))
+	%Sprite2D.material.set_shader_parameter("flash_modifier", 0.8)
+	$TimerFlash.start()
+
+func _on_timer_flash_timeout():
+	%Sprite2D.material.set_shader_parameter("flash_modifier", 0.0)

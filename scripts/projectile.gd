@@ -5,6 +5,8 @@ const ENEMY_PROJECTILE_MASK = 1 << 8
 const PLAYER_PROJECTILE_LAYER = 1 << 1
 const PLAYER_PROJECTILE_MASK = 1 << 2
 
+@onready var gpu_particles_2d = %GPUParticles2D
+
 @export var player: bool = false
 @export var damage_value: int = 1
 
@@ -12,21 +14,30 @@ const PLAYER_PROJECTILE_MASK = 1 << 2
 @export var player_color: Color
 @export var enemy_color: Color
 
+var particule_rotation_set : bool = false
 var index: float = 0
 
 func _ready():
 	set_mode(player)
+	create_particule()
 
+func _process(delta):
+	if !particule_rotation_set:
+		particule_rotation_set = true
+		gpu_particles_2d.rotation = global_rotation
+		
 func set_mode(player_mode: bool):
 	player = player_mode
 	if player:
 		set_deferred("collision_layer", PLAYER_PROJECTILE_LAYER)
 		set_deferred("collision_mask", PLAYER_PROJECTILE_MASK)
 		%Shadow.modulate = player_color
+		gpu_particles_2d.modulate = player_color
 	else:
 		set_deferred("collision_layer", ENEMY_PROJECTILE_LAYER)
 		set_deferred("collision_mask", ENEMY_PROJECTILE_MASK)
 		%Shadow.modulate = enemy_color
+		gpu_particles_2d.modulate = enemy_color
 
 func create(sca: float = 1):
 	await get_tree().process_frame
@@ -52,6 +63,12 @@ func destroy():
 
 func destroy_no_effects():
 	queue_free()
+	
+	
+func create_particule():
+	gpu_particles_2d.texture = %Sprite2D.texture
+	gpu_particles_2d.scale = %Sprite2D.scale
+
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	destroy_no_effects()

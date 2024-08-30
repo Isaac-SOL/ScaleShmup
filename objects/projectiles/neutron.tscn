@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://pxda5hpbxdf0"]
+[gd_scene load_steps=9 format=3 uid="uid://pxda5hpbxdf0"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_ic4e1"]
+[ext_resource type="Script" path="res://scripts/projectile_gpu_particles_2d.gd" id="2_taqwr"]
 
 [sub_resource type="Gradient" id="Gradient_r2h22"]
 offsets = PackedFloat32Array(0, 0.340249, 0.423237, 0.738589)
@@ -26,6 +27,11 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwrjq"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_jurhr"]
 radius = 2.0
 
@@ -49,6 +55,12 @@ texture = SubResource("GradientTexture2D_11kow")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture = SubResource("GradientTexture2D_oitgg")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+unique_name_in_owner = true
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_dwrjq")
+script = ExtResource("2_taqwr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
