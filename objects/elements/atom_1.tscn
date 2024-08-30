@@ -53,20 +53,12 @@ stream_4/stream = ExtResource("15_40u3q")
 collision_layer = 4
 collision_mask = 258
 script = ExtResource("1_8i05w")
-size = null
-hp = null
 projectile = ExtResource("2_ho7fk")
-player_owned = null
 shoot_strength = 100.0
 player_projectile_speed_factor = 150.0
 flying_label = ExtResource("3_sxo3m")
-shooting_anim = null
-enemy_ai = null
 enemy_color = Color(1, 0.462745, 0, 1)
 player_color = Color(0, 0.694118, 1, 0)
-shake_interval = null
-shake_factor = null
-move_speed = null
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true

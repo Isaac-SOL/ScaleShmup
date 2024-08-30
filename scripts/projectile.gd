@@ -14,17 +14,17 @@ const PLAYER_PROJECTILE_MASK = 1 << 2
 @export var player_color: Color
 @export var enemy_color: Color
 
-var particule_rotation_set : bool = false
+#var particule_rotation_set : bool = false
 var index: float = 0
 
 func _ready():
 	set_mode(player)
 	create_particule()
 
-func _process(delta):
-	if !particule_rotation_set:
-		particule_rotation_set = true
-		gpu_particles_2d.rotation = global_rotation
+#func _process(delta):
+	#if !particule_rotation_set:
+		#particule_rotation_set = true
+		#gpu_particles_2d.rotation = global_rotation
 		
 func set_mode(player_mode: bool):
 	player = player_mode
