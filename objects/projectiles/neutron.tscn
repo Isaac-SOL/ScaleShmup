@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://pxda5hpbxdf0"]
+[gd_scene load_steps=11 format=3 uid="uid://pxda5hpbxdf0"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_ic4e1"]
 [ext_resource type="Script" path="res://scripts/projectile_gpu_particles_2d.gd" id="2_taqwr"]
@@ -27,10 +27,17 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="Gradient" id="Gradient_28t8f"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rcm2s"]
+gradient = SubResource("Gradient_28t8f")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwrjq"]
 resource_local_to_scene = true
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_rcm2s")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jurhr"]
 radius = 2.0
@@ -58,7 +65,7 @@ texture = SubResource("GradientTexture2D_oitgg")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
 unique_name_in_owner = true
-amount = 2
+show_behind_parent = true
 process_material = SubResource("ParticleProcessMaterial_dwrjq")
 script = ExtResource("2_taqwr")
 
