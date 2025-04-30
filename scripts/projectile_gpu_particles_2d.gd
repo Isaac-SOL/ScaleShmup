@@ -21,8 +21,8 @@ func _process(_delta):
 	process_material.angle_min = rad_to_deg(- self.rotation - %Sprite2D.rotation)
 	process_material.angle_max = rad_to_deg(- self.rotation - %Sprite2D.rotation)
 	
-	if not enabled:
-		return
+	if not enabled: return
+	
 	var current_time = Time.get_ticks_usec()
 	if not old_transform:
 		old_transform = global_transform

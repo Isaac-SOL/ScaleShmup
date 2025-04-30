@@ -23,6 +23,9 @@ resource_local_to_scene = true
 shader = ExtResource("4_16d21")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
+shader_parameter/outer_time = 0.0
+shader_parameter/last_flash_time = -10.0
+shader_parameter/flash_length = 0.1
 
 [node name="Player" type="Area2D"]
 collision_mask = 268

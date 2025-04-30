@@ -18,8 +18,11 @@ var particule_rotation_set : bool = false
 var index: float = 0
 
 func _ready():
+	if Util.on_web():
+		%GPUParticles2D.process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		create_particule()
 	set_mode(player)
-	create_particule()
 
 func _process(delta):
 	if !particule_rotation_set:
@@ -59,13 +62,16 @@ func destroy():
 	tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%Shadow, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN)
 	tween.tween_property(%Shadow, "modulate", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_OUT)
-	tween.chain().tween_callback(func(): queue_free())
+	tween.chain().tween_callback(func(): destroy_no_effects())
 
 func destroy_no_effects():
+	%GPUParticles2D.emitting = false
+	await get_tree().create_timer(%GPUParticles2D.lifetime).timeout
 	queue_free()
 	
 	
 func create_particule():
+	gpu_particles_2d.emitting = true
 	gpu_particles_2d.texture = %Sprite2D.texture
 	gpu_particles_2d.scale = %Sprite2D.scale
 

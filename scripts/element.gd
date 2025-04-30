@@ -22,6 +22,8 @@ signal destroyed_by_player(element: Element)
 @export_group("Colors")
 @export var enemy_color: Color
 @export var player_color: Color
+@export var enemy_flash_color: Color
+@export var player_flash_color: Color
 
 @export_group("Sprite Shaking")
 @export var shake_interval: float = 0.035
@@ -33,6 +35,7 @@ var direction := Vector2.ZERO
 var move_to_player: bool = false
 var max_hp: int
 var anim_base_scale: Vector2
+var inner_time: float = 0.0
 
 # Wander behavior
 var wander_time : float = 0.0
@@ -94,7 +97,10 @@ func _process(delta):
 	%Sprite2D.position = Util.decayv2(%Sprite2D.position, target_position, move_speed * delta)
 	if has_node("AnimatedSprite2D"):
 		%AnimatedSprite2D.position = Util.decayv2(%AnimatedSprite2D.position, target_position, move_speed * delta)
-		
+	
+	# Flash animation
+	inner_time += delta
+	%Sprite2D.material.set_shader_parameter("outer_time", inner_time)
 
 func shake(amount: float, duration: float):
 	if amount < current_radius: return
@@ -110,10 +116,12 @@ func set_mode(player_mode: bool):
 		set_deferred("collision_layer", PLAYER_LAYER)
 		set_deferred("collision_mask", PLAYER_MASK)
 		%Shadow.modulate = player_color
+		%Sprite2D.material.set_shader_parameter("flash_color", player_flash_color)
 	else:
 		set_deferred("collision_layer", ENEMY_LAYER)
 		set_deferred("collision_mask", ENEMY_MASK)
 		%Shadow.modulate = enemy_color
+		%Sprite2D.material.set_shader_parameter("flash_color", enemy_flash_color)
 
 func shoot_single_projectile(proj: PackedScene, dir: Vector2,
 							 strength_enemy: float = shoot_strength,
@@ -179,14 +187,16 @@ func change_speed(new_speed: float):
 	direction = direction.normalized() * new_speed
 
 func give_to_player():
-	play_audio_scaled(%AudioDestroy, -18, size)
-	play_audio_scaled(%AudioWin, -24, size)
 	set_mode(true)
 	hp = size
 	shoot_strength = floori(shoot_strength * 1.7)
 	$ShootTimer.wait_time *= 0.7
 	move_to_player = true
 	%HPBar.visible = false
+	await get_tree().process_frame
+	play_audio_scaled(%AudioDestroy, -18, size)
+	await get_tree().process_frame
+	play_audio_scaled(%AudioWin, -24, size)
 
 func _on_shoot_timer_timeout():
 	if player_owned:
@@ -216,14 +226,15 @@ func instantiate_damage_label(pos: Vector2, damage: int):
 	dmg_label.scale = (Vector2.ONE / Singletons.camera.zoom) / 3
 
 func play_audio_scaled(source: AudioStreamPlayer, base_db: float, scale_value: float):
-	if scale_value < Singletons.player.size / 100: return
-	source.volume_db = base_db
-	if scale_value < Singletons.player.size / 20:
-		var t: float = ((Singletons.player.size / size) - 20) / 80
-		source.volume_db = lerp(base_db, -60.0, t)
 	if source == %AudioWin:
 		var chain: int = Singletons.main.increment_chain()
 		source.pitch_scale = 1.0 + 0.05 * chain
+	else:
+		if scale_value < Singletons.player.size / 100: return
+		source.volume_db = base_db
+		if scale_value < Singletons.player.size / 20:
+			var t: float = ((Singletons.player.size / size) - 20) / 80
+			source.volume_db = lerp(base_db, -60.0, t)
 	source.play()
 
 func _on_element_body_entered(body: Node2D):
@@ -234,7 +245,7 @@ func _on_element_body_entered(body: Node2D):
 				if body.damage_value < Singletons.player.size / 20:
 					body.damage_value /= 10
 				play_audio_scaled(%AudioHit, -10, body.damage_value)
-				flash_player()
+				flash()
 				if ceili(body.damage_value / 8.0) > hp / 100.0:
 					shake(0.6, 0.5)
 				hp -= ceili(body.damage_value / 8.0)
@@ -244,7 +255,7 @@ func _on_element_body_entered(body: Node2D):
 	else:
 		if body is Projectile and body.player:
 			play_audio_scaled(%AudioHit, -10, min(body.damage_value, size))
-			flash_ennemie()
+			flash()
 			instantiate_damage_label(body.position, body.damage_value)
 			body.destroy()
 			if body.damage_value > hp / 100.0:
@@ -289,15 +300,5 @@ func _on_kill_timer_timeout():
 	if not %VisibleOnScreenNotifier2D.is_on_screen() and enemy_ai:
 		destroy_no_effects()
 
-func flash_ennemie():
-	%Sprite2D.material.set_shader_parameter("flash_color", Vector3(1,0,0.286))
-	%Sprite2D.material.set_shader_parameter("flash_modifier", 0.8)
-	$TimerFlash.start()
-
-func flash_player():
-	%Sprite2D.material.set_shader_parameter("flash_color", Vector3(0,1,0.6))
-	%Sprite2D.material.set_shader_parameter("flash_modifier", 0.8)
-	$TimerFlash.start()
-
-func _on_timer_flash_timeout():
-	%Sprite2D.material.set_shader_parameter("flash_modifier", 0.0)
+func flash():
+	%Sprite2D.material.set_shader_parameter("last_flash_time", inner_time)

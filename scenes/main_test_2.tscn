@@ -50,187 +50,261 @@
 position = Vector2(70, -139)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="Atom2" parent="Enemies" index="1" instance=ExtResource("3_tptsa")]
 position = Vector2(223, -136)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="Atom3" parent="Enemies" index="2" instance=ExtResource("4_afswi")]
 position = Vector2(385, -70)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="Molecule2" parent="Enemies" index="3" instance=ExtResource("5_aadex")]
 position = Vector2(559, -64)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="Molecule3" parent="Enemies" index="4" instance=ExtResource("6_m07iv")]
 position = Vector2(742, -67)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="Molecule" parent="Enemies" index="5" instance=ExtResource("7_3v5vt")]
 position = Vector2(969, -64)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="molecule_4" parent="Enemies" index="6" instance=ExtResource("8_gnaqj")]
 position = Vector2(1191, -76)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="molecule_5" parent="Enemies" index="7" instance=ExtResource("9_3erh1")]
 position = Vector2(1372, -67)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="molecule_6" parent="Enemies" index="8" instance=ExtResource("10_7fdf7")]
 position = Vector2(1693, -82)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="molecule_7" parent="Enemies" index="9" instance=ExtResource("11_4d4fo")]
 position = Vector2(1682, 265)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="molecule_8" parent="Enemies" index="10" instance=ExtResource("12_ux7g5")]
 position = Vector2(1678, 622)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="molecule_9" parent="Enemies" index="11" instance=ExtResource("13_avnxi")]
 position = Vector2(1365, 100)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_1_true" parent="Enemies" index="12" instance=ExtResource("14_8ucvl")]
 position = Vector2(1420, 1274)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_2" parent="Enemies" index="13" instance=ExtResource("15_6lhpr")]
 position = Vector2(426, 1277)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_3" parent="Enemies" index="14" instance=ExtResource("16_mk6l8")]
 position = Vector2(-666, 1387)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_4" parent="Enemies" index="15" instance=ExtResource("17_1pthj")]
 position = Vector2(-1774, 1335)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_5" parent="Enemies" index="16" instance=ExtResource("18_uexm1")]
 position = Vector2(-2859, 1327)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_6" parent="Enemies" index="17" instance=ExtResource("19_fagx8")]
 position = Vector2(-2897, 352)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_7" parent="Enemies" index="18" instance=ExtResource("20_t3oyw")]
 position = Vector2(-2830, -599)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_8" parent="Enemies" index="19" instance=ExtResource("21_i6pj8")]
 position = Vector2(-2845, -1598)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_9" parent="Enemies" index="20" instance=ExtResource("22_7sx7m")]
 position = Vector2(-2826, -2659)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="cell_10" parent="Enemies" index="21" instance=ExtResource("23_62ln4")]
 position = Vector2(-1765, -2597)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="human_1" parent="Enemies" index="22" instance=ExtResource("24_eta18")]
 position = Vector2(167, -4167)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="human_2" parent="Enemies" index="23" instance=ExtResource("25_y2rfx")]
 position = Vector2(3208, -4155)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="human_3" parent="Enemies" index="24" instance=ExtResource("26_jjiu8")]
 position = Vector2(6364, -4036)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="human_4" parent="Enemies" index="25" instance=ExtResource("27_dkxp8")]
 position = Vector2(9862, -3915)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="human_5" parent="Enemies" index="26" instance=ExtResource("28_5uah8")]
 position = Vector2(13629, -3768)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="human_6" parent="Enemies" index="27" instance=ExtResource("29_mpywn")]
 position = Vector2(17248, -3754)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="pinpin_1" parent="Enemies" index="28" instance=ExtResource("30_s3pow")]
 position = Vector2(9069, 458)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="saumon_1" parent="Enemies" index="29" instance=ExtResource("31_fe27l")]
 position = Vector2(12815, 458)
 script = ExtResource("32_pdoa6")
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="batiment_1" parent="Enemies" index="30" instance=ExtResource("33_vmnji")]
 position = Vector2(53020, 1992)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="batiment_2" parent="Enemies" index="31" instance=ExtResource("34_o4jpw")]
 position = Vector2(41594, 28850)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="batiment_3" parent="Enemies" index="32" instance=ExtResource("35_1wujv")]
 position = Vector2(7833, 47715)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="batiment_4" parent="Enemies" index="33" instance=ExtResource("36_x4e3t")]
 position = Vector2(-71936, 57472)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="batiment_5" parent="Enemies" index="34" instance=ExtResource("37_kjbg1")]
 position = Vector2(-126848, 15616)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="planete_1" parent="Enemies" index="35" instance=ExtResource("38_br24p")]
 position = Vector2(-40704, -205440)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="planete_2" parent="Enemies" index="36" instance=ExtResource("39_44aji")]
 position = Vector2(191104, -180352)
 hp = 1
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="galaxie_1_true" parent="Enemies" index="37" instance=ExtResource("40_uhrpf")]
 position = Vector2(615675, -117025)
@@ -238,26 +312,36 @@ size = 6718464
 hp = 839808
 projectile = ExtResource("41_r52ie")
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="galaxie_2" parent="Enemies" index="38" instance=ExtResource("42_afm3x")]
 position = Vector2(820608, 321408)
 hp = 839808
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="galaxie_4" parent="Enemies" index="39" instance=ExtResource("43_4n5c6")]
 position = Vector2(926848, 784128)
 hp = 839808
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="galaxie_5" parent="Enemies" index="40" instance=ExtResource("43_4n5c6")]
 position = Vector2(1.39622e+06, 595456)
 hp = 839808
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="galaxie_6" parent="Enemies" index="41" instance=ExtResource("43_4n5c6")]
 position = Vector2(1.41082e+06, 115328)
 hp = 839808
 enemy_ai = false
+enemy_flash_color = Color(0, 0, 0, 1)
+player_flash_color = Color(0, 0, 0, 1)
 
 [node name="EnemySpawner" parent="." index="7"]
 process_mode = 4
