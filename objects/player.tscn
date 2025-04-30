@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://canbcskskh8f2" path="res://objects/player_projectile.tscn" id="2_cuvwt"]
 [ext_resource type="Shader" path="res://assets/shaders/object_dmg.gdshader" id="4_16d21"]
 [ext_resource type="PackedScene" uid="uid://dk1iyi3vx4sgj" path="res://objects/elements/atom_1.tscn" id="4_hylfv"]
-[ext_resource type="Shader" path="res://assets/shaders/object_dmg.gdshader" id="4_tfhop"]
 
 [sub_resource type="Gradient" id="Gradient_qmmvy"]
 offsets = PackedFloat32Array(0, 0.207469, 0.738589)
@@ -24,6 +23,9 @@ resource_local_to_scene = true
 shader = ExtResource("4_16d21")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
+shader_parameter/outer_time = 0.0
+shader_parameter/last_flash_time = -10.0
+shader_parameter/flash_length = 0.1
 
 [node name="Player" type="Area2D"]
 collision_mask = 268

@@ -939,13 +939,13 @@ texture = ExtResource("13_vuyih")
 [node name="Sprite2D8_M" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("14_4gifr")
 
-[node name="Sprite2D9_Moon" type="Sprite2D" parent="Node2D"]
-position = Vector2(0, 600)
-texture = ExtResource("16_bj64i")
-
 [node name="Sprite2D10_O3" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, 600)
 texture = ExtResource("17_ivtu6")
+
+[node name="Sprite2D9_Moon" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 600)
+texture = ExtResource("16_bj64i")
 
 [node name="Sprite2D11_N" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, 600)

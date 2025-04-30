@@ -44,4 +44,9 @@ static func rand_in_sphere(min_radius: float, max_radius: float) -> Vector3:
 	return base_vector.normalized() * radius
 
 static func on_mobile() -> bool:
-	return OS.has_feature("web_android") or OS.has_feature("web_ios") or OS.has_feature("android") or OS.has_feature("ios")
+	return OS.has_feature("web_android") or OS.has_feature("web_ios") \
+		   or OS.has_feature("android") or OS.has_feature("ios") \
+		   or OS.has_feature("mobile")
+
+static func on_web() -> bool:
+	return OS.has_feature("web")

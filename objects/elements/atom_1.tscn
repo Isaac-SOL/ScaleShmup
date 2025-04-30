@@ -59,6 +59,8 @@ player_projectile_speed_factor = 150.0
 flying_label = ExtResource("3_sxo3m")
 enemy_color = Color(1, 0.462745, 0, 1)
 player_color = Color(0, 0.694118, 1, 0)
+enemy_flash_color = Color(1, 0, 0.286, 1)
+player_flash_color = Color(0, 1, 0.6, 1)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -102,9 +104,6 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="TimerFlash" type="Timer" parent="."]
-wait_time = 0.1
-
 [node name="AudioHit" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_hnve0")
@@ -114,16 +113,20 @@ bus = &"Sfx"
 [node name="AudioShoot" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_2kc47")
+max_polyphony = 4
 bus = &"Sfx"
 
 [node name="AudioWin" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_2xgt2")
+volume_db = -20.0
+max_polyphony = 4
 bus = &"Sfx"
 
 [node name="AudioDestroy" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("9_g6nye")
+max_polyphony = 4
 bus = &"Sfx"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
@@ -131,4 +134,3 @@ bus = &"Sfx"
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
-[connection signal="timeout" from="TimerFlash" to="." method="_on_timer_flash_timeout"]

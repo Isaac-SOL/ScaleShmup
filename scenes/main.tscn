@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://bnvbcqc3v1wm7"]
+[gd_scene load_steps=97 format=3 uid="uid://bnvbcqc3v1wm7"]
 
 [ext_resource type="PackedScene" uid="uid://c71bepd0cdivk" path="res://objects/player.tscn" id="1_3qqml"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vyreg"]
@@ -1019,6 +1019,50 @@ _data = {
 "volcano_on": SubResource("Animation_a2qq7")
 }
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_p53iw"]
+clip_count = 5
+clip_0/name = &"lv0"
+clip_0/stream = ExtResource("72_adrpx")
+clip_0/auto_advance = 0
+clip_1/name = &"lv1"
+clip_1/stream = ExtResource("73_qvh27")
+clip_1/auto_advance = 0
+clip_2/name = &"lv2"
+clip_2/stream = ExtResource("74_4nj8n")
+clip_2/auto_advance = 0
+clip_3/name = &"lv3"
+clip_3/stream = ExtResource("75_q20jo")
+clip_3/auto_advance = 0
+clip_4/name = &"boss"
+clip_4/stream = ExtResource("76_w1vco")
+clip_4/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 12,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 2): {
+"fade_beats": 12,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, 3): {
+"fade_beats": 12,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(3, 4): {
+"fade_beats": 12,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("current_bgm") groups=["MainGroup"]]
 texture_filter = 1
 script = ExtResource("1_vyreg")
@@ -1333,6 +1377,10 @@ volume_db = -30.0
 [node name="BGM_Boss" type="AudioStreamPlayer" parent="BGM"]
 unique_name_in_owner = true
 stream = ExtResource("76_w1vco")
+volume_db = -30.0
+
+[node name="BMG_Full" type="AudioStreamPlayer" parent="BGM"]
+stream = SubResource("AudioStreamInteractive_p53iw")
 volume_db = -30.0
 
 [node name="Win" type="AudioStreamPlayer" parent="BGM"]

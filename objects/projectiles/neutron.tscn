@@ -50,6 +50,7 @@ gravity_scale = 0.0
 linear_damp_mode = 1
 script = ExtResource("1_ic4e1")
 player = true
+damage_value = null
 player_color = Color(0, 1, 0.6, 1)
 enemy_color = Color(1, 0, 0.286275, 1)
 
@@ -66,6 +67,7 @@ texture = SubResource("GradientTexture2D_oitgg")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
 unique_name_in_owner = true
 show_behind_parent = true
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_dwrjq")
 script = ExtResource("2_taqwr")
 
